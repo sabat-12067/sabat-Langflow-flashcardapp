@@ -9,7 +9,7 @@ class StudyClass(models.Model):
     def __str__(self):
         return self.name
 
-class FlashcardSet(models.Model):
+class FlashCardSet(models.Model):
     study_class = models.ForeignKey(StudyClass, related_name='sets', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
 
@@ -17,7 +17,7 @@ class FlashcardSet(models.Model):
         return self.title
 
 class Flashcard(models.Model):
-    flashcard_set = models.ForeignKey(FlashcardSet, related_name='flashcards', on_delete=models.CASCADE)
+    flashcard_set = models.ForeignKey(FlashCardSet, related_name='flashcards', on_delete=models.CASCADE)
     front = models.TextField()
     back = models.TextField()
 
