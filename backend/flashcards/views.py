@@ -34,8 +34,13 @@ class FlashCardSetView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 class FlashCardView(APIView):
-    def post(self, request, flashcards_set_id, format=None):
-        flashcard_set = FlashCardSet.objects.get(id=flashcards_set_id)
+    def get(self, request, flashcard_set_id, format=None):
+        flashcards = FlashCards.objects.filter(flashcard_set_id=flashcard_set_id)
+        serializer = FlashCardSerializer(flashcards, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, flashcard_set_id, format=None):
+        flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id)
         serializer = FlashCardSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(flashcard_set=flashcard_set)
