@@ -16,7 +16,7 @@ class FlashCardSet(models.Model):
     def __str__(self):
         return self.title
 
-class Flashcard(models.Model):
+class FlashCards(models.Model):
     flashcard_set = models.ForeignKey(FlashCardSet, related_name='flashcards', on_delete=models.CASCADE)
     front = models.TextField()
     back = models.TextField()

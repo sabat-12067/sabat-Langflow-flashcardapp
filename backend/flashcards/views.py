@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import StudyClass
-from .serializers import StudyClassSerializer, FlashCardSetSerializer, FlashcardSerializer
+from .models import StudyClass, FlashCardSet, FlashCards
+from .serializers import StudyClassSerializer, FlashCardSetSerializer, FlashCardSerializer
 from django.http import HttpResponse
 from rest_framework import status
 
@@ -32,17 +32,12 @@ class FlashCardSetView(APIView):
             serializer.save(study_class=study_class)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    
         
-class FlashcardView(APIView):
-    def get(self, request, format=None):
-        study_classes = StudyClass.objects.all()
-        serializer = StudyClassSerializer(study_classes, many=True)
-        return Response(serializer.data)
-    def post(self, request, format=None):
-        serializer = StudyClassSerializer(data=request.data)
+class FlashCardView(APIView):
+    def post(self, request, flashcards_set_id, format=None):
+        flashcard_set = FlashCardSet.objects.get(id=flashcards_set_id)
+        serializer = FlashCardSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(flashcard_set=flashcard_set)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

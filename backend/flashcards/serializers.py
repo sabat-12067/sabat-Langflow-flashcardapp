@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import StudyClass, FlashCardSet, Flashcard
+from .models import StudyClass, FlashCardSet, FlashCards
 
 class StudyClassSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,7 +11,7 @@ class FlashCardSetSerializer(serializers.ModelSerializer):
         model = FlashCardSet
         fields = ['id', 'title']
 
-class FlashcardSerializer(serializers.ModelSerializer):
+class FlashCardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Flashcard
+        model = FlashCards
         fields = ['id', 'front', 'back']
