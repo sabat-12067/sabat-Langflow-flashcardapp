@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import StudyClass
-from .serializers import StudyClassSerializer, FlashCardSetSerializer
+from .serializers import StudyClassSerializer, FlashCardSetSerializer, FlashcardSerializer
 from django.http import HttpResponse
 from rest_framework import status
 
