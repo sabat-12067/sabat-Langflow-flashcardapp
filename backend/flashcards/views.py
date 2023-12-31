@@ -18,6 +18,16 @@ class StudyClassView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def patch(self, request, study_class_id):
+        try:
+            study_class = StudyClass.objects.get(id=study_class_id)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = StudyClassSerializer(study_class, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class FlashCardSetView(APIView):
     def get(self, request, study_class_id, format=None):
@@ -32,6 +42,27 @@ class FlashCardSetView(APIView):
             serializer.save(study_class=study_class)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, study_class_id, flashcard_set_id, format=None):
+        try:
+            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        serializer = FlashCardSetSerializer(flashcard_set, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, study_class_id, flashcard_set_id, format=None):
+        try:
+            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
+        except FlashCardSet.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        flashcard_set.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
         
 class FlashCardView(APIView):
     def get(self, request, flashcard_set_id, format=None):
@@ -45,4 +76,18 @@ class FlashCardView(APIView):
         if serializer.is_valid():
             serializer.save(flashcard_set=flashcard_set)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # views.py
+    def patch(self, request, flashcard_set_id, flashcard_id):
+        try:
+          flashcard = FlashCards.objects.get(id=flashcard_id, flashcard_set__id=flashcard_set_id)
+        except FlashCards.DoesNotExist:
+          return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = FlashCardSerializer(flashcard, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
