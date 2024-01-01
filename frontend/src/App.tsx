@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
-import SignIn from './pages/SignIn'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 import Cards from './pages/Cards'
+import SignIn from './pages/SignIn'
 
 interface AppProps {
   
@@ -12,17 +12,16 @@ const App: FC<AppProps> = ({
 
  const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<SignIn />}>
-      <Route index element={<Cards />}/>
-    </Route>
+    <>
+    <Route index element={<SignIn />} />
+    <Route path="/cards" element={<Cards />} />
+  </>
   )
  )
   
   return (
     <div className='text-center py-40'>
-      <button>
-        Log in with google
-      </button>
+      <RouterProvider router={router}/>
     </div>
   )
 }

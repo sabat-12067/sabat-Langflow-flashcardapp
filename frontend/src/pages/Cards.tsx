@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import React from 'react'
 
 
 interface CardsProps {
