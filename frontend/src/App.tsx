@@ -1,14 +1,9 @@
-import { FC } from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 import Cards from './pages/Cards'
 import SignIn from './pages/SignIn'
 
-interface AppProps {
-  
-}
-const App: FC<AppProps> = ({
-  
-}) => {
+
+const App = () => {
 
  const router = createBrowserRouter(
   createRoutesFromElements(
