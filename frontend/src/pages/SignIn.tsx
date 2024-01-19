@@ -25,22 +25,15 @@ const SignIn = () => {
     getUserData()
   }, [])
 
-  const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    navigate("/")
-  };
-
    
 
   return (
-    <div className='py-80'>
+    <div className='py-80 max-w-[300px] mx-auto'>
       <Auth
        supabaseClient={supabase}
        theme='dark'
        providers={["google"]}
        />
-
-<button onClick={() => handleSignOut()}>Sign Out</button>
 
     </div>
   )

@@ -1,14 +1,12 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { handleSignOut, supabase } from '../libs/supabase'
-import { Auth } from '@supabase/auth-ui-react'
+import { supabase } from '../libs/supabase'
 
 
 
 const Cards= () => {
   const navigate = useNavigate()
   const [user, setUser] = useState<any>()
-
   useEffect(() => {
     async function getUserData(){
       await supabase.auth.getUser().then((v) => {
@@ -27,9 +25,13 @@ const Cards= () => {
     navigate("/")
   };
 
+  console.log(user);
+  
+
   return (
-    <div className='py-60'>
-           <h1>Cards page</h1>
+    <div className='py-60 text-center'>
+           <h1 className='text-3xl'>Cards page</h1>
+           <p>Hello {user?.user_metadata?.full_name}</p>
       <button onClick={handleSignOut}>Sign Out</button>
     </div>
   )
