@@ -1,31 +1,26 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../libs/supabase'
+import { useSelector, useDispatch } from 'react-redux';
+
 
 
 
 const Cards= () => {
-  const navigate = useNavigate()
-  const [user, setUser] = useState<any>()
-  useEffect(() => {
-    async function getUserData(){
-      await supabase.auth.getUser().then((v) => {
-        if(v.data?.user){
-          setUser(v.data.user)
-        }else{
 
-        }
-      })
-    }
-    getUserData()
-  }, [])
+
+  const navigate = useNavigate()
+
+
+
+    const user = useSelector((state: any) => state.auth.user)
+    console.log(user);
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     navigate("/")
   };
 
-  console.log(user);
   
 
   return (
