@@ -5,6 +5,19 @@
 
 
 *{
-    background-color: black;
+    background-color: #020617;
+    color: white;
+}
+
+.anchor{
+    display: flex;
+    
+}
+
+.button{
+  border: white solid 1px;
+}
+
+.label{
     color: white;
 }

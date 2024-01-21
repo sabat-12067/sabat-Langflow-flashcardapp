@@ -3,17 +3,15 @@ import { Auth } from '@supabase/auth-ui-react';
 import { supabase } from '../libs/supabase';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from '../state/authSlice';
+import {ThemeSupa} from '@supabase/auth-ui-shared'
 
 
 
 const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
-
-  const usere = useSelector((state: any) => state.auth.user)
-  console.log(usere);
 
   useEffect(() => {
     async function getUserData(){
@@ -30,15 +28,42 @@ const SignIn = () => {
     getUserData()
   }, [])
 
+
+  const customTheme = {
+    default: {
+      colors: {
+        brandButtonText: 'white',
+        defaultButtonBackground: 'black',
+        defaultButtonBackgroundHover: '#3e3e3e',
+        //..
+      },
+    }
+  }
    
 
   return (
     <div className='py-80 max-w-[300px] mx-auto'>
-      <Auth
-       supabaseClient={supabase}
-       theme='dark'
-       providers={["google"]}
-       />
+<Auth
+        supabaseClient={supabase}
+        providers={['google']}
+        magicLink={true}
+        appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: '#404040',
+                brandAccent: '#22c55e'
+              }
+            }
+          },
+          className: {
+            button: 'button',
+            label: "label"
+          }
+        }}
+        theme="dark"
+      />
 
     </div>
   )
