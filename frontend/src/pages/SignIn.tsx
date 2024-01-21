@@ -1,72 +1,69 @@
-
-import { Auth } from '@supabase/auth-ui-react';
-import { supabase } from '../libs/supabase';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../state/authSlice';
-import {ThemeSupa} from '@supabase/auth-ui-shared'
-
-
+ import { supabase } from "../libs/supabase";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../state/authSlice";
+import AuthForm from "@/components/AuthForm";
+import {  PiBrainThin } from "react-icons/pi";
+import one from "../assets/one.mp4"
+import { Button } from "@/components/ui/button";
 
 const SignIn = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getUserData(){
+    async function getUserData() {
       await supabase.auth.getUser().then((v) => {
-        if(v.data?.user){
-          dispatch(setUser(v.data?.user))
-          navigate("/cards")
-          
-        }else{
-          navigate("/")
+        if (v.data?.user) {
+          dispatch(setUser(v.data?.user));
+          navigate("/cards");
+        } else {
+          navigate("/");
         }
-      })
+      });
     }
-    getUserData()
-  }, [])
-
-
-  const customTheme = {
-    default: {
-      colors: {
-        brandButtonText: 'white',
-        defaultButtonBackground: 'black',
-        defaultButtonBackgroundHover: '#3e3e3e',
-        //..
-      },
-    }
-  }
-   
+    getUserData();
+  }, []);
 
   return (
-    <div className='py-80 max-w-[300px] mx-auto'>
-<Auth
-        supabaseClient={supabase}
-        providers={['google']}
-        magicLink={true}
-        appearance={{
-          theme: ThemeSupa,
-          variables: {
-            default: {
-              colors: {
-                brand: '#404040',
-                brandAccent: '#22c55e'
-              }
-            }
-          },
-          className: {
-            button: 'button',
-            label: "label"
-          }
-        }}
-        theme="dark"
-      />
-
+    <div className="">
+      <header className="flex justify-between py-10 px-20">
+        <div className="flex gap-2">
+        <span className="my-1">
+            <PiBrainThin size={26}/>
+          </span>
+          <p className="text-[22px] font-mono">Learned</p>
+        </div>
+        <div>
+          <AuthForm />
+        </div>
+      </header>
+      <main className="text-center my-20 flex mx-auto max-w-[70%] gap-20 mr-40">
+        <div className="py-20 space-y-6 lg:text-left max-w-[400px]">
+          <h1 className="text-3xl text-slate-200">Welcome to Learned</h1>
+          <p className="text-lg text-white leading-8">
+            Learn a new language quickly for your next trip. 
+            Pass your next law exam or history test, we have your back. 
+          </p>
+          <Button className="bg-white text-black hover:bg-white hover:text-black">Get Started</Button>
+        </div>
+        <div>
+        <video
+          className=" bg-slate-300"
+          width="700"
+          height="400"
+          aria-label="Workout log video"
+          autoPlay
+          muted
+          loop
+        >
+          <source src={one} type="video/mp4" />
+        </video>
+        </div>
+      </main>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
