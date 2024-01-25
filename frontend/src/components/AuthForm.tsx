@@ -10,7 +10,7 @@ const AuthForm: FC<AuthFormProps> = ({}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="text-black">Sign in</Button>
+        <Button variant="outline" className="text-black">Get Started</Button>
       </DialogTrigger>
       <DialogContent className="bg-[#020617]">
         <Auth

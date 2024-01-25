@@ -39,19 +39,19 @@ const SignIn = () => {
           <AuthForm />
         </div>
       </header>
-      <main className="text-center my-20 flex mx-auto max-w-[70%] gap-20 mr-40">
-        <div className="py-20 space-y-6 lg:text-left max-w-[400px]">
-          <h1 className="text-3xl text-slate-200">Welcome to Learned</h1>
-          <p className="text-lg text-white leading-8">
-            Learn a new language quickly for your next trip. 
-            Pass your next law exam or history test, we have your back. 
+      <main className="text-center my-4 flex mx-auto max-w-[70%] gap-20 mr-40">
+        <div className="py-10 space-y-6 lg:text-left max-w-[460px]">
+          <h1 className="text-4xl text-slate-200 font-bold">Welcome to Learned</h1>
+          <p className="text-lg text-white leading-8 font-light">
+            Learn a new language quickly for your next trip,
+            pass your next law exam or history test, we have your back. 
           </p>
           <Button className="bg-white text-black hover:bg-white hover:text-black">Get Started</Button>
         </div>
         <div>
         <video
           className=" bg-slate-300"
-          width="700"
+          width="600"
           height="400"
           aria-label="Workout log video"
           autoPlay
@@ -62,6 +62,9 @@ const SignIn = () => {
         </video>
         </div>
       </main>
+      {/* <div className="text-center py-20">
+        <p>Join 850+ students using Learned today!</p>
+      </div> */}
     </div>
   );
 };
