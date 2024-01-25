@@ -1,7 +1,7 @@
 # Sports Sync
 
-This is a flashcards application I made using React, Redux toolkit, Typescript, Supabase, and Django for the backend database. There is full CRUD features for
-
+This is a flashcards application I made using React, Redux toolkit, Typescript, Supabase, and Django for the backend database. This app has a feature called classrooms, 
+which is whatever topic the user wants to learn more about, and each classroom has multiple sets of flashcards.
 
 
 ## Features
