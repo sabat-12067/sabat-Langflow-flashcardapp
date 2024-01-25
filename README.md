@@ -15,7 +15,7 @@ language, and I ended up loving Django!
 
 - The front end technologies include React, Typescript, Redux toolkit, and TanStack query for data fetching
 - I used Django for the backend API views, and models. 
-- Supabase is used for both authentication, along with being in Sync with my Django backend. I used this to take advantage of Django's ORM, along with having a Supabase hosted database
+- Supabase is used for both authentication, along with being in sync with my Django backend. So every time I make a migration in Django it is also there in Supabase. I used this to take advantage of Django's ORM, along with having a Supabase hosted database.
 
 ## Installation
 
