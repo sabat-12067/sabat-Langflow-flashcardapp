@@ -1,6 +1,6 @@
-# Sports Sync
+# Learned
 
-This is a flashcards application I made using React, Redux toolkit, Typescript, Supabase, and Django for the backend database. This app has a feature called classrooms, 
+Learned is a flashcards application I made using React, Redux toolkit, Typescript, Supabase, and Django for the backend database. This app has a feature called classrooms, 
 which is whatever topic the user wants to learn more about, and each classroom has multiple sets of flashcards. The motivation for me building this app was to learn a new
 language, and I ended up loving Django!
 
