@@ -14,7 +14,7 @@ language, and I ended up loving Django!
 ## Technologies Used
 
 - The front end technologies include React, Typescript, Redux toolkit, and TanStack query for data fetching
-- I used Djangos powerful framework, called django_rest_framework for the backend API views, and models. 
+- I used Djangos powerful framework, called django_rest_framework for the backend API views and models. 
 - Supabase is used for both authentication, along with being in sync with my Django backend. So every time I make a migration in Django it is also there in Supabase. I used this to take advantage of Django's ORM, along with having a Supabase hosted database.
 
 ## Installation
