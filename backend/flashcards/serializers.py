@@ -4,7 +4,7 @@ from .models import StudyClass, FlashCardSet, FlashCards
 class StudyClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudyClass
-        fields = ['id', 'supabase_user_id', 'name', 'description']
+        fields = ['id', 'user_id', 'name', 'description']
 
 class FlashCardSetSerializer(serializers.ModelSerializer):
     class Meta:

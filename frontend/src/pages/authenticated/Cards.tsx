@@ -1,16 +1,18 @@
-import { useNavigate } from 'react-router-dom'
-import { supabase } from '../../libs/supabase'
-import { useSelector } from 'react-redux';
+
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
+import { useGetClassroomsQuery } from '@/services/cards';
 
 
 //http://127.0.0.1:8000/
 
 const Cards= () => {
   
-  const navigate = useNavigate()
-  const user = useSelector((state: any) => state.auth.user)
-  console.log(user);
+
+  const { data, error, isLoading } = useGetClassroomsQuery('00000000000000000000000000000002')
+
+  console.log(data);
+
 
   
   

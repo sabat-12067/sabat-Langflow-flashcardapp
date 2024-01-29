@@ -29,7 +29,6 @@ export function Avatar() {
 
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.auth.user);
-  console.log(user);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();

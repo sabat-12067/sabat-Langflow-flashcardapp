@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
+import { cardsApi } from '../services/cards'
 
 
 const persistConfig = {
@@ -19,7 +20,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  [cardsApi.reducerPath]: cardsApi.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -27,12 +29,13 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-})
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(cardsApi.middleware), 
+});
+
 
 export const persistor = persistStore(store);
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class StudyClass(models.Model): 
-    supabase_user_id = models.UUIDField(default=0) 
+    user_id = models.IntegerField(None)
     name = models.CharField(max_length = 50)
     description = models.TextField(blank=True)
 
