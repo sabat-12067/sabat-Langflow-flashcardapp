@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Cards from './pages/Cards'
-import SignIn from './pages/SignIn'
+import Cards from './pages/authenticated/Cards'
+import SignIn from './pages/signin/SignIn'
 
 
 const App = () => {
