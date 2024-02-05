@@ -45,13 +45,13 @@ export function Avatar() {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-40">
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
          className="cursor-pointer hover:text-white flex gap-1"
          onClick={handleSignOut}
          >
-        <span>
+        <span className="">
             <CiLogout size={24}/>
           </span>
           Logout

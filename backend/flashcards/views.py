@@ -8,7 +8,7 @@ from rest_framework import status
 
 
 class StudyClassView(APIView):
-    def get(self, request, supabase_user_id, format=None):
+    def get(self, request, user_id, format=None):
         study_classes = StudyClass.objects.filter(user_id=user_id)
         serializer = StudyClassSerializer(study_classes, many=True)
         return Response(serializer.data)

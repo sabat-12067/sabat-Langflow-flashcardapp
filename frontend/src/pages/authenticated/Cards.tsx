@@ -9,7 +9,7 @@ import { useGetClassroomsQuery } from '@/services/cards';
 const Cards= () => {
   
 
-  const { data, error, isLoading } = useGetClassroomsQuery('00000000000000000000000000000002')
+  const { data, error, isLoading } = useGetClassroomsQuery('2')
 
   console.log(data);
 
