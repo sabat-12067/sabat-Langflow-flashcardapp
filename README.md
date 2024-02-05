@@ -25,4 +25,4 @@ Clone the repository:
     git clone git@github.com:Eshwar1212-maker/flashcardsapp.git
 
 Get your env variables:
-    -You will need an env variable for your supabase connection
+    -You will need an env variable for your supabase connection 
