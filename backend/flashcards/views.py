@@ -5,8 +5,6 @@ from .serializers import StudyClassSerializer, FlashCardSetSerializer, FlashCard
 from django.http import HttpResponse
 from rest_framework import status
 
-
-
 class StudyClassView(APIView):
     def get(self, request, user_id, format=None):
         study_classes = StudyClass.objects.filter(user_id=user_id)

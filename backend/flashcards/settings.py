@@ -54,9 +54,9 @@ WSGI_APPLICATION = 'flashcards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'db.xxyldyspaskgdfaqalqn.supabase.co',
+        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
         'NAME': 'postgres',
-        'USER': 'postgres',
+        'USER': 'postgres.xxyldyspaskgdfaqalqn',
         'PORT': '5432',
         'PASSWORD': 'x5f2+NAs-y%Mv7n',
     }
