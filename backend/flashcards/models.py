@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class StudyClass(models.Model): 
-    user_id = models.CharField(None)
+    user_id = models.CharField(max_length=96)
     name = models.CharField(max_length = 50)
     description = models.TextField(blank=True)
 
