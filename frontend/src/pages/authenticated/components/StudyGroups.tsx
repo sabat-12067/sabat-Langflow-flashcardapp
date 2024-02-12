@@ -1,14 +1,15 @@
 import { FC } from 'react'
 interface StudyGroupsProps {
-  name: string
   title: string
+  description: string
 }
 const StudyGroups: FC<StudyGroupsProps> = ({
-  name, title
+   title, description
 }) => {
   return (
     <div>
-      
+      <h2>{title}</h2>
+      <p>{description}</p>
     </div>
   )
 }
