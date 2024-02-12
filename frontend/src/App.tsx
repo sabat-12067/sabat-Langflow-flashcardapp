@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Cards from './pages/authenticated/Cards'
+import Cards from './pages/authenticated/classrooms/Cards'
 import SignIn from './pages/signin/SignIn'
 
 

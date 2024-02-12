@@ -1,12 +1,11 @@
 
-import { useEffect } from 'react';
-import Navbar from './components/Navbar';
 import { useGetClassroomsQuery } from '@/services/cards';
 import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar';
 import StudyGroups from './components/StudyGroups';
+import { CreateClassRoomDialog } from './components/CreateClassRoomDialog';
 
 
-//http://127.0.0.1:8000/
 
 const Cards= () => {
   
@@ -20,10 +19,13 @@ const Cards= () => {
 
   
   return (
-    <div className=' text-center'>
+    <div className='text-center'>
            <Navbar />
-           <div className=''>
+           <div className='max-w-[65%] mx-auto'>
+            <div className='flex justify-between'>
             <h1 className='text-2xl'>My Classrooms</h1>
+              <CreateClassRoomDialog />
+            </div>
             <div className='flex flex-row justify-center'>
               {data?.map((studyGroup, i) => {
                 return (

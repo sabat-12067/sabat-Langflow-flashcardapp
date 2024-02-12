@@ -4,20 +4,12 @@
 @tailwind utilities;
 
 
-*{
+body{
     background-color: #0c0d12;
     color: white;
 }
 
-.anchor{
-    display: flex;
-    
-}
-
-.button{
-  border: white solid 1px;
-}
-
-.label{
-    color: white;
+.icon{
+    background-color: white;
+    color: black;
 }
