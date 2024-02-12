@@ -1,6 +1,6 @@
 
 
-type StudyGroup = {
+export type StudyGroup = {
     name: string
     description: string
 }

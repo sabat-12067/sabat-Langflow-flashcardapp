@@ -1,3 +1,4 @@
+import { StudyGroup } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { useSelector } from 'react-redux';
 

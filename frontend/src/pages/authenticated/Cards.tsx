@@ -17,17 +17,17 @@ const Cards= () => {
   console.log(data);
 
 
-   
+
   
   return (
     <div className=' text-center'>
            <Navbar />
            <div className=''>
-            <h1>My Study Groups</h1>
-            <div>
-              {data?.map((studyGroup) => {
+            <h1 className='text-2xl'>My Classrooms</h1>
+            <div className='flex flex-row justify-center'>
+              {data?.map((studyGroup, i) => {
                 return (
-                  <StudyGroups title={studyGroup.name} description={studyGroup.description}/>
+                  <StudyGroups key={i} title={studyGroup.name} description={studyGroup.description}/>
                 )
               })}
             </div>
