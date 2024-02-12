@@ -14,18 +14,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/libs/supabase";
-import { FC } from "react";
-import { PiBrainThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
-type Checked = DropdownMenuCheckboxItemProps["checked"];
+// type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export function Avatar() {
-  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
-  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
-  const [showPanel, setShowPanel] = React.useState<Checked>(false);
+  // const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
+  // const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
+  // const [showPanel, setShowPanel] = React.useState<Checked>(false);
 
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.auth.user);

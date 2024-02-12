@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import { useGetClassroomsQuery } from '@/services/cards';
+import { useSelector } from 'react-redux';
 
 
 //http://127.0.0.1:8000/
@@ -9,7 +10,8 @@ import { useGetClassroomsQuery } from '@/services/cards';
 const Cards= () => {
   
 
-  const { data, error, isLoading } = useGetClassroomsQuery('2')
+  const user = useSelector((state: any) => state.auth.user);
+  const { data, error, isLoading } = useGetClassroomsQuery(user.id)
 
   console.log(data);
 
@@ -19,8 +21,8 @@ const Cards= () => {
   return (
     <div className=' text-center'>
            <Navbar />
-           <div className='py-60'>
-
+           <div className=''>
+            <h1>My Study Groups</h1>
            </div>
     </div>
   )
