@@ -11,6 +11,11 @@ import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
 
 export function CreateClassRoomDialog() {
+
+  const submit = () => {
+
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -21,6 +26,7 @@ export function CreateClassRoomDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle>Create a new Classroom</DialogTitle>
+        <form onClick={submit}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
@@ -38,6 +44,7 @@ export function CreateClassRoomDialog() {
         <DialogFooter>
           <Button variant={"secondary"} type="submit">Save changes</Button>
         </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

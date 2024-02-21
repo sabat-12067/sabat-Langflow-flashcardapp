@@ -10,6 +10,13 @@ export const cardsApi = createApi({
     getClassrooms: builder.query<StudyGroup[], string[]>({
       query: (supabase_user_id: any) => `study-classes/${supabase_user_id}`,
     }),
+    createClassroom: builder.mutation<StudyGroup[], string[]>({
+      query: (newClassroomData) => ({
+        url: `study-classes`,
+        method: 'POST',
+        body: newClassroomData,
+      })
+    }),
     updateCards: builder.mutation({
       query: ({ name, patch }) => ({
         url: `study-classes/${name}`,
@@ -21,6 +28,5 @@ export const cardsApi = createApi({
 })
 
 
-
-export const { useGetClassroomsQuery, useUpdateCardsMutation } = cardsApi
+export const { useGetClassroomsQuery, useUpdateCardsMutation, useCreateClassroomMutation} = cardsApi
 
