@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from rest_framework import status
 
 class StudyClassView(APIView):
-    def get(self, request, user_id, format=None):
-        study_classes = StudyClass.objects.filter(user_id=user_id)
+    def get(self, request, user_id_or_study_class_id, format=None):
+        study_classes = StudyClass.objects.filter(user_id_or_study_class_id=user_id_or_study_class_id)
         serializer = StudyClassSerializer(study_classes, many=True)
         return Response(serializer.data)
     def post(self, request, format=None):
@@ -16,9 +16,9 @@ class StudyClassView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    def patch(self, request, user_id):
+    def patch(self, request, user_id_or_study_class_id):
         try:
-            study_class = StudyClass.objects.get(id=user_id)
+            study_class = StudyClass.objects.get(id=user_id_or_study_class_id)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         serializer = StudyClassSerializer(study_class, data=request.data, partial=True)
