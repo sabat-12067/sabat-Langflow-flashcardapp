@@ -16,9 +16,19 @@ class StudyClassView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    def patch(self, request, study_class_id):
+    def patch(self, request, user_id):
         try:
-            study_class = StudyClass.objects.get(id=study_class_id)
+            study_class = StudyClass.objects.get(id=user_id)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = StudyClassSerializer(study_class, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, study_class_id):
+        try:
+            study_class = StudyClass.objects.delete(id=study_class_id)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         serializer = StudyClassSerializer(study_class, data=request.data, partial=True)
