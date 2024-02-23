@@ -6,21 +6,13 @@ import StudyGroups from './components/StudyGroups';
 import { CreateClassRoomDialog } from './components/CreateClassRoomDialog';
 
 
-
 const Cards= () => {
-  
-
   const user = useSelector((state: any) => state.auth.user);
   const { data, error, isLoading } = useGetClassroomsQuery(user.id, {
     refetchOnMountOrArgChange: true,
 
   })
-
   console.log(data);
-
-
-
-  
   return (
     <div className='text-center'>
            <Navbar />

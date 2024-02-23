@@ -26,16 +26,13 @@ class StudyClassView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    def delete(self, study_class_id):
+    def delete(self, request, user_id_or_study_class_id):
         try:
-            study_class = StudyClass.objects.delete(id=study_class_id)
+            study_class = StudyClass.objects.get(id=user_id_or_study_class_id)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        serializer = StudyClassSerializer(study_class, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        study_class.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class FlashCardSetView(APIView):
     def get(self, request, study_class_id, format=None):
