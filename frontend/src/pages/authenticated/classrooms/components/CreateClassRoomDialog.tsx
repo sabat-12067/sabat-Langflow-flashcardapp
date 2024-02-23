@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 
 
 import {
@@ -12,6 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
+import { FormFields } from "@/types";
+import { useCreateClassroomMutation } from "@/services/cards";
 
 export function CreateClassRoomDialog() {
 
@@ -20,8 +22,11 @@ export function CreateClassRoomDialog() {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>()
-  const onSubmit = handleSubmit((data) => console.log(data))
+  } = useForm<FormFields>()
+  const onSubmit: SubmitHandler<FormFields> = handleSubmit((data) => {
+    console.log(data);
+    useCreateClassroomMutation(data)
+  })
 
   return (
     <Dialog>
@@ -33,19 +38,23 @@ export function CreateClassRoomDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle>Create a new Classroom</DialogTitle>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
-            <Input {...register("name")} id="name" className="col-span-3" />
+            <Input {...register("name", {required: true, maxLength: 20})}
+            placeholder={errors.name && "Name is required"} 
+            id="name" 
+            className={errors.name ? "col-span-3 border-orange-700" : "col-span-3"} 
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               Description
             </Label>
-            <Input {...register("description")} id="username" className="col-span-3" />
+            <Input {...register("description", {required:false, maxLength:100})} id="username" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>

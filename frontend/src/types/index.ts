@@ -1,7 +1,14 @@
 
 
+//Type for my StudyGroup
 export type StudyGroup = {
     name: string
     description: string
     id?: any
+}
+
+//React hook form type to add a new classroom
+export type FormFields = {
+    name: string
+    description: string
 }
