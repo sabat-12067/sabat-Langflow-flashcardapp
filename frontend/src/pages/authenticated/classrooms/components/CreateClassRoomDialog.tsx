@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form"
+
+
 import {
   Dialog,
   DialogContent,
@@ -12,9 +15,13 @@ import { GrAdd } from "react-icons/gr";
 
 export function CreateClassRoomDialog() {
 
-  const submit = () => {
-
-  }
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+  const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
     <Dialog>
@@ -26,23 +33,23 @@ export function CreateClassRoomDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle>Create a new Classroom</DialogTitle>
-        <form onClick={submit}>
+        <form onSubmit={onSubmit}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input {...register("name")} id="name" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               Description
             </Label>
-            <Input id="username" className="col-span-3" />
+            <Input {...register("description")} id="username" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
-          <Button variant={"secondary"} type="submit">Save changes</Button>
+          <Button variant={"secondary"} type="submit">Save Classroom</Button>
         </DialogFooter>
         </form>
       </DialogContent>
