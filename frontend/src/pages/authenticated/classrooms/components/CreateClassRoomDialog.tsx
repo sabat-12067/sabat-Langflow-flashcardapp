@@ -14,19 +14,26 @@ import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
 import { FormFields } from "@/types";
 import { useCreateClassroomMutation } from "@/services/cards";
+import { useSelector } from "react-redux";
+
 
 export function CreateClassRoomDialog() {
-
+  const user = useSelector((state: any) => state.auth.user);
+  console.log(user);
+  
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormFields>()
-  const onSubmit: SubmitHandler<FormFields> = handleSubmit((data) => {
-    console.log(data);
-    useCreateClassroomMutation(data)
-  })
+  
+  const [createClassroom] = useCreateClassroomMutation()
+
+  const onSubmit: SubmitHandler<FormFields> = (data) => {
+    console.log({...data, user_id_or_study_class_id: ""});
+    createClassroom({...data, user_id_or_study_class_id: user.id})
+  }
 
   return (
     <Dialog>
