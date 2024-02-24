@@ -12,7 +12,6 @@ const Cards= () => {
     refetchOnMountOrArgChange: true,
   })
 
-  console.log(data);
   
   return (
     <div className='text-center'>

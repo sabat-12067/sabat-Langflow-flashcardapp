@@ -10,7 +10,10 @@ const StudyGroups: FC<StudyGroupsProps> = ({
    title, description, id
 }) => {
 
-  const [deleteClassroom] = useDeleteClassroomMutation()
+  const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
+
+  console.log(isLoading);
+  
 
   return (
     <div className='flex flex-col m-4 my-12 border-white border-2 border-s p-4 rounded-lg gap-6 w-64 h-48 relative'>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form"
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 import {
@@ -15,11 +16,11 @@ import { GrAdd } from "react-icons/gr";
 import { FormFields } from "@/types";
 import { useCreateClassroomMutation, useDeleteClassroomMutation } from "@/services/cards";
 import { useSelector } from "react-redux";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 
 export function CreateClassRoomDialog() {
   const user = useSelector((state: any) => state.auth.user);
-  console.log(user);
   
   const {
     register,
@@ -28,14 +29,16 @@ export function CreateClassRoomDialog() {
     formState: { errors },
   } = useForm<FormFields>()
 
-  const [createClassroom] = useCreateClassroomMutation()
+  const [createClassroom, {isLoading}] = useCreateClassroomMutation()
   const [deleteClassroom] = useDeleteClassroomMutation()
   //const [updateClassroom] = useDeleteClassroomMutation()
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log({...data, user_id_or_study_class_id: ""});
     createClassroom({...data, user_id_or_study_class_id: user.id})
   }
+
+  console.log(isLoading);
+  
 
   return (
     <Dialog>
@@ -66,9 +69,23 @@ export function CreateClassRoomDialog() {
             <Input {...register("description", {required:false, maxLength:100})} id="username" className="col-span-3" />
           </div>
         </div>
-        <DialogFooter>
-          <Button variant={"secondary"} type="submit">Save Classroom</Button>
-        </DialogFooter>
+        <DialogClose asChild>
+          <Button className="flex gap-2 w-[130px]" variant={"secondary"} type="submit">
+            {
+              isLoading ?
+              <ClipLoader
+              color={"black"}
+              loading={isLoading}
+              size={20}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+              className="my-3"
+            />
+               : "Save Classroom"
+            }
+          </Button>
+       
+        </DialogClose>
         </form>
       </DialogContent>
     </Dialog>

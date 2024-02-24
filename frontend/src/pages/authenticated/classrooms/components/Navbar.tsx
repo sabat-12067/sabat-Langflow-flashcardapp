@@ -9,7 +9,6 @@ interface NavbarProps {}
 const Navbar: FC<NavbarProps> = ({}) => {
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.auth.user);
-  //console.log(user);
   
 
   const handleSignOut = async () => {
