@@ -17,7 +17,10 @@ const StudyGroups: FC<StudyGroupsProps> = ({
       <h2 className='text-2xl'>{title}</h2>
       <p className='text-sm'>{description ? description : ""}</p>
       <Button className='w-fit mx-auto absolute bottom-4 left-0 right-0' variant={"secondary"}>Launch {title}</Button>
-      {/* <Button onClick={deleteClassroom(id)}>Del</Button> */}
+      <Button 
+      onClick={() => deleteClassroom(id)}>
+        Del
+      </Button> 
     </div>
   )
 }

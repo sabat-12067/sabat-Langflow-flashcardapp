@@ -17,8 +17,8 @@ import { cardsApi } from '../services/cards'
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: [cardsApi.reducerPath], // Specify reducers to exclude from persistence
 }
-
 const rootReducer = combineReducers({
   auth: authReducer,
   [cardsApi.reducerPath]: cardsApi.reducer,
@@ -31,7 +31,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PERSIST, PURGE, REGISTER],
       },
     }).concat(cardsApi.middleware), 
 });

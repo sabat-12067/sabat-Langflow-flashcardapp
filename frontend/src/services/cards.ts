@@ -22,7 +22,7 @@ export const cardsApi = createApi({
     deleteClassroom: builder.mutation({
       query: (id) => ({
         url: `study-classes/${id}/`,
-        method: 'POST',
+        method: 'DELETE',
       }),
       invalidatesTags: ['classes']
     }),
