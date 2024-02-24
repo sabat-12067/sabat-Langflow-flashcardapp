@@ -26,7 +26,10 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
+    getClass: builder.query<any, any>({
+      query: (id) => `study-classes/${id}/flashcard-sets/`
+    })
   }),
 });
 
-export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation } = cardsApi;
+export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation, useGetClassQuery } = cardsApi;
