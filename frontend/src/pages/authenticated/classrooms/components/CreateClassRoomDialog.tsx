@@ -69,7 +69,7 @@ export function CreateClassRoomDialog() {
             <Input {...register("description", {required:false, maxLength:100})} id="username" className="col-span-3" />
           </div>
         </div>
-        <DialogClose asChild>
+        <DialogFooter>
           <Button className="flex gap-2 w-[130px]" variant={"secondary"} type="submit">
             {
               isLoading ?
@@ -84,8 +84,7 @@ export function CreateClassRoomDialog() {
                : "Save Classroom"
             }
           </Button>
-       
-        </DialogClose>
+        </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
