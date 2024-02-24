@@ -34,7 +34,9 @@ const Class: FC<ClassProps> = ({}) => {
           <GrAdd size={15} />
         </Button>          </div>
         </div>
-        <div></div>
+        <div>
+          
+        </div>
       </div>
     </div>
   );
