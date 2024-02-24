@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
 import { FormFields } from "@/types";
-import { useCreateClassroomMutation } from "@/services/cards";
+import { useCreateClassroomMutation, useDeleteClassroomMutation } from "@/services/cards";
 import { useSelector } from "react-redux";
 
 
@@ -27,8 +27,9 @@ export function CreateClassRoomDialog() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormFields>()
-  
+
   const [createClassroom] = useCreateClassroomMutation()
+  const [deleteClassroom] = useDeleteClassroomMutation()
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log({...data, user_id_or_study_class_id: ""});

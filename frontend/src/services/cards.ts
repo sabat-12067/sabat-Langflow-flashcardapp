@@ -19,7 +19,14 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
+    deleteClassroom: builder.mutation({
+      query: (id) => ({
+        url: `study-classes/${id}/`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['classes']
+    }),
   }),
 });
 
-export const { useGetClassroomsQuery, useCreateClassroomMutation } = cardsApi;
+export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation } = cardsApi;

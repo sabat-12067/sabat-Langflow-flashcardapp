@@ -25,7 +25,7 @@ const Cards= () => {
             <div className='flex flex-row justify-center'>
               {data?.map((studyGroup, i) => {
                 return (
-                  <StudyGroups key={i} title={studyGroup.name} description={studyGroup.description}/>
+                  <StudyGroups id={studyGroup.id} key={i} title={studyGroup.name} description={studyGroup.description}/>
                 )
               })}
             </div>
