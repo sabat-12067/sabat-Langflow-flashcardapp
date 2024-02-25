@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { GrAdd } from "react-icons/gr";
 import { TbSettingsPin } from "react-icons/tb";
 import ClassSet from "./ClassSet";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
   const params = useParams();
-  console.log(params);
 
   const { data, isLoading } = useGetClassQuery(
     params.classId?.slice(1, params.classId.length)!
@@ -36,6 +36,14 @@ const Class: FC<ClassProps> = ({}) => {
         </div>
         <div className="my-20 flex">
           {
+            isLoading ? 
+            <div className="text-center mx-auto flex">
+            <Skeleton className="w-[220px] h-[180px] rounded-md m-4" />
+            <Skeleton className="w-[220px] h-[180px] rounded-md m-4" />
+            <Skeleton className="w-[220px] h-[180px] rounded-md m-4" />
+            <Skeleton className="w-[220px] h-[180px] rounded-md m-4" />
+            </div>
+            :
             data?.map((set) => <ClassSet key={set.id} id={set.id!} name={set.name} description={set.description}/>)
           }
         </div>
