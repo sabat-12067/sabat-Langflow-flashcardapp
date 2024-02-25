@@ -24,7 +24,7 @@ const Class: FC<ClassProps> = ({}) => {
       <Navbar />
       <div className="max-w-[65%] mx-auto">
         <div className="flex justify-between">
-          <h1 className="text-2xl">Hindis Sets</h1>
+          <h1 className="text-2xl">{localStorage.getItem("Classroom: ")} Sets</h1>
           <div className="flex gap-1">
           <Button className="flex gap-1">
           <span className="">{localStorage.getItem("Classroom: ")} Settings</span>

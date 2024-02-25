@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
-import { toast } from "sonner"
-
+import { toast } from "sonner";
 
 import {
   Dialog,
@@ -15,53 +14,54 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
 import { FormFields } from "@/types";
-import { useCreateClassroomMutation, useDeleteClassroomMutation } from "@/services/cards";
+import {
+  useCreateClassroomMutation,
+  useDeleteClassroomMutation,
+} from "@/services/cards";
 import { useSelector } from "react-redux";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 export function CreateClassRoomDialog() {
   const user = useSelector((state: any) => state.auth.user);
-  
+
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
-  } = useForm<FormFields>()
+  } = useForm<FormFields>();
 
-  const [createClassroom, {isLoading, error}] = useCreateClassroomMutation()
-  const [deleteClassroom] = useDeleteClassroomMutation()
-  //const [updateClassroom] = useDeleteClassroomMutation()
+  const [createClassroom, { isLoading, error, data: response }] = useCreateClassroomMutation();
+  const [deleteClassroom] = useDeleteClassroomMutation();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    createClassroom({...data, user_id_or_study_class_id: user.id})
-    
-  }
-  
-  
+    createClassroom({ ...data, user_id_or_study_class_id: user.id });
+  };
+
   useEffect(() => {
+    if (error && "data" in error && error.data) {
+      const errorData = error.data as { name: string[] };
+      if (errorData.name && errorData.name.length > 0) {
+        console.log(errorData.name[0]);
+        toast.error(errorData.name[0]);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    } else {
+      toast.error("An error occurred.");
+    }
+  }, [error]);
 
-if (error && 'data' in error && error.data) {
-  const errorData = error.data as { name: string[] };
-    if (errorData.name && errorData.name.length > 0) {
-    console.log(errorData.name[0]);
-    toast.error(errorData.name[0]);
-  } else {
-    toast.error("An unexpected error occurred.");
+  console.log(response);
+  
+
+  if(response){
+    localStorage.removeItem("Classroom: ")
+    localStorage.setItem("Classroom: ", response.name)
+    navigate(`/class/:${response.id}`)
   }
-} else {
-  toast.error("An error occurred.");
-}
 
-  }, [error])
-
-  
-  console.log(error);
-  
-  
-  
 
   return (
     <Dialog>
@@ -74,40 +74,54 @@ if (error && 'data' in error && error.data) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle>Create a new Classroom</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="te xt-right">
-              Name
-            </Label>
-            <Input {...register("name", {required: true, maxLength: 20})}
-            placeholder={errors.name && "Name is required"} 
-            id="name" 
-            className={errors.name ? "col-span-3 border-orange-700" : "col-span-3"} 
-            />
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="te xt-right">
+                Name
+              </Label>
+              <Input
+                {...register("name", { required: true, maxLength: 20 })}
+                placeholder={errors.name && "Name is required"}
+                id="name"
+                className={
+                  errors.name ? "col-span-3 border-orange-700" : "col-span-3"
+                }
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Description
+              </Label>
+              <Input
+                {...register("description", {
+                  required: false,
+                  maxLength: 100,
+                })}
+                id="username"
+                className="col-span-3"
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Description
-            </Label>
-            <Input {...register("description", {required:false, maxLength:100})} id="username" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button className="flex gap-2 w-[130px]" variant={"secondary"} type="submit">
-            {
-              isLoading ?
-              <ClipLoader
-              color={"black"}
-              loading={isLoading}
-              size={20}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-              className="my-3"
-            />
-               : "Save Classroom"
-            }
-          </Button>
-        </DialogFooter>
+          <DialogFooter>
+            <Button
+              className="flex gap-2 w-[130px]"
+              variant={"secondary"}
+              type="submit"
+            >
+              {isLoading ? (
+                <ClipLoader
+                  color={"black"}
+                  loading={isLoading}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                  className="my-3"
+                />
+              ) : (
+                "Save Classroom"
+              )}
+            </Button>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
