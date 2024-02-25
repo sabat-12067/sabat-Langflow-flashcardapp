@@ -1,6 +1,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { FormFields, StudyGroup } from '@/types'; // Assuming '@/types' is the correct path
+import { FormFields, StudyGroup, StudySet } from '@/types'; // Assuming '@/types' is the correct path
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
@@ -26,7 +26,7 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
-    getClass: builder.query<any, any>({
+    getClass: builder.query<StudySet[], string>({
       query: (id) => `study-classes/${id}/flashcard-sets/`
     })
   }),

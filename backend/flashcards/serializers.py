@@ -9,7 +9,7 @@ class StudyClassSerializer(serializers.ModelSerializer):
 class FlashCardSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlashCardSet
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'description']
 
 class FlashCardSerializer(serializers.ModelSerializer):
     class Meta:

@@ -13,3 +13,9 @@ export type FormFields = {
     description: string
     user_id_or_study_class_id: string
 }
+
+export type StudySet = {
+    name: string
+    description: string
+    id?: number
+}
