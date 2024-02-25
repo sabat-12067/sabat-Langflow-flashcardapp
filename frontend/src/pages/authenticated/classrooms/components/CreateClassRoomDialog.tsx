@@ -25,11 +25,7 @@ import { useNavigate } from "react-router-dom";
 export function CreateClassRoomDialog() {
   const user = useSelector((state: any) => state.auth.user);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormFields>();
+  const {register,handleSubmit,formState: { errors }} = useForm<FormFields>();
 
   const [createClassroom, { isLoading, error, data: response }] = useCreateClassroomMutation();
   const [deleteClassroom] = useDeleteClassroomMutation();
@@ -47,10 +43,7 @@ export function CreateClassRoomDialog() {
         toast.error(errorData.name[0]);
       } else {
         toast.error("An unexpected error occurred.");
-      }
-    } else {
-      toast.error("An error occurred.");
-    }
+      }}
   }, [error]);
 
   console.log(response);
