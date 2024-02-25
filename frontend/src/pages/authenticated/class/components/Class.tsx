@@ -27,14 +27,15 @@ const Class: FC<ClassProps> = ({}) => {
           <h1 className="text-2xl">Hindis Sets</h1>
           <div className="flex gap-1">
           <Button className="flex gap-1">
-          <span className="">Hindi Settings</span>
+          <span className="">{localStorage.getItem("Classroom: ")} Settings</span>
           <TbSettingsPin size={18} />
         </Button>             <Button className="flex gap-1" variant={"secondary"}>
           <span className="">New Set</span>
           <GrAdd size={15} />
         </Button>          </div>
         </div>
-        <div className="my-20 flex">
+      </div>
+      <div className="my-20 flex w-fit mx-auto gap-10">
           {
             isLoading ? 
             <div className="text-center mx-auto flex">
@@ -47,7 +48,6 @@ const Class: FC<ClassProps> = ({}) => {
             data?.map((set) => <ClassSet key={set.id} id={set.id!} name={set.name} description={set.description}/>)
           }
         </div>
-      </div>
     </div>
   );
 };

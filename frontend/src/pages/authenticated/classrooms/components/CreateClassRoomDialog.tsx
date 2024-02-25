@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form"
 import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "sonner"
 
 
 import {
@@ -17,6 +18,7 @@ import { FormFields } from "@/types";
 import { useCreateClassroomMutation, useDeleteClassroomMutation } from "@/services/cards";
 import { useSelector } from "react-redux";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useEffect } from "react";
 
 
 export function CreateClassRoomDialog() {
@@ -24,20 +26,41 @@ export function CreateClassRoomDialog() {
   
   const {
     register,
-    setValue,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormFields>()
 
-  const [createClassroom, {isLoading}] = useCreateClassroomMutation()
+  const [createClassroom, {isLoading, error}] = useCreateClassroomMutation()
   const [deleteClassroom] = useDeleteClassroomMutation()
   //const [updateClassroom] = useDeleteClassroomMutation()
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     createClassroom({...data, user_id_or_study_class_id: user.id})
+    
   }
+  
+  
+  useEffect(() => {
 
-  console.log(isLoading);
+if (error && 'data' in error && error.data) {
+  const errorData = error.data as { name: string[] };
+    if (errorData.name && errorData.name.length > 0) {
+    console.log(errorData.name[0]);
+    toast.error(errorData.name[0]);
+  } else {
+    toast.error("An unexpected error occurred.");
+  }
+} else {
+  toast.error("An error occurred.");
+}
+
+  }, [error])
+
+  
+  console.log(error);
+  
+  
   
 
   return (
@@ -53,7 +76,7 @@ export function CreateClassRoomDialog() {
         <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="te xt-right">
               Name
             </Label>
             <Input {...register("name", {required: true, maxLength: 20})}

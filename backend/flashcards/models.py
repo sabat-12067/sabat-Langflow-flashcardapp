@@ -3,7 +3,7 @@ from django.conf import settings
 
 class StudyClass(models.Model): 
     user_id_or_study_class_id = models.CharField(max_length=96)
-    name = models.CharField(max_length = 50)
+    name = models.CharField(max_length = 50, unique=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
@@ -11,7 +11,7 @@ class StudyClass(models.Model):
 
 class FlashCardSet(models.Model):
     study_class = models.ForeignKey(StudyClass, related_name='sets', on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
     description = models.TextField(blank=True)
 
     def __str__(self):

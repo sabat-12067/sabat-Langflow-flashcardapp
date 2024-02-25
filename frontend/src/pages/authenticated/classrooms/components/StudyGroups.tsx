@@ -13,8 +13,8 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
   const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
   const navigate = useNavigate()
-  console.log(isLoading);
   
+
 
   return (
     <div className='flex flex-col m-4 my-12 border-white border-2 border-s p-4 rounded-lg gap-6 w-64 h-48 relative'>
@@ -25,14 +25,14 @@ const StudyGroups: FC<StudyGroupsProps> = ({
       variant={"secondary"}
       onClick={() => {
         navigate(`/class/:${id}`)
+        if(localStorage.getItem("Classroom: ")){
+          localStorage.removeItem("Classroom: ")
+        }
+        localStorage.setItem("Classroom: ", title)
       }}
       >
         Launch {title}
       </Button>
-      {/* <Button 
-      onClick={() => deleteClassroom(id)}>
-        Del
-      </Button>  */}
     </div>
   )
 }
