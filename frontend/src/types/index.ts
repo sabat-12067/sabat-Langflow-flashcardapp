@@ -20,6 +20,5 @@ export type StudySet = {
     description: string
     id?: number
     user_id_or_study_class_id?: number
-
 }
 

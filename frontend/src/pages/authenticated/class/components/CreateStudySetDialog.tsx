@@ -48,7 +48,7 @@ const CreateStudySetDialog: FC<CreateStudySetDialogProps> = ({
             </Button>
     </DialogTrigger>
     <DialogContent className="sm:max-w-[425px]">
-      <DialogTitle>Create a new Classroom</DialogTitle>
+      <DialogTitle>Create a new set</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">

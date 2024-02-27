@@ -8,6 +8,7 @@ import { TbSettingsPin } from "react-icons/tb";
 import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreateStudySetDialog from "./CreateStudySetDialog";
+import SettingsSheet from "./SettingsSheet";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
@@ -41,12 +42,7 @@ const Class: FC<ClassProps> = ({}) => {
             {localStorage.getItem("Classroom: ")} Classroom
           </h1>
           <div className="flex gap-1">
-            <Button className="flex gap-1">
-              <span className="">
-                {localStorage.getItem("Classroom: ")} Settings
-              </span>
-              <TbSettingsPin size={18} />
-            </Button>{" "}
+            <SettingsSheet />
             <CreateStudySetDialog />
           </div>
         </div>
