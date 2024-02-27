@@ -1,18 +1,19 @@
 import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../classrooms/components/Navbar";
-import { useGetClassQuery } from "@/services/cards";
+import { useGetStudySetQuery } from "@/services/cards";
 import { Button } from "@/components/ui/button";
 import { GrAdd } from "react-icons/gr";
 import { TbSettingsPin } from "react-icons/tb";
 import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
+import CreateStudySetDialog from "./CreateStudySetDialog";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
   const params = useParams();
 
-  const { data, isLoading } = useGetClassQuery(
+  const { data, isLoading } = useGetStudySetQuery(
     params.classId?.slice(1, params.classId.length)!
   );
 
@@ -27,6 +28,9 @@ const Class: FC<ClassProps> = ({}) => {
 
   const storedValue = localStorage.getItem(`${params.classId} set length:`);
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
+
+  console.log(data);
+  
   
   return (
     <div className="text-center">
@@ -43,10 +47,7 @@ const Class: FC<ClassProps> = ({}) => {
               </span>
               <TbSettingsPin size={18} />
             </Button>{" "}
-            <Button className="flex gap-1" variant={"secondary"}>
-              <span className="">New Set</span>
-              <GrAdd size={15} />
-            </Button>{" "}
+            <CreateStudySetDialog />
           </div>
         </div>
       </div>

@@ -26,10 +26,17 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
-    getClass: builder.query<StudySet[], string>({
+    getStudySet: builder.query<StudySet[], string>({
       query: (id) => `study-classes/${id}/flashcard-sets/`
+    }),
+    createStudySet: builder.mutation<StudySet, StudySet>({
+      query: (set) => ({
+        url: `study-classes/${set.user_id_or_study_class_id}/flashcard-sets/`,
+        method: 'POST',
+        body: set
+      })
     })
   }),
 });
 
-export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation, useGetClassQuery } = cardsApi;
+export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation, useGetStudySetQuery, useCreateStudySetMutation } = cardsApi;
