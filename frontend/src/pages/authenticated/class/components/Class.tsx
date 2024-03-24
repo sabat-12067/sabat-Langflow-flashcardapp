@@ -2,9 +2,6 @@ import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../classrooms/components/Navbar";
 import { useGetStudySetQuery } from "@/services/cards";
-import { Button } from "@/components/ui/button";
-import { GrAdd } from "react-icons/gr";
-import { TbSettingsPin } from "react-icons/tb";
 import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreateStudySetDialog from "./CreateStudySetDialog";
@@ -12,15 +9,15 @@ import SettingsSheet from "./SettingsSheet";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
+
+  
   const params = useParams();
   console.log(params);
-  
 
-  const { data, isLoading } = useGetStudySetQuery(
-    params.classId?.slice(1, params.classId.length)!
-  );
-  const [classRooms, setClassRooms] = useState(data?.filter((group) => group.user_id_or_study_class_id === params.classId))
-
+  const { data, isLoading, refetch } = useGetStudySetQuery(params.classId?.slice(1, params.classId.length)!, {
+    refetchOnMountOrArgChange: true,
+  });
+  const [shouldRefetch, setShouldRefetch] = useState(0)
 
   useEffect(() => {
     if (data?.length! > 0) {
@@ -29,11 +26,12 @@ const Class: FC<ClassProps> = ({}) => {
         data!.length.toString()
       );
     }
-  }, [data?.length]);
+    if(shouldRefetch >= 0) refetch()
+  }, [data?.length, shouldRefetch]);
 
   const storedValue = localStorage.getItem(`${params.classId} set length:`);
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
-  console.log(data);
+  console.log(shouldRefetch);
   
   
   return (
@@ -46,7 +44,7 @@ const Class: FC<ClassProps> = ({}) => {
           </h1>
           <div className="flex gap-1">
             <SettingsSheet />
-            <CreateStudySetDialog />
+            <CreateStudySetDialog onRefetch={() => setShouldRefetch(shouldRefetch + 1)}/>
           </div>
         </div>
       </div>

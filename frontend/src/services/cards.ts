@@ -5,7 +5,7 @@ import { FormFields, StudyGroup, StudySet } from '@/types'; // Assuming '@/types
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000' }),
-  tagTypes: ['classes'],
+  tagTypes: ['classes', 'studySets'],
   endpoints: (builder) => ({
     getClassrooms: builder.query<StudyGroup[], string>({
       query: (supabase_user_id) => `study-classes/${supabase_user_id}`,
@@ -27,14 +27,16 @@ export const cardsApi = createApi({
       invalidatesTags: ['classes']
     }),
     getStudySet: builder.query<StudySet[], string>({
-      query: (id) => `study-classes/${id}/flashcard-sets/`
+      query: (id) => `study-classes/${id}/flashcard-sets/`,
+      providesTags: ["studySets"]
     }),
     createStudySet: builder.mutation<StudySet, StudySet>({
       query: (set) => ({
         url: `study-classes/${set.user_id_or_study_class_id}/flashcard-sets/`,
         method: 'POST',
         body: set
-      })
+      }),
+      invalidatesTags: ['studySets']
     })
   }),
 });

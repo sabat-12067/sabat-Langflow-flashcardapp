@@ -5,7 +5,6 @@ import StudyGroups from "./components/StudyGroups";
 import { CreateClassRoomDialog } from "./components/CreateClassRoomDialog";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useParams } from "react-router-dom";
 
 const Cards = () => {
   const user = useSelector((state: any) => state.auth.user);

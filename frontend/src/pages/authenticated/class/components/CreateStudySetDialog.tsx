@@ -1,10 +1,7 @@
-import { FC } from 'react'
 
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
-import { toast } from "sonner";
-
 import {
   Dialog,
   DialogContent,
@@ -17,32 +14,26 @@ import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
 import {  StudySet } from "@/types";
 import {
-  useCreateClassroomMutation,
   useCreateStudySetMutation,
-  useDeleteClassroomMutation,
 } from "@/services/cards";
 import { useParams } from 'react-router-dom';
 
-
-interface CreateStudySetDialogProps {
   
+interface CreateStudySetDialog{
+  onRefetch: () => void;
 }
-const CreateStudySetDialog: FC<CreateStudySetDialogProps> = ({
-  
-}) => {
 
+
+const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
 
   const params = useParams()
   console.log(params.classId!.slice(1, params.classId?.length));
-  
-
   const [createSet, { isLoading, error, data: response }] = useCreateStudySetMutation();
   const {register,handleSubmit,formState: { errors }} = useForm<any>();
-  const onSubmit: SubmitHandler<any> = (data) => {
+  const onSubmit: SubmitHandler<StudySet> = (data) => {
     createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
+    onRefetch()
   };
-
-
 
   return (
     <Dialog>

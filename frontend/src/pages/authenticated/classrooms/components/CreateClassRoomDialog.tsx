@@ -16,24 +16,22 @@ import { GrAdd } from "react-icons/gr";
 import { FormFields } from "@/types";
 import {
   useCreateClassroomMutation,
-  useDeleteClassroomMutation,
 } from "@/services/cards";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function CreateClassRoomDialog() {
+
   const user = useSelector((state: any) => state.auth.user);
-
   const {register,handleSubmit,formState: { errors }} = useForm<FormFields>();
-
   const [createClassroom, { isLoading, error, data: response }] = useCreateClassroomMutation();
-  const [deleteClassroom] = useDeleteClassroomMutation();
-  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     createClassroom({ ...data, user_id_or_study_class_id: user.id });
   };
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (error && "data" in error && error.data) {
@@ -48,13 +46,11 @@ export function CreateClassRoomDialog() {
 
   console.log(response);
   
-
   if(response){
     localStorage.removeItem("Classroom: ")
     localStorage.setItem("Classroom: ", response.name)
     navigate(`/class/:${response.id}`)
   }
-
 
   return (
     <Dialog>
