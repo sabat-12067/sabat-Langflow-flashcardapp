@@ -11,7 +11,7 @@ class StudyClass(models.Model):
 
 class FlashCardSet(models.Model):
     study_class = models.ForeignKey(StudyClass, related_name='sets', on_delete=models.CASCADE)
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     description = models.TextField(blank=True)
 
     def __str__(self):

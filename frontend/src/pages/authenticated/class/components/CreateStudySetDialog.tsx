@@ -21,6 +21,7 @@ import {
   useCreateStudySetMutation,
   useDeleteClassroomMutation,
 } from "@/services/cards";
+import { useParams } from 'react-router-dom';
 
 
 interface CreateStudySetDialogProps {
@@ -31,10 +32,14 @@ const CreateStudySetDialog: FC<CreateStudySetDialogProps> = ({
 }) => {
 
 
+  const params = useParams()
+  console.log(params.classId!.slice(1, params.classId?.length));
+  
+
   const [createSet, { isLoading, error, data: response }] = useCreateStudySetMutation();
   const {register,handleSubmit,formState: { errors }} = useForm<any>();
   const onSubmit: SubmitHandler<any> = (data) => {
-    createSet({ ...data, user_id_or_study_class_id: 94 });
+    createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
   };
 
 

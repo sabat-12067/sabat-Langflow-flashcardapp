@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../classrooms/components/Navbar";
 import { useGetStudySetQuery } from "@/services/cards";
@@ -13,10 +13,14 @@ import SettingsSheet from "./SettingsSheet";
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
   const params = useParams();
+  console.log(params);
+  
 
   const { data, isLoading } = useGetStudySetQuery(
     params.classId?.slice(1, params.classId.length)!
   );
+  const [classRooms, setClassRooms] = useState(data?.filter((group) => group.user_id_or_study_class_id === params.classId))
+
 
   useEffect(() => {
     if (data?.length! > 0) {
@@ -29,7 +33,6 @@ const Class: FC<ClassProps> = ({}) => {
 
   const storedValue = localStorage.getItem(`${params.classId} set length:`);
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
-
   console.log(data);
   
   

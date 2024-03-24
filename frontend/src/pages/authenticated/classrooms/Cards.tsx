@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import StudyGroups from "./components/StudyGroups";
 import { CreateClassRoomDialog } from "./components/CreateClassRoomDialog";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useParams } from "react-router-dom";
 
 const Cards = () => {
   const user = useSelector((state: any) => state.auth.user);
   const { data, error, isLoading, refetch } = useGetClassroomsQuery(user.id, {
     refetchOnMountOrArgChange: true,
   });
-
   useEffect(() => {
     if (data?.length! > 0) {
       localStorage.setItem("Class length: ", data!.length.toString());
@@ -21,6 +21,7 @@ const Cards = () => {
   const storedValue = localStorage.getItem("Class length: ");
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
 
+  
   return (
     <div className="text-center">
       <Navbar />
