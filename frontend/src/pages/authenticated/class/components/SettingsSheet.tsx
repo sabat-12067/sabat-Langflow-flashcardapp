@@ -13,6 +13,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { Switch } from "@/components/ui/switch"
 
 interface SettingsSheet {
   title: string
@@ -27,13 +28,30 @@ export function SettingsSheet({title}: SettingsSheet) {
           <TbSettingsPin size={18} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="py-10">
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>{title} Settings</DrawerTitle>
           </DrawerHeader>
-
-          <DrawerFooter>
+          <div className="flex flex-col gap-14 py-10">
+            <div className="flex justify-between">
+              <p>Shuffle Mode</p>
+              <Switch></Switch>
+            </div>
+            <div className="flex justify-between">
+              <p>Shuffle Mode</p>
+              <Switch></Switch>
+            </div>
+            <div className="flex justify-between">
+              <p>Shuffle Mode</p>
+              <Switch></Switch>
+            </div>
+            <div className="flex justify-between">
+              <p>Shuffle Mode</p>
+              <Switch></Switch>
+            </div>
+          </div>
+          <DrawerFooter className="pt-10">
             <DrawerClose asChild>
               <Button variant="outline">Close</Button>
             </DrawerClose>
