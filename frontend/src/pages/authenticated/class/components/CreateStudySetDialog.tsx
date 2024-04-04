@@ -17,6 +17,7 @@ import {
   useCreateStudySetMutation,
 } from "@/services/cards";
 import { useParams } from 'react-router-dom';
+import { toast } from "sonner";
 
   
 interface CreateStudySetDialog{
@@ -32,7 +33,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
   const {register,handleSubmit,formState: { errors }} = useForm<any>();
   const onSubmit: SubmitHandler<StudySet> = (data) => {
     createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
-    onRefetch()
+    toast("New study set created!")
   };
 
   return (

@@ -36,7 +36,7 @@ export function Avatar() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="flex gap-1 text-lg">
+        <Button className="flex gap-1 text-sm">
           -{user.user_metadata.full_name.split(" ")[0]}
           <span>
             <IoIosArrowDropdownCircle />
