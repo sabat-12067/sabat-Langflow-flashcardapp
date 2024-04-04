@@ -37,14 +37,12 @@ export function CreateClassRoomDialog() {
     if (error && "data" in error && error.data) {
       const errorData = error.data as { name: string[] };
       if (errorData.name && errorData.name.length > 0) {
-        console.log(errorData.name[0]);
         toast.error(errorData.name[0]);
       } else {
         toast.error("An unexpected error occurred.");
       }}
   }, [error]);
 
-  console.log(response);
   
   if(response){
     localStorage.removeItem("Classroom: ")

@@ -12,7 +12,6 @@ const Class: FC<ClassProps> = ({}) => {
 
   
   const params = useParams();
-  console.log(params);
 
   const { data, isLoading, refetch } = useGetStudySetQuery(params.classId?.slice(1, params.classId.length)!, {
     refetchOnMountOrArgChange: true,
@@ -31,7 +30,6 @@ const Class: FC<ClassProps> = ({}) => {
 
   const storedValue = localStorage.getItem(`${params.classId} set length:`);
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
-  console.log(shouldRefetch);
   
   
   return (

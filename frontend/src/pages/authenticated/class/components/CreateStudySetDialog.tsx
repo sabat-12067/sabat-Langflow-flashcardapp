@@ -28,7 +28,6 @@ interface CreateStudySetDialog{
 const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
 
   const params = useParams()
-  console.log(params.classId!.slice(1, params.classId?.length));
   const [createSet, { isLoading, error, data: response }] = useCreateStudySetMutation();
   const {register,handleSubmit,formState: { errors }} = useForm<any>();
   const onSubmit: SubmitHandler<StudySet> = (data) => {
