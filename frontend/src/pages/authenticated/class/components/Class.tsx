@@ -5,7 +5,7 @@ import { useGetStudySetQuery } from "@/services/cards";
 import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreateStudySetDialog from "./CreateStudySetDialog";
-import SettingsSheet from "./SettingsSheet";
+import {SettingsSheet} from "./SettingsSheet";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
@@ -43,7 +43,7 @@ const Class: FC<ClassProps> = ({}) => {
             {localStorage.getItem("Classroom: ")} Classroom
           </h1>
           <div className="flex gap-1">
-            <SettingsSheet />
+            <SettingsSheet title={localStorage.getItem("Classroom: ")!}/>
             <CreateStudySetDialog onRefetch={() => setShouldRefetch(shouldRefetch + 1)}/>
           </div>
         </div>
