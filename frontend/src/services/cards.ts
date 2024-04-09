@@ -37,6 +37,10 @@ export const cardsApi = createApi({
         body: set
       }),
       invalidatesTags: ['studySets']
+    }),
+    getStudySetCards: builder.query<any>({
+      query: (id) => ``,
+      providesTags: [""]
     })
   }),
 });

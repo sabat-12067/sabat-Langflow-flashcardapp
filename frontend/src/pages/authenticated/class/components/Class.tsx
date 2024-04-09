@@ -16,6 +16,8 @@ const Class: FC<ClassProps> = ({}) => {
   const { data, isLoading, refetch } = useGetStudySetQuery(params.classId?.slice(1, params.classId.length)!, {
     refetchOnMountOrArgChange: true,
   });
+  console.log('DATA: ', data)
+  
   const [shouldRefetch, setShouldRefetch] = useState(0)
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const Class: FC<ClassProps> = ({}) => {
         <Skeleton key={index} className="w-[220px] h-[180px] rounded-md m-4" />
       ))
     : data?.map((set, i) => (
-        <ClassSet key={set.id} id={i} name={set.name} description={set.description} />
+        <ClassSet key={i} id={set.id} name={set.name} description={set.description} />
       ))
   }
 </div>

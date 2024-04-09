@@ -85,7 +85,7 @@ class FlashCardView(APIView):
     # views.py
     def patch(self, request, flashcard_set_id, flashcard_id):
         try:
-          flashcard = FlashCards.objects.get(id=flashcard_id, flashcard_set__id=flashcard_set_id)
+          flashcard = FlashCards.objects.get(id=flashcard_set_id)
         except FlashCards.DoesNotExist:
           return Response(status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
