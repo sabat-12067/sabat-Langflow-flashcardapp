@@ -54,7 +54,7 @@ const Class: FC<ClassProps> = ({}) => {
         <Skeleton key={index} className="w-[220px] h-[180px] rounded-md m-4" />
       ))
     : data?.map((set, i) => (
-        <ClassSet key={i} id={set.id} name={set.name} description={set.description} />
+        <ClassSet key={i} id={set.id!} name={set.name} description={set.description} />
       ))
   }
 </div>

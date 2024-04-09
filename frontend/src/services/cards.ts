@@ -39,10 +39,18 @@ export const cardsApi = createApi({
       invalidatesTags: ['studySets']
     }),
     getStudySetCards: builder.query<any, any>({
-      query: (id) => `flashcards/${id}`,
+      query: (id) => `flashcards/${id}/`,
       providesTags: ["flashcards"]
     })
   }),
 });
 
-export const { useGetClassroomsQuery, useCreateClassroomMutation, useDeleteClassroomMutation, useGetStudySetQuery, useCreateStudySetMutation } = cardsApi;
+export const {
+  useGetClassroomsQuery, 
+  useCreateClassroomMutation,
+   useDeleteClassroomMutation, 
+  useGetStudySetQuery, 
+  useCreateStudySetMutation,
+  useGetStudySetCardsQuery
+  
+ } = cardsApi;

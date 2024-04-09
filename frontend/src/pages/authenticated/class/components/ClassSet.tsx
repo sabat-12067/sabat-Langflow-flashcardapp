@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { FC } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 interface ClassSetProps {
   id: number;
   name: string;
@@ -8,7 +8,6 @@ interface ClassSetProps {
 }
 const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate()
-  const params = useParams()
   const location = useLocation();
 
   console.log(location.pathname)
@@ -20,7 +19,11 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
       <Button 
       className="bottom-2 absolute left-0 right-0 w-fit mx-auto" 
       variant={"secondary"}
-      onClick={() => navigate(`${location.pathname}/:${id}`)}
+      onClick={() => {
+        localStorage.setItem("Set", name)
+        navigate(`${location.pathname}/:${id}`)
+
+      }}
       >
         Study
       </Button>
