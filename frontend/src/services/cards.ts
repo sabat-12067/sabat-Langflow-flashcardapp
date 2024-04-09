@@ -5,7 +5,7 @@ import { FormFields, StudyGroup, StudySet } from '@/types'; // Assuming '@/types
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000' }),
-  tagTypes: ['classes', 'studySets'],
+  tagTypes: ['classes', 'studySets', "flashcards"],
   endpoints: (builder) => ({
     getClassrooms: builder.query<StudyGroup[], string>({
       query: (supabase_user_id) => `study-classes/${supabase_user_id}`,
@@ -38,9 +38,9 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['studySets']
     }),
-    getStudySetCards: builder.query<any>({
-      query: (id) => ``,
-      providesTags: [""]
+    getStudySetCards: builder.query<any, any>({
+      query: (id) => `flashcards/${id}`,
+      providesTags: ["flashcards"]
     })
   }),
 });

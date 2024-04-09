@@ -90,7 +90,6 @@ class FlashCardView(APIView):
           return Response(status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
         serializer = FlashCardSerializer(flashcard, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
