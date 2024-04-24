@@ -16,13 +16,17 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { useEditClassroomMutation } from "@/services/cards";
 
 interface SettingsSheet {
   title: string;
+  classId: string;
 }
 
-export function SettingsSheet({ title }: SettingsSheet) {
+export function SettingsSheet({ title, classId }: SettingsSheet) {
   const [edit, setEdit] = useState(false);
+  const [editCard, { isLoading, error, data: response }] =
+    useEditClassroomMutation();
 
   return (
     <Drawer>
@@ -38,11 +42,11 @@ export function SettingsSheet({ title }: SettingsSheet) {
             <DrawerTitle className="text-xl flex justify-between">
               {edit ? (
                 <Input
-                  className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-xl font-light"
-                  placeholder="Type new name here..."
+                  className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
+                  placeholder="Type new name here....."
                 />
               ) : (
-                <h1 className="text-2xl font-light">{title}</h1>
+                <h1 className="text-2xl font-light">{title} Settings</h1>
               )}
               {!edit ? (
                 <button className="mt-2" onClick={() => setEdit(true)}>
@@ -50,11 +54,18 @@ export function SettingsSheet({ title }: SettingsSheet) {
                 </button>
               ) : (
                 <div className="flex gap-2 mt-2">
-                  <button className="my-auto" >
-                    <ImCheckmark2 size={18} />
+                  <button
+                    className="my-auto"
+                    onClick={() => editCard({
+                      name: "Somiygtytgytyffajbe", 
+                      description: "Somebhcnhjqwdvbcaription",
+                      id: classId,
+                    })}
+                  >
+                    <ImCheckmark2 size={20} />
                   </button>
                   <button>
-                  <ImCancelCircle size={18} onClick={() => setEdit(false)}/>
+                    <ImCancelCircle size={20} onClick={() => setEdit(false)} />
                   </button>
                 </div>
               )}

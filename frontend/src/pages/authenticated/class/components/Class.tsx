@@ -12,8 +12,8 @@ const Class: FC<ClassProps> = ({}) => {
 
   
   const params = useParams();
-
-  const { data, isLoading, refetch } = useGetStudySetQuery(params.classId?.slice(1, params.classId.length)!, {
+  const classId = params.classId?.slice(1, params.classId.length)!
+  const { data, isLoading, refetch } = useGetStudySetQuery(classId, {
     refetchOnMountOrArgChange: true,
   });
   console.log('DATA: ', data)
@@ -43,7 +43,7 @@ const Class: FC<ClassProps> = ({}) => {
             {localStorage.getItem("Classroom: ")} Classroom
           </h1>
           <div className="flex gap-1">
-            <SettingsSheet title={localStorage.getItem("Classroom: ")!}/>
+            <SettingsSheet classId={classId} title={localStorage.getItem("Classroom: ")!}/>
             <CreateStudySetDialog onRefetch={() => setShouldRefetch(shouldRefetch + 1)}/>
           </div>
         </div>

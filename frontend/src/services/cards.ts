@@ -19,6 +19,14 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
+    editClassroom: builder.mutation<FormFields, FormFields>({
+      query: (classroom) => ({
+        url: `study-classes/${classroom.id}/`,
+        method: 'PATCH',
+        body: classroom,
+      }),
+      invalidatesTags: ['classes']
+    }),
     deleteClassroom: builder.mutation({
       query: (id) => ({
         url: `study-classes/${id}/`,
@@ -60,5 +68,6 @@ export const {
   useGetStudySetQuery, 
   useCreateStudySetMutation,
   useGetStudySetCardsQuery,
-  useCreateStudySetCardsMutation
+  useCreateStudySetCardsMutation,
+  useEditClassroomMutation
  } = cardsApi;

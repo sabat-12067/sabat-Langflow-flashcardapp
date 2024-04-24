@@ -11,7 +11,7 @@ export type StudyGroup = {
 export type FormFields = {
     name: string
     description: string
-    user_id_or_study_class_id: string
+    user_id_or_study_class_id?: string
     id?: any
 }
 
