@@ -22,3 +22,8 @@ export type StudySet = {
     user_id_or_study_class_id?: string
 }
 
+export type Card = {
+    front: string
+    back: string
+    flashcard_set_id: string
+}

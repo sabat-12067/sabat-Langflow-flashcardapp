@@ -13,6 +13,4 @@ urlpatterns = [
     path('study-classes/<int:flashcard_set_id>/flashcards/', FlashCardView.as_view(), name='flashcards'),
     #How to GET, POST a classrooms flashcards sets cards
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
-    #How to POST cards for a classrooms flashcards set
-#   path('flashcards/<int:flashcard_id>/', FlashCardView.as_view(), name='flashcard-detail'),
 ]

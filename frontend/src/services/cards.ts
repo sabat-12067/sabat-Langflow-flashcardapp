@@ -1,6 +1,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { FormFields, StudyGroup, StudySet } from '@/types'; // Assuming '@/types' is the correct path
+import { Card, FormFields, StudyGroup, StudySet } from '@/types'; // Assuming '@/types' is the correct path
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
@@ -38,9 +38,17 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['studySets']
     }),
-    getStudySetCards: builder.query<any, any>({
+    getStudySetCards: builder.query<Card[], any>({
       query: (id) => `flashcards/${id}/`,
       providesTags: ["flashcards"]
+    }),
+    createStudySetCards: builder.mutation<Card, Card>({
+      query: (card) => ({
+        url: `flashcards/${card.flashcard_set_id}/`,
+        method: 'POST',
+        body: card
+      }),
+      invalidatesTags: ["flashcards"]
     })
   }),
 });
@@ -51,6 +59,6 @@ export const {
    useDeleteClassroomMutation, 
   useGetStudySetQuery, 
   useCreateStudySetMutation,
-  useGetStudySetCardsQuery
-  
+  useGetStudySetCardsQuery,
+  useCreateStudySetCardsMutation
  } = cardsApi;
