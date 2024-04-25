@@ -9,8 +9,7 @@ import {SettingsSheet} from "./SettingsSheet";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
-
-  
+  const [classroomTitle, setClassroomTitle] = useState(localStorage.getItem("Classroom: "))
   const params = useParams();
   const classId = params.classId?.slice(1, params.classId.length)!
   const { data, isLoading, refetch } = useGetStudySetQuery(classId, {
@@ -34,16 +33,23 @@ const Class: FC<ClassProps> = ({}) => {
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
   
   
+  const handleChange = (name: string) => {
+    setClassroomTitle(name)
+  }
+
   return (
     <div className="text-center">
       <Navbar />
       <div className="max-w-[65%] mx-auto">
         <div className="flex justify-between">
           <h1 className="text-2xl">
-            {localStorage.getItem("Classroom: ")} Classroom
+            {classroomTitle} Classroom
           </h1>
           <div className="flex gap-1">
-            <SettingsSheet classId={classId} title={localStorage.getItem("Classroom: ")!}/>
+            <SettingsSheet 
+            classId={classId}
+            onChange={handleChange}
+            />
             <CreateStudySetDialog onRefetch={() => setShouldRefetch(shouldRefetch + 1)}/>
           </div>
         </div>

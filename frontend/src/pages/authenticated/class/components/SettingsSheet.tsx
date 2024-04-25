@@ -17,16 +17,20 @@ import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useEditClassroomMutation } from "@/services/cards";
+import { toast } from "sonner";
 
 interface SettingsSheet {
-  title: string;
   classId: string;
+  onChange: () => void
 }
 
-export function SettingsSheet({ title, classId }: SettingsSheet) {
+export function SettingsSheet({classId, onChange }: SettingsSheet) {
   const [edit, setEdit] = useState(false);
-  const [editCard, { isLoading, error, data: response }] =
-    useEditClassroomMutation();
+  const [currentClassroomName, setcurrentClassroomName] = useState(localStorage.getItem("Classroom: "))
+  const [classroomName, setClassroomName] = useState("");
+  const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
+
+  console.log(classroomName.length);
 
   return (
     <Drawer>
@@ -41,26 +45,51 @@ export function SettingsSheet({ title, classId }: SettingsSheet) {
           <DrawerHeader>
             <DrawerTitle className="text-xl flex justify-between">
               {edit ? (
-                <Input
-                  className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
-                  placeholder="Type new name here....."
-                />
+                <div className="flex flex-col gap-4">
+                  <Input
+                    className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
+                    placeholder="Type new name here....."
+                    value={classroomName}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 15) {
+                        setClassroomName(e.target.value);
+                      }
+                    }}
+                  />
+                  {classroomName.length > 14 && (
+                    <p className="text-orange-400 font-thin">
+                      15 characters max
+                    </p>
+                  )}
+                </div>
               ) : (
-                <h1 className="text-2xl font-light">{title} Settings</h1>
+                <h1 className="text-2xl font-light">{currentClassroomName} Settings</h1>
               )}
               {!edit ? (
-                <button className="mt-2" onClick={() => setEdit(true)}>
+                <button
+                  className="mt-2"
+                  onClick={() => {
+                    setEdit(true);
+                  }}
+                >
                   <CiEdit size={22} />
                 </button>
               ) : (
                 <div className="flex gap-2 mt-2">
                   <button
                     className="my-auto"
-                    onClick={() => editCard({
-                      name: "Somiygtytgytyffajbe", 
-                      description: "Somebhcnhjqwdvbcaription",
-                      id: classId,
-                    })}
+                    onClick={() => {
+                      editCard({
+                        name: classroomName,
+                        description: "",
+                        id: classId,
+                      });
+                      setClassroomName("");
+                      toast("Name updated!");
+                      setcurrentClassroomName(classroomName)
+                      setEdit(false)
+                      onChange(classroomName)
+                    }}
                   >
                     <ImCheckmark2 size={20} />
                   </button>
