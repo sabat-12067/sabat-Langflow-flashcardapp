@@ -9,12 +9,14 @@ import {
 } from "@/components/ui/dialog";
 import { useDeleteClassroomMutation } from "@/services/cards";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "sonner";
 
-const ConfirmDeleteClassroomDialog = ({id}: {id: number}) => {
+const ConfirmDeleteClassroomDialog = ({id}: {id: string}) => {
     const navigate = useNavigate()
-    const [deleteClassroom, {isLoadingC}] = useDeleteClassroomMutation()
-    console.log(id);
+    const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
+    console.log(isLoading);
+
     
   return (
     <Dialog>
@@ -36,16 +38,28 @@ const ConfirmDeleteClassroomDialog = ({id}: {id: number}) => {
           </DialogDescription>
         </DialogHeader>
         <Button 
-        className="w-fit fixed right-8 bottom-4" 
-        variant={"destructive"}
-        onClick={() => {
-            deleteClassroom(id)
-            navigate("/cards")
-            toast("Classroom deleted!")
-        }}
-        >
-            Delete
-        </Button>
+    className="w-fit fixed right-8 bottom-4" 
+    variant="destructive"
+    onClick={async () => {
+        await deleteClassroom(id);  // Ensure deletion completes
+        navigate("/cards");
+        toast("Classroom deleted!");
+    }}
+>
+    {isLoading ? (
+        <ClipLoader
+            color="white"
+            loading={isLoading}
+            size={20}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            className="my-3"
+        />
+    ) : (
+        "Delete"
+    )}
+</Button>
+
       </DialogContent>
     </Dialog>
   );

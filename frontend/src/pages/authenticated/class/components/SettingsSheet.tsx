@@ -37,7 +37,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
   const params = useParams()
-  const classRoomId = params!.classId.slice(1, params.classId!.length)
+  const classRoomId = params.classId!.slice(1, params.classId!.length)
 
   return (
     <Drawer>

@@ -30,7 +30,7 @@ const Set: FC<SetProps> = ({ id }) => {
             Practice <PiCards size={17} />
           </Button>
           <AddCardDialog />
-          <RoomSettingsSheet />
+          <RoomSettingsSheet/>
           </div>
         </div>
         <div className="flex justify-center">

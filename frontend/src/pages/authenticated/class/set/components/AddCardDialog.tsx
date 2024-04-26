@@ -29,12 +29,19 @@ interface AddCardDialog{
 const AddCardDialog = ({onRefetch}:AddCardDialog) => {
 
   const params = useParams()
+  const flashCardSetId = params.setId!.slice(1, params.classId?.length)
   const [createCard, { isLoading, error, data: response }] = useCreateStudySetCardsMutation();
-  const {register,handleSubmit,formState: { errors }} = useForm<any>();
-  const onSubmit: SubmitHandler<Card> = (data) => {
-    createCard({ ...data, flashcard_set_id: params.setId!.slice(1, params.classId?.length) });
-    toast("New card created!")
+  const {register,handleSubmit, reset, formState: { errors }, re} = useForm<any>();
+  const onSubmit: SubmitHandler<Card> = async (data) => {
+    try {
+      await createCard({ ...data, flashcard_set_id: flashCardSetId});
+      toast("New card created!");
+      reset(); // This should be called after the createCard promise resolves
+    } catch (error) {
+      console.error("Failed to create card:", error);
+    }
   };
+  
 
   
   return (
