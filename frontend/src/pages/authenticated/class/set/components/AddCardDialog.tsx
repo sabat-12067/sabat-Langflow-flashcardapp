@@ -53,7 +53,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
        <GrAdd size={15} />
     </Button>
     </DialogTrigger>
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className="max-w-[389px] sm:max-w-[425px] rounded-lg">
       <DialogTitle>Create a new card</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
