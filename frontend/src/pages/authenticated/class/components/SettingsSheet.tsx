@@ -30,17 +30,14 @@ export enum ErrorState {
   TRUE = 'true',
   SHORT = 'short',
 }
-
 export function SettingsSheet({classId, onChange }: SettingsSheet) {
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.FALSE);
   const [edit, setEdit] = useState(false)
   const [currentClassroomName, setcurrentClassroomName] = useState(localStorage.getItem("Classroom: "))
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
-  const [deleteClassroom, {isLoadingC}] = useDeleteClassroomMutation()
   const params = useParams()
   const classRoomId = params!.classId.slice(1, params.classId!.length)
-  //const classRoomId = params.slice(params.length - 2, params.length)
 
   return (
     <Drawer>
@@ -142,7 +139,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
             <DrawerClose asChild>
               <Button variant="outline">Close</Button>
             </DrawerClose>
-            <ConfirmDeleteClassroomDialog />
+            <ConfirmDeleteClassroomDialog id={classRoomId}/>
           </DrawerFooter>
         </div>
       </DrawerContent>

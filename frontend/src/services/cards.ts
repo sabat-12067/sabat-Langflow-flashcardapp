@@ -64,7 +64,7 @@ export const cardsApi = createApi({
 export const {
   useGetClassroomsQuery, 
   useCreateClassroomMutation,
-   useDeleteClassroomMutation, 
+  useDeleteClassroomMutation, 
   useGetStudySetQuery, 
   useCreateStudySetMutation,
   useGetStudySetCardsQuery,
