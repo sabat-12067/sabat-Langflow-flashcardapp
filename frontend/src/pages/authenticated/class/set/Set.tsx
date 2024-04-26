@@ -6,12 +6,11 @@ import Card from "./components/Card";
 import { Button } from "@/components/ui/button";
 import { PiCards } from "react-icons/pi";
 import AddCardDialog from "./components/AddCardDialog";
-import { RoomSettingsSheet } from "./components/RoomSettingsSheet";
 interface SetProps {
   id: number;
 }
-const Set: FC<SetProps> = ({ id }) => {
-  const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"));
+const Set: FC<SetProps> = ({ }) => {
+  const [roomTitle] = useState(localStorage.getItem("Set"));
   const location = useLocation();
   const currentStudySetId = location.pathname.slice(
     location.pathname.length - 2,
@@ -30,7 +29,7 @@ const Set: FC<SetProps> = ({ id }) => {
               Practice <PiCards size={17} />
             </Button>
             <AddCardDialog />
-            <RoomSettingsSheet />
+            {/* <RoomSettingsSheet /> */}
           </div>
         </div>
         <div className="grid grid-cols-5 justify-center max-w-[70%] mx-auto">

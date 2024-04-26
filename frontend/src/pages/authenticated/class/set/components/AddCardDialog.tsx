@@ -12,10 +12,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GrAdd } from "react-icons/gr";
-import {  Card, StudySet } from "@/types";
+import {  Card } from "@/types";
 import {
     useCreateStudySetCardsMutation,
-  useCreateStudySetMutation,
 } from "@/services/cards";
 import { useParams } from 'react-router-dom';
 import { toast } from "sonner";
@@ -26,12 +25,12 @@ interface AddCardDialog{
 }
 
 
-const AddCardDialog = ({onRefetch}:AddCardDialog) => {
+const AddCardDialog = ({}:AddCardDialog) => {
 
   const params = useParams()
   const flashCardSetId = params.setId!.slice(1, params.classId?.length)
-  const [createCard, { isLoading, error, data: response }] = useCreateStudySetCardsMutation();
-  const {register,handleSubmit, reset, formState: { errors }, re} = useForm<any>();
+  const [createCard, { isLoading }] = useCreateStudySetCardsMutation();
+  const {register,handleSubmit, reset, formState: { errors }} = useForm<any>();
   const onSubmit: SubmitHandler<Card> = async (data) => {
     try {
       await createCard({ ...data, flashcard_set_id: flashCardSetId});
