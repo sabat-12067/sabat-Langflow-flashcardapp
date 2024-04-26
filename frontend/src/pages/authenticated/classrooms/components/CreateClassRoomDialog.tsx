@@ -27,10 +27,14 @@ export function CreateClassRoomDialog() {
   const {register,handleSubmit,formState: { errors }, reset} = useForm<FormFields>();
   const [createClassroom, { isLoading, error, data: response }] = useCreateClassroomMutation();
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    createClassroom({ ...data, user_id_or_study_class_id: user.id });
-    reset()
-    toast('Class room created!')
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      await createClassroom({ ...data, user_id_or_study_class_id: user.id });
+      reset();
+      toast('Classroom created!');  // Show toast only after request completion
+    } catch (error) {
+      console.error("Error creating classroom:", error);
+    }
   };
 
   const navigate = useNavigate()
