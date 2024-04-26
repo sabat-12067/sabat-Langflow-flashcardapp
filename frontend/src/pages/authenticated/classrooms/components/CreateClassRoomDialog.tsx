@@ -24,11 +24,13 @@ import { useNavigate } from "react-router-dom";
 export function CreateClassRoomDialog() {
 
   const user = useSelector((state: any) => state.auth.user);
-  const {register,handleSubmit,formState: { errors }} = useForm<FormFields>();
+  const {register,handleSubmit,formState: { errors }, reset} = useForm<FormFields>();
   const [createClassroom, { isLoading, error, data: response }] = useCreateClassroomMutation();
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     createClassroom({ ...data, user_id_or_study_class_id: user.id });
+    reset()
+    toast('Class room created!')
   };
 
   const navigate = useNavigate()

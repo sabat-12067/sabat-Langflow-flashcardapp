@@ -29,10 +29,15 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
 
   const params = useParams()
   const [createSet, { isLoading, error, data: response }] = useCreateStudySetMutation();
-  const {register,handleSubmit,formState: { errors }} = useForm<any>();
-  const onSubmit: SubmitHandler<StudySet> = (data) => {
-    createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
-    toast("New study set created!")
+  const {register,handleSubmit,formState: { errors }, reset} = useForm<any>();
+  const onSubmit: SubmitHandler<StudySet> =async (data) => {
+    try {
+      await createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
+      toast("New study set created!");
+      reset();  // Reset the form fields after successful submission
+    } catch (error) {
+      console.error("Failed to create study set:", error);
+    }
   };
 
   return (

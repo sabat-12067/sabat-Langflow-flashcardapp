@@ -29,10 +29,10 @@ export enum ErrorState {
   SHORT = 'short',
 }
 
-export function SettingsSheet({classId, onChange }: SettingsSheet) {
+export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.FALSE);
   const [edit, setEdit] = useState(false)
-  const [currentClassroomName, setcurrentClassroomName] = useState(localStorage.getItem("Classroom: "))
+  const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
 
@@ -74,7 +74,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                   )}
                 </div>
               ) : (
-                <h1 className="text-2xl font-light">{currentClassroomName} Settings</h1>
+                <h1 className="text-2xl font-light">{roomTitle} Settings</h1>
               )}
               {!edit ? (
                 <button
@@ -99,7 +99,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                         });
                         setClassroomName("");
                         toast("Name updated!");
-                        setcurrentClassroomName(classroomName)
+                        setClassroomName(classroomName)
                         setEdit(false)
                         onChange(classroomName)
                       }else{
@@ -118,18 +118,6 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
             </DrawerTitle>
           </DrawerHeader>
           <div className="flex flex-col gap-14 py-10 ml-4">
-            <div className="flex justify-between">
-              <p>Shuffle Mode</p>
-              <Switch></Switch>
-            </div>
-            <div className="flex justify-between">
-              <p>Shuffle Mode</p>
-              <Switch></Switch>
-            </div>
-            <div className="flex justify-between">
-              <p>Shuffle Mode</p>
-              <Switch></Switch>
-            </div>
             <div className="flex justify-between">
               <p>Shuffle Mode</p>
               <Switch></Switch>
