@@ -41,7 +41,7 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
     <Drawer>
       <DrawerTrigger asChild>
         <Button className="flex gap-1">
-          Settings
+          <span className="hidden md:block">Settings</span>
           <TbSettingsPin size={18} />
         </Button>
       </DrawerTrigger>

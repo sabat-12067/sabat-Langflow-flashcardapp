@@ -47,7 +47,10 @@ const AddCardDialog = ({}:AddCardDialog) => {
     <Dialog>
     <DialogTrigger asChild>
     <Button className="flex gap-1" variant={"outline"}>
-            Add card <GrAdd size={15} />
+            <span className="hidden md:block">
+            Add card
+            </span>
+       <GrAdd size={15} />
     </Button>
     </DialogTrigger>
     <DialogContent className="sm:max-w-[425px]">
