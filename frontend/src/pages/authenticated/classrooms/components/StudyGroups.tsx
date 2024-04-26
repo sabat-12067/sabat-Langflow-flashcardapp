@@ -17,11 +17,13 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
 
   return (
-    <div className='flex flex-col m-4 my-12 border-white border-2 border-s p-4 rounded-lg gap-6 w-64 h-48 relative'>
+    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[200px] md:w-[200px] m-2 justify-between border-s border-[1px] p-6'>
+      <div>
       <h2 className='text-2xl'>{title}</h2>
       <p className='text-sm'>{description ? description : ""}</p>
+      </div>
       <Button 
-      className='w-fit mx-auto absolute bottom-4 left-0 right-0' 
+      className='w-fit mx-auto' 
       variant={"secondary"}
       onClick={() => {
         navigate(`/class/:${id}`)
@@ -31,7 +33,10 @@ const StudyGroups: FC<StudyGroupsProps> = ({
         localStorage.setItem("Classroom: ", title)
       }}
       >
-        Launch {title}
+        Launch 
+        <span className='hidden md:block'>
+        {title}
+          </span>
       </Button>
     </div>
   )

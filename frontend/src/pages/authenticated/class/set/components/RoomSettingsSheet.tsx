@@ -73,7 +73,7 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
                   )}
                 </div>
               ) : (
-                <h1 className="text-2xl font-light">{roomTitle} Settings</h1>
+                <p className="text-2xl font-light">{roomTitle} Settings</p>
               )}
               {!edit ? (
                 <button

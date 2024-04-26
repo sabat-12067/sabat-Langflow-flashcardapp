@@ -24,12 +24,11 @@ const Cards = () => {
   return (
     <div className="text-center">
       <Navbar />
-      <div className="max-w-[65%] mx-auto">
-        <div className="flex justify-between">
+        <div className="flex justify-between max-w-[88%] md:max-w-[75%] mx-auto">
           <h1 className="text-2xl">My Classrooms</h1>
           <CreateClassRoomDialog />
         </div>
-        <div className="flex flex-row justify-center">
+        <div className="grid grid-cols-3 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
           {isLoading
             ? Array.from({ length: setLength }).map((_, index) => (
                 <Skeleton
@@ -48,7 +47,6 @@ const Cards = () => {
                 );
               })}
         </div>
-      </div>
     </div>
   );
 };
