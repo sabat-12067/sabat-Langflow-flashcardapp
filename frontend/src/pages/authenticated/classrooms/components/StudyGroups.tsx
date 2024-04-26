@@ -17,13 +17,13 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
 
   return (
-    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[200px] md:w-[200px] m-2 justify-between border-s border-[1px] p-6'>
+    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between border-s border-[1px] md:p-6'>
       <div>
-      <h2 className='text-2xl'>{title}</h2>
+      <h2 className='text-xl md:text-2xl'>{title}</h2>
       <p className='text-sm'>{description ? description : ""}</p>
       </div>
       <Button 
-      className='w-fit mx-auto' 
+      className='w-fit mx-auto text-[12px] p-3 md:text-md' 
       variant={"secondary"}
       onClick={() => {
         navigate(`/class/:${id}`)

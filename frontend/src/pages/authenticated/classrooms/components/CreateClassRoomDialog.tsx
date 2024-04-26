@@ -60,7 +60,7 @@ export function CreateClassRoomDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="flex gap-1" variant={"secondary"}>
-          <span className="hiden md:bock">New Classroom</span>
+          <span className="text-[12px] sm:text-md">New Classroom</span>
           <GrAdd size={15} />
         </Button>
       </DialogTrigger>

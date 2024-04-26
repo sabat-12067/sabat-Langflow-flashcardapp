@@ -17,7 +17,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
   };
 
   return (
-    <header className="py-10 px-10 flex justify-between">
+    <header className="pt-4 pb-10 md:py-10 px-10 flex justify-between">
       <div 
       className="flex gap-2 cursor-pointer"
       onClick={() => navigate("/cards")}
@@ -26,12 +26,12 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <PiBrainThin size={26} />
         </span>
         <p 
-        className="text-[22px] font-mono"
+        className="hidden md:block md:text-[22px] font-mono"
         >
           Learned
         </p>
       </div>
-      <div className="py-3">
+      <div className="">
         <Avatar />
           </div>
     </header>

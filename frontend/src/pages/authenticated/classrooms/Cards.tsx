@@ -25,7 +25,7 @@ const Cards = () => {
     <div className="text-center">
       <Navbar />
         <div className="flex justify-between max-w-[88%] md:max-w-[75%] mx-auto">
-          <h1 className="text-2xl">My Classrooms</h1>
+          <h1 className="text-xl md:text-2xl">My Classrooms</h1>
           <CreateClassRoomDialog />
         </div>
         <div className="grid grid-cols-3 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
