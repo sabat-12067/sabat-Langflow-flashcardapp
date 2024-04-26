@@ -16,8 +16,10 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useEditClassroomMutation } from "@/services/cards";
+import { useDeleteClassroomMutation, useEditClassroomMutation } from "@/services/cards";
 import { toast } from "sonner";
+import { useParams } from "react-router-dom";
+import ConfirmDeleteClassroomDialog from "./ConfirmDeleteClassroomDialog";
 
 interface SettingsSheet {
   classId: string;
@@ -35,8 +37,10 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
   const [currentClassroomName, setcurrentClassroomName] = useState(localStorage.getItem("Classroom: "))
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
-
-  console.log(edit);
+  const [deleteClassroom, {isLoadingC}] = useDeleteClassroomMutation()
+  const params = useParams()
+  const classRoomId = params!.classId.slice(1, params.classId!.length)
+  //const classRoomId = params.slice(params.length - 2, params.length)
 
   return (
     <Drawer>
@@ -80,7 +84,6 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                 <button
                   className="mt-2"
                   onClick={() => {
-                    console.log(edit);
                     setEdit(true)
                   }}
                 >
@@ -139,6 +142,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
             <DrawerClose asChild>
               <Button variant="outline">Close</Button>
             </DrawerClose>
+            <ConfirmDeleteClassroomDialog />
           </DrawerFooter>
         </div>
       </DrawerContent>

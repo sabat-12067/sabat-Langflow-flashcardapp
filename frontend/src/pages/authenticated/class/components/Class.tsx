@@ -14,9 +14,7 @@ const Class: FC<ClassProps> = ({}) => {
   const classId = params.classId?.slice(1, params.classId.length)!
   const { data, isLoading, refetch } = useGetStudySetQuery(classId, {
     refetchOnMountOrArgChange: true,
-  });
-  console.log('DATA: ', data)
-  
+  });  
   const [shouldRefetch, setShouldRefetch] = useState(0)
 
   useEffect(() => {

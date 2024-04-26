@@ -8,10 +8,7 @@ interface ClassSetProps {
 }
 const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate()
-  const location = useLocation();
-
-  console.log(location.pathname)
-  
+  const location = useLocation();  
   return (
     <div className="border-[1px] border-white mx-auto p-4 rounded-md space-y-6 w-[200px] h-[180px] relative">
       <h3 className="font-semibold text-xl">{name}</h3>

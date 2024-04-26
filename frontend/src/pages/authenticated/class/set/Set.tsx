@@ -11,7 +11,6 @@ interface SetProps {
   id: number;
 }
 const Set: FC<SetProps> = ({ id }) => {
-  console.log(id);
   const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
   const location = useLocation();
   const currentStudySetId = location.pathname.slice(
@@ -19,7 +18,6 @@ const Set: FC<SetProps> = ({ id }) => {
     location.pathname.length
   );
   const { data } = useGetStudySetCardsQuery(currentStudySetId);
-  console.log(data);
 
   return (
     <div>

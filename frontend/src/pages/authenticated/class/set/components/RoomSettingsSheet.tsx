@@ -36,7 +36,6 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
 
-  console.log(edit);
 
   return (
     <Drawer>
@@ -80,7 +79,6 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
                 <button
                   className="mt-2"
                   onClick={() => {
-                    console.log(edit);
                     setEdit(true)
                   }}
                 >
