@@ -15,7 +15,6 @@ import { toast } from "sonner";
 const ConfirmDeleteClassroomDialog = ({id}: {id: string}) => {
     const navigate = useNavigate()
     const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
-    console.log(isLoading);
 
     
   return (
