@@ -64,7 +64,7 @@ export function CreateClassRoomDialog() {
           <GrAdd size={15} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-[390px] rounded-lg sm:max-w-[425px]">
         <DialogTitle>Create a new Classroom</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
