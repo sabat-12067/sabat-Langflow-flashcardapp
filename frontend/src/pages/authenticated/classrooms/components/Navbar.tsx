@@ -28,7 +28,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
         <p 
         className="hidden md:block md:text-[22px] font-mono"
         >
-          Learned
+          LangFlow
         </p>
       </div>
       <div className="">
