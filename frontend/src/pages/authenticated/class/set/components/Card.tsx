@@ -16,10 +16,10 @@ const Card: FC<CardProps> = ({
 }) => {
   return (
     <div className='border-[1px] solid white py-5 flex flex-col h-[90px] w-[90px] md:h-[120px] md:w-[120px] gap-2 m-4 relative'>
-      <div className='absolute right-2 top-2'>
+      <div className='absolute right-2 top-2 z-50'>
       <DropdownMenu>
-  <DropdownMenuTrigger>
-  <CiMenuKebab className='' color='white' size={18}/>
+  <DropdownMenuTrigger className=''>
+  <CiEdit className='' color='white' size={14}/>
   </DropdownMenuTrigger>
   <DropdownMenuContent className='bg-black px-4 py-4 rounded-lg w-46 space-y-2 h-[180px]'>
     <DropdownMenuSeparator />

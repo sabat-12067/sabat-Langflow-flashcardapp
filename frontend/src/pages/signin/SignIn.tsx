@@ -32,7 +32,7 @@ const SignIn = () => {
           <span className="my-1">
             <PiBrainThin size={26} />
           </span>
-          <p className="text-[22px] font-mono">Learned</p>
+          <p className="text-[22px] font-mono">LangFlow</p>
         </div>
         <div>
           <AuthForm />
@@ -41,7 +41,7 @@ const SignIn = () => {
       <main className="text-center my-4 flex mx-auto max-w-[70%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
         <div className="py-10 space-y-6 lg:text-left max-w-[460px] mx-auto">
           <h1 className="text-4xl text-slate-200 font-bold">
-            Welcome to Learned
+            Welcome to LangFlow
           </h1>
           <p className="text-lg text-white leading-8 font-light">
             Learn a new language quickly for your next trip or pass your next law
@@ -91,7 +91,7 @@ const SignIn = () => {
       </main>
       <div className="text-center py-20">
         <h2 className="text-3xl text-slate-200 font-bold">
-          Coming soon to Learned
+          Coming soon to LangFlow
         </h2>
         <div className="flex flex-col md:flex-row gap-14 justify-center py-6 items-center">
           <div className="flex flex-col max-w-[300px] gap-2">
