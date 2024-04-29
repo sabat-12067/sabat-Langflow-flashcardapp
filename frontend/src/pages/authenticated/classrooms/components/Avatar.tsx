@@ -15,7 +15,6 @@ import { supabase } from "@/libs/supabase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { ModeToggle } from "@/components/mode-toggle";
 
 // type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -54,9 +53,7 @@ export function Avatar() {
           </span>
           
         </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem className="cursor-pointer">
-          <ModeToggle />
-        </DropdownMenuCheckboxItem>
+
       </DropdownMenuContent>
     </DropdownMenu>
   );
