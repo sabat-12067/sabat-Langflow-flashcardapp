@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../state/authSlice";
-import AuthForm from "@/components/AuthForm";
+import AuthForm from "@/pages/signin/components/AuthForm";
 import { PiBrainThin } from "react-icons/pi";
 import one from "../../assets/one.mp4";
+import { HeroCarousel } from "./components/HeroCarousel";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ const SignIn = () => {
   }, []);
 
   return (
-    <div className="">
-      <header className="flex justify-between py-10 px-20">
+    <div className=" bg-white text-black">
+      <header className="flex justify-between py-6 px-20">
         <div className="flex gap-2">
           <span className="my-1">
             <PiBrainThin size={26} />
@@ -38,14 +39,15 @@ const SignIn = () => {
           <AuthForm />
         </div>
       </header>
-      <main className="text-center my-4 flex mx-auto max-w-[70%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
+      <main className="text-center flex mx-auto max-w-[70%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
         <div className="py-10 space-y-6 lg:text-left max-w-[460px] mx-auto">
-          <h1 className="text-4xl text-slate-200 font-bold">
+          <h1 className="text-4xl text-slate-800 font-bold">
             Welcome to LangFlow
           </h1>
-          <p className="text-lg text-white leading-8 font-light">
-            Learn a new language quickly for your next trip or pass your next law
-            exam, we have your back.
+          <p className="text-lg text-black leading-8 font-light">
+            Learn a new language quickly for your next trip? Pass your next law
+            exam? We have your back. LangFlow is an interactive flashcards app to learn
+            new topics, and study with your peers.
           </p>
           <AuthForm />
           <div className="flex gap-4 py-5">
@@ -56,10 +58,6 @@ const SignIn = () => {
             <div>
               <img className="w-[70px] h-[50px] rounded-lg" src="data:image/png;base64,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"/>
               <p className="text-[13px]"> Chemistry</p>
-            </div>
-            <div>
-              <img className="w-[70px] h-[50px] rounded-lg" src="https://www.timeshighereducation.com/student/sites/default/files/styles/default/public/why-study-architecture_0.jpg?itok=cgMcrCfY"/>
-              <p className="text-[13px] text-center">Architecture</p>
             </div>
             <div>
               <img className="w-[70px] h-[50px] rounded-lg" src="https://www.timeshighereducation.com/student/sites/default/files/styles/default/public/physics_blackboard.jpg?itok=2zuQhCv8"/>
@@ -76,21 +74,11 @@ const SignIn = () => {
           </div>
         </div>
         <div>
-          <video
-            className="mx-auto bg-slate-300"
-            width="600"
-            height="400"
-            aria-label="Workout log video"
-            autoPlay
-            muted
-            loop
-          >
-            <source src={one} type="video/mp4" />
-          </video>
+          <HeroCarousel />
         </div>
       </main>
       <div className="text-center py-20">
-        <h2 className="text-3xl text-slate-200 font-bold">
+        <h2 className="text-3xl text-slate-800 font-bold">
           Coming soon to LangFlow
         </h2>
         <div className="flex flex-col md:flex-row gap-14 justify-center py-6 items-center">

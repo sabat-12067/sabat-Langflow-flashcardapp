@@ -1,9 +1,9 @@
 import { FC, useEffect } from "react";
 import { Auth } from "@supabase/auth-ui-react";
-import { supabase } from "../libs/supabase";
+import { supabase } from "../../../libs/supabase";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "../../../components/ui/dialog";
+import { Button } from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import {useSelector } from "react-redux";
 
@@ -27,7 +27,7 @@ const AuthForm: FC<AuthFormProps> = ({}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="text-black">Get Started</Button>
+        <Button variant="outline" className="border-black border-s border-[1px]">Get Started</Button>
       </DialogTrigger>
       <DialogContent className="bg-[#020617] p-8">
         <Auth

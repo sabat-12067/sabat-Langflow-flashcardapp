@@ -15,6 +15,7 @@ import { supabase } from "@/libs/supabase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { ModeToggle } from "@/components/mode-toggle";
 
 // type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -44,14 +45,17 @@ export function Avatar() {
       <DropdownMenuContent className="w-40">
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-         className="cursor-pointer hover:text-white flex gap-1"
-         onClick={handleSignOut}
-         >
-        <span className="">
-            <CiLogout size={24}/>
+          className="cursor-pointer hover:text-white flex gap-1 justify-between"
+          onClick={handleSignOut}
+        >
+          <p>Logout</p>
+          <span className="">
+            <CiLogout size={24} />
           </span>
-          Logout
-
+          
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem className="cursor-pointer">
+          <ModeToggle />
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>

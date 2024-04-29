@@ -4,6 +4,7 @@ import { PiBrainThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "./Avatar";
+import { ModeToggle } from "@/components/mode-toggle";
 
 interface NavbarProps {}
 const Navbar: FC<NavbarProps> = ({}) => {
