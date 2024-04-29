@@ -17,7 +17,7 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
 
   return (
-    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between border-s border-[1px] md:p-6'>
+    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between border-s border-[1px] md:p-6 border-black rounded-md'>
       <div>
       <h2 className='text-xl md:text-2xl'>{title}</h2>
       <p className='text-sm'>{description ? description : ""}</p>
@@ -34,9 +34,6 @@ const StudyGroups: FC<StudyGroupsProps> = ({
       }}
       >
         Launch 
-        <span className='hidden md:block'>
-        {title}
-          </span>
       </Button>
     </div>
   )

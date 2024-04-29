@@ -8,7 +8,7 @@ import { PiCards } from "react-icons/pi";
 import AddCardDialog from "./components/AddCardDialog";
 import { RoomSettingsSheet } from "./components/RoomSettingsSheet";
 interface SetProps {
-  id: number;
+  id?: number;
 }
 const Set: FC<SetProps> = ({ }) => {
   const [roomTitle] = useState(localStorage.getItem("Set"));

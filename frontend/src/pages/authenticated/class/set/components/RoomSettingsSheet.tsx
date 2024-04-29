@@ -20,8 +20,8 @@ import { useEditClassroomMutation } from "@/services/cards";
 import { toast } from "sonner";
 
 interface SettingsSheet {
-  classId: string;
-  onChange: (name: string) => void
+  classId?: string;
+  onChange?: (name: string) => void
 }
 export enum ErrorState {
   FALSE = 'false',

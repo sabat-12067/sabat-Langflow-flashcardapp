@@ -10,7 +10,7 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate()
   const location = useLocation();  
   return (
-    <div className="border-[1px] border-white mx-auto p-4 rounded-md space-y-6 w-[200px] h-[180px] relative">
+    <div className="border-[1px] border-black mx-auto p-4 rounded-md space-y-6 w-[200px] h-[180px] relative">
       <h3 className="font-semibold text-xl">{name}</h3>
       <p>{description}</p>
       <Button 

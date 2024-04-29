@@ -28,7 +28,7 @@ const Cards = () => {
           <h1 className="text-xl md:text-2xl">My Classrooms</h1>
           <CreateClassRoomDialog />
         </div>
-        <div className="grid grid-cols-3 xl:grid-cols-4 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
+        <div className="grid grid-cols-3 xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
           {isLoading
             ? Array.from({ length: setLength }).map((_, index) => (
                 <Skeleton
