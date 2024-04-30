@@ -5,6 +5,7 @@ import StudyGroups from "./components/StudyGroups";
 import { CreateClassRoomDialog } from "./components/CreateClassRoomDialog";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import clsx from "clsx";
 
 const Cards = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -19,6 +20,7 @@ const Cards = () => {
 
   const storedValue = localStorage.getItem("Class length: ");
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   
   return (
@@ -28,7 +30,7 @@ const Cards = () => {
           <h1 className="text-xl md:text-2xl">My Classrooms</h1>
           <CreateClassRoomDialog />
         </div>
-        <div className="grid grid-cols-3 xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
+        <div className={clsx("grid grid-cols-3 xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2 ", isDarkMode ? "" : "text-white")}>
           {isLoading
             ? Array.from({ length: setLength }).map((_, index) => (
                 <Skeleton

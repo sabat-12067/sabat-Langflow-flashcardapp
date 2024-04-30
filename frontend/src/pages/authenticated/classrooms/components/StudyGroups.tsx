@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { useDeleteClassroomMutation } from '@/services/cards'
+import clsx from 'clsx'
 import { FC } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 interface StudyGroupsProps {
   title: string
@@ -13,11 +15,15 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
   const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
   const navigate = useNavigate()
-  
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+
 
 
   return (
-    <div className='py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between border-s border-[1px] md:p-6 border-black rounded-md'>
+    <div
+     className={clsx('py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between rounded-md md:p-6',
+      isDarkMode ? "border-s border-[1px] border-black" : "border-s border-[1px] border-black")}
+     >
       <div>
       <h2 className='text-xl md:text-2xl'>{title}</h2>
       <p className='text-sm'>{description ? description : ""}</p>

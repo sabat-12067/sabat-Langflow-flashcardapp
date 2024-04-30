@@ -34,8 +34,8 @@ export function Avatar() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="flex gap-1 text-sm">
-          -{user.user_metadata.full_name.split(" ")[0]}
+        <Button variant={"secondary"} className="flex gap-1 text-sm">
+          {user.user_metadata.full_name.split(" ")[0]}
           <span>
             <IoIosArrowDropdownCircle />
           </span>
@@ -51,7 +51,6 @@ export function Avatar() {
           <span className="">
             <CiLogout size={24} />
           </span>
-          
         </DropdownMenuCheckboxItem>
 
       </DropdownMenuContent>

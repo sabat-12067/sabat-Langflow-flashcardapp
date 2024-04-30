@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import clsx from "clsx";
 import { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 interface ClassSetProps {
@@ -9,8 +10,10 @@ interface ClassSetProps {
 const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate()
   const location = useLocation();  
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+
   return (
-    <div className="border-[1px] border-black mx-auto p-4 rounded-md space-y-6 w-[200px] h-[180px] relative">
+    <div className={clsx("bmx-auto p-4 rounded-md space-y-6 w-[200px] h-[180px] relative")}>
       <h3 className="font-semibold text-xl">{name}</h3>
       <p>{description}</p>
       <Button 

@@ -12,6 +12,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
 import { cardsApi } from '../services/cards'
+import themeSlice from './themeSlice'
 
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   [cardsApi.reducerPath]: cardsApi.reducer,
+  theme: themeSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

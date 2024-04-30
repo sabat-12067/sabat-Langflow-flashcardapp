@@ -4,13 +4,12 @@ import { PiBrainThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "./Avatar";
-import { ModeToggle } from "@/components/mode-toggle";
+import ModeToggle from "@/components/modeToggle";
 
 interface NavbarProps {}
 const Navbar: FC<NavbarProps> = ({}) => {
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.auth.user);
-  
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -19,22 +18,19 @@ const Navbar: FC<NavbarProps> = ({}) => {
 
   return (
     <header className="pt-4 pb-10 md:py-10 px-10 flex justify-between">
-      <div 
-      className="flex gap-2 cursor-pointer"
-      onClick={() => navigate("/cards")}
+      <div
+        className="flex gap-2 cursor-pointer"
+        onClick={() => navigate("/cards")}
       >
         <span className="my-1">
           <PiBrainThin size={26} />
         </span>
-        <p 
-        className="hidden md:block md:text-[22px] font-mono"
-        >
-          LangFlow
-        </p>
+        <p className="hidden md:block md:text-[22px] font-mono">LangFlow</p>
       </div>
-      <div className="">
+      <div className="flex gap-2">
         <Avatar />
-          </div>
+        <ModeToggle />
+      </div>
     </header>
   );
 };
