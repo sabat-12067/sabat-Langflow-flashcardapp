@@ -42,9 +42,11 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button className="flex gap-1">
-          Settings
-          <TbSettingsPin size={18} />
+        <Button 
+        variant={""}
+        className="flex gap-1"
+        >
+          <TbSettingsPin size={21} />
         </Button>
       </DrawerTrigger>
       <DrawerContent className="p-6 md:px-0 py-12 h-full">

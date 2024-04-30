@@ -30,7 +30,7 @@ const Cards = () => {
           <h1 className="text-xl md:text-2xl">My Classrooms</h1>
           <CreateClassRoomDialog />
         </div>
-        <div className={clsx("grid grid-cols-3 xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2 ", isDarkMode ? "" : "text-white")}>
+        <div className={clsx("grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2 ", isDarkMode ? "" : "text-white")}>
           {isLoading
             ? Array.from({ length: setLength }).map((_, index) => (
                 <Skeleton

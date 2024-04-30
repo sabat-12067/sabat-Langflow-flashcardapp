@@ -44,7 +44,7 @@ export function Avatar() {
       <DropdownMenuContent className="w-40">
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          className="cursor-pointer hover:text-white flex gap-1 justify-between"
+          className="cursor-pointer flex justify-between py-0 px-4"
           onClick={handleSignOut}
         >
           <p>Logout</p>
@@ -52,7 +52,7 @@ export function Avatar() {
             <CiLogout size={24} />
           </span>
         </DropdownMenuCheckboxItem>
-
+        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );
