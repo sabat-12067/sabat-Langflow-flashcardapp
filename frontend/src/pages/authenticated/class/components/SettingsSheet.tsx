@@ -47,14 +47,14 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
           <TbSettingsPin size={18} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="p-6 md:px-0 py-12">
+      <DrawerContent className="p-6 md:px-0 py-12 h-full">
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className="text-xl flex justify-between">
               {edit ? (
                 <div className="flex flex-col gap-4">
                   <Input
-                    className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
+                    className="cursor-pointer w-[300px] text-sm font-light"
                     placeholder="Type new name here....."
                     value={classroomName}
                     onChange={(e) => {
@@ -87,7 +87,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                   <CiEdit size={22} />
                 </button>
               ) : (
-                <div className="flex gap-2 mt-2">
+                <div className="flex gap-2">
                   <button
                     className="my-auto"
                     onClick={() => {

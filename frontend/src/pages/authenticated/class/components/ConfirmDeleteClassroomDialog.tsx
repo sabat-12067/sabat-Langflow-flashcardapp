@@ -32,7 +32,7 @@ const ConfirmDeleteClassroomDialog = ({id}: {id: string}) => {
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription 
-          className="text-gray-300">
+          className="">
             This action cannot be undone. This will permanently delete this classroom.
           </DialogDescription>
         </DialogHeader>
