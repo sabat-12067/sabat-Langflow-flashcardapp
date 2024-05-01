@@ -7,30 +7,29 @@ import { Avatar } from "./Avatar";
 import ModeToggle from "@/components/modeToggle";
 import clsx from "clsx";
 
+import {logo} from "/logotwo.png"
+
 interface NavbarProps {}
 const Navbar: FC<NavbarProps> = ({}) => {
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.auth.user);
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    navigate("/");
-  };
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
-
   return (
-    <header className="pt-4 pb-10 md:py-10 px-10 flex justify-between">
+    <header className="pt-4 pb-10 md:py-6 px-10 flex justify-between">
       <div
         className="flex gap-2 cursor-pointer"
         onClick={() => navigate("/cards")}
       >
         <span className="">
-          <PiBrainThin className="" color={"black"} size={26} />
+          <img 
+          src="/logotwo.png"
+          className="h-6 w-6 rounded-lg"
+        
+          />
         </span>
         <p className={clsx("text-lg", isDarkMode ? "text-black" : "text-white")}>LangFlow</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 text-sm">
         <Avatar />
         <ModeToggle />
       </div>

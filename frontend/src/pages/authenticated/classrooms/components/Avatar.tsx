@@ -14,6 +14,8 @@ import {
 import { supabase } from "@/libs/supabase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowDropdown } from "react-icons/io";
+
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 // type Checked = DropdownMenuCheckboxItemProps["checked"];
@@ -34,10 +36,10 @@ export function Avatar() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"secondary"} className="flex gap-1 text-sm">
+        <Button variant={"secondary"} className="flex gap-1 text-[11px] px-2">
           {user.user_metadata.full_name.split(" ")[0]}
           <span>
-            <IoIosArrowDropdownCircle />
+            <IoIosArrowDropdown size={14}/>
           </span>
         </Button>
       </DropdownMenuTrigger>
@@ -47,9 +49,9 @@ export function Avatar() {
           className="cursor-pointer flex justify-between py-0 px-4"
           onClick={handleSignOut}
         >
-          <p>Logout</p>
+          <p className="text-[12px]">Logout</p>
           <span className="">
-            <CiLogout size={24} />
+            <CiLogout size={20} />
           </span>
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />

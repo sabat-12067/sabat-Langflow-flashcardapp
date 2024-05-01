@@ -18,8 +18,9 @@ const ModeToggle = () => {
       <Button 
       onClick={toggleModeHandler}
       variant={isDarkMode ? "secondary" : "default"}
+      className="px-3"
       >
-        {isDarkMode ? <FaRegMoon size={20}/> : <FiSun size={20}/>}
+        {isDarkMode ? <FaRegMoon size={16}/> : <FiSun size={16}/>}
       </Button>
     </div>
   );

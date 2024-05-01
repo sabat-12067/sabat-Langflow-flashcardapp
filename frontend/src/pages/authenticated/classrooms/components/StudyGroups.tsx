@@ -22,7 +22,7 @@ const StudyGroups: FC<StudyGroupsProps> = ({
   return (
     <div
      className={clsx('py-5 flex flex-col h-[150px] w-[120px] md:h-[170px] md:w-[170px] m-2 justify-between rounded-md md:p-6',
-      isDarkMode ? "border-s border-[1px] border-black" : "border-s border-[1px] border-black")}
+      isDarkMode ? "border-s border-[1px] border-black" : "border-s border-[1px] border-white")}
      >
       <div>
       <h2 className='text-xl md:text-2xl'>{title}</h2>

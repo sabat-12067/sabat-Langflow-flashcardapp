@@ -27,7 +27,11 @@ const Cards = () => {
     <div className="text-center">
       <Navbar />
         <div className="flex justify-between max-w-[88%] md:max-w-[75%] mx-auto">
-          <h1 className="text-xl md:text-2xl">My Classrooms</h1>
+          <h1 
+          className={clsx("text-xl md:text-2xl", !isDarkMode && 'text-white')}
+          >
+            My Classrooms
+            </h1>
           <CreateClassRoomDialog />
         </div>
         <div className={clsx("grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2 ", isDarkMode ? "" : "text-white")}>
