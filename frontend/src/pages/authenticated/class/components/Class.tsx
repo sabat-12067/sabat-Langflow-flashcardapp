@@ -6,6 +6,8 @@ import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreateStudySetDialog from "./CreateStudySetDialog";
 import {SettingsSheet} from "./SettingsSheet";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
@@ -16,6 +18,7 @@ const Class: FC<ClassProps> = ({}) => {
     refetchOnMountOrArgChange: true,
   });  
   const [shouldRefetch, setShouldRefetch] = useState(0)
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   useEffect(() => {
     if (data?.length! > 0) {
@@ -40,7 +43,7 @@ const Class: FC<ClassProps> = ({}) => {
       <Navbar />
       <div className="max-w-[65%] mx-auto">
         <div className="flex justify-between">
-          <h1 className="text-2xl">
+          <h1 className={clsx("text-2xl", isDarkMode ? "" : "text-white")}>
             {classroomTitle} Classroom
           </h1>
           <div className="flex gap-1">

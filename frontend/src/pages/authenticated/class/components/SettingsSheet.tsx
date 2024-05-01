@@ -20,6 +20,8 @@ import { useDeleteClassroomMutation, useEditClassroomMutation } from "@/services
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
 import ConfirmDeleteClassroomDialog from "./ConfirmDeleteClassroomDialog";
+import clsx from "clsx";
+import { useSelector } from "react-redux";
 
 interface SettingsSheet {
   classId: string;
@@ -38,6 +40,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
   const params = useParams()
   const classRoomId = params.classId!.slice(1, params.classId!.length)
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
     <Drawer>
@@ -49,7 +52,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
           <TbSettingsPin size={21} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="p-6 md:px-0 py-12 h-full">
+      <DrawerContent className={clsx("p-6 md:px-0 py-12 h-full", isDarkMode ? "" : "bg-black text-white")}>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className="text-xl flex justify-between">
@@ -139,7 +142,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
           </div>
           <DrawerFooter className="pt-10">
             <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button className={!isDarkMode && "text-black"} variant="outline">Close</Button>
             </DrawerClose>
             <ConfirmDeleteClassroomDialog id={classRoomId}/>
           </DrawerFooter>

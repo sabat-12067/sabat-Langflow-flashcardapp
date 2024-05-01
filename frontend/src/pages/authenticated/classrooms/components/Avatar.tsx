@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import clsx from "clsx";
 
 // type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -32,6 +33,7 @@ export function Avatar() {
     await supabase.auth.signOut();
     navigate("/");
   };
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
     <DropdownMenu>
@@ -46,7 +48,7 @@ export function Avatar() {
       <DropdownMenuContent className="w-40">
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          className="cursor-pointer flex justify-between py-0 px-4"
+          className={clsx("cursor-pointer flex justify-between rounded-lg px-2 bg-white", !isDarkMode ? "py-6" : "")}
           onClick={handleSignOut}
         >
           <p className="text-[12px]">Logout</p>
