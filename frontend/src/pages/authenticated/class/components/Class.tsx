@@ -55,7 +55,7 @@ const Class: FC<ClassProps> = ({}) => {
           </div>
         </div>
       </div>
-      <div className="my-20 flex w-fit mx-auto gap-10">
+      <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-center max-w-[90%] sm:max-w-[70%] lg:max-w-[56%] mx-auto py-2">
   {isLoading
     ? Array.from({ length: setLength }).map((_, index) => (
         <Skeleton key={index} className="w-[220px] h-[180px] rounded-md m-4" />

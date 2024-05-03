@@ -18,6 +18,8 @@ import {
 } from "@/services/cards";
 import { useParams } from 'react-router-dom';
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 
   
 interface CreateStudySetDialog{
@@ -30,6 +32,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
   const params = useParams()
   const [createSet, { isLoading, error, data: response }] = useCreateStudySetMutation();
   const {register,handleSubmit,formState: { errors }, reset} = useForm<any>();
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const onSubmit: SubmitHandler<StudySet> =async (data) => {
     try {
       await createSet({ ...data, user_id_or_study_class_id: params.classId!.slice(1, params.classId?.length) });
@@ -48,7 +51,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
               <GrAdd size={15} />
             </Button>
     </DialogTrigger>
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className={clsx("sm:max-w-[425px]", isDarkMode ? "" : "bg-black text-white")}>
       <DialogTitle>Create a new set</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
@@ -60,9 +63,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
                 {...register("name", { required: true, maxLength: 20 })}
                 placeholder={errors.name && "Name is required"}
                 id="name"
-                className={
-                  errors.name ? "col-span-3 border-orange-700" : "col-span-3"
-                }
+                className={clsx(errors.name ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -75,7 +76,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
                   maxLength: 100,
                 })}
                 id="username"
-                className="col-span-3"
+                className={clsx(errors.name ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
               />
             </div>
           </div>

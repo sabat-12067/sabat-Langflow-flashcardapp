@@ -16,7 +16,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useDeleteClassroomMutation, useEditClassroomMutation } from "@/services/cards";
+import {useEditClassroomMutation } from "@/services/cards";
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
 import ConfirmDeleteClassroomDialog from "./ConfirmDeleteClassroomDialog";
@@ -59,8 +59,8 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
               {edit ? (
                 <div className="flex flex-col gap-4">
                   <Input
-                    className="cursor-pointer w-[300px] text-sm font-light"
-                    placeholder="Type new name here....."
+                    className={clsx("cursor-pointer w-[300px] text-sm font-light", isDarkMode ? "" : "text-black", errorState === 'short' && 'border-red-500 border-s border-[1px]')}
+                    placeholder={errorState === "short" ? "Name is required!" : "Type new name here....."}
                     value={classroomName}
                     onChange={(e) => {
                       if (e.target.value.length <= 15) {
@@ -73,11 +73,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                       15 characters max
                     </p>
                   )}
-                  {errorState === "short" && (
-                    <p className="text-orange-400 font-thin">
-                      Please type a name
-                    </p>
-                  )}
+         
                 </div>
               ) : (
                 <p className="text-2xl font-light">{currentClassroomName} Settings</p>
@@ -116,7 +112,11 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
                     <ImCheckmark2 size={20} />
                   </button>
                   <button>
-                    <ImCancelCircle size={20} onClick={() => setEdit(false)} />
+                    <ImCancelCircle size={20} onClick={() => {
+                      setEdit(false)
+                      setErrorState(ErrorState.FALSE)
+                      } }
+                      />
                   </button>
                 </div>
               )}

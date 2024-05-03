@@ -20,6 +20,7 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 export function CreateClassRoomDialog() {
 
@@ -49,7 +50,7 @@ export function CreateClassRoomDialog() {
       }}
   }, [error]);
 
-  
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   if(response){
     localStorage.removeItem("Classroom: ")
     localStorage.setItem("Classroom: ", response.name)
@@ -64,7 +65,7 @@ export function CreateClassRoomDialog() {
           <GrAdd size={15} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[390px] rounded-lg sm:max-w-[425px]">
+      <DialogContent className={clsx("max-w-[390px] rounded-lg sm:max-w-[425px]", isDarkMode ? "" : "bg-black text-white")}>
         <DialogTitle>Create a new Classroom</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
@@ -77,7 +78,7 @@ export function CreateClassRoomDialog() {
                 placeholder={errors.name && "Name is required"}
                 id="name"
                 className={
-                  errors.name ? "col-span-3 border-orange-700" : "col-span-3"
+                  clsx( errors.name ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")
                 }
               />
             </div>
@@ -91,7 +92,7 @@ export function CreateClassRoomDialog() {
                   maxLength: 100,
                 })}
                 id="username"
-                className="col-span-3"
+                className={clsx("col-span-3", isDarkMode ? "" : "text-black")}
               />
             </div>
           </div>
