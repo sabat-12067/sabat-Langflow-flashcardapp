@@ -34,7 +34,9 @@ const AddCardDialog = ({}:AddCardDialog) => {
   const [createCard, { isLoading }] = useCreateStudySetCardsMutation();
   const {register,handleSubmit, reset, formState: { errors }} = useForm<any>();
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+
   const onSubmit: SubmitHandler<Card> = async (data) => {
+    
     try {
       await createCard({ ...data, flashcard_set_id: flashCardSetId});
       toast("New card created!");
@@ -65,26 +67,37 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 Front
               </Label>
               <Input
-                {...register("front", { required: true, maxLength: 20 })}
+                {...register("front", {
+                  required: "Front side is required",
+                  maxLength: {
+                    value: 20,
+                    message: "Maximum 20 characters are allowed"
+                  },
+                  validate: value => value.trim().length > 0 || "Front side cannot be empty"
+                })}
                 placeholder={errors.front && "Front side is required"}
                 id="name"
-                className={clsx(errors.front ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
-
+                className={clsx("col-span-3", errors.front ? "border-orange-700" : "", isDarkMode ? "" : "text-black")}
               />
             </div>
+
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="username" className="text-right">
                 Back
               </Label>
               <Input
                 {...register("back", {
-                  required: true,
-                  maxLength: 20,
+                  required: "Back side is required",
+                  maxLength: {
+                    value: 20,
+                    message: "Maximum 20 characters are allowed"
+                  },
+                  validate: value => value.trim().length > 0 || "Back side cannot be empty"
                 })}
                 placeholder={errors.back && "Back side is required"}
                 id="username"
-                className={clsx(errors.front ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
-                />
+                className={clsx("col-span-3", errors.back ? "border-orange-700" : "", isDarkMode ? "" : "text-black")}
+              />
             </div>
           </div>
           <DialogFooter>

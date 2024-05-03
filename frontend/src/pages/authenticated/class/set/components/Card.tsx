@@ -19,7 +19,7 @@ const Card: FC<CardProps> = ({ front, back }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
-    <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[90px] md:h-[120px] md:w-[120px] gap-2 m-4 relative", isDarkMode ? "" : "text-white")}>
+    <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative", isDarkMode ? "" : "text-white")}>
       <div className="absolute right-2 top-2 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger className="">
@@ -53,8 +53,8 @@ const Card: FC<CardProps> = ({ front, back }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <p className="text-xl md:text-2xl mx-auto">{front}</p>
-      <p className="font-light mx-auto">{back}</p>
+      <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
+      <p className="text-[9px] md:text-md font-light mx-auto">{back}</p>
     </div>
   );
 };

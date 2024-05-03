@@ -41,7 +41,7 @@ const Set: FC<SetProps> = ({ }) => {
             <RoomSettingsSheet />
           </div>
         </div>
-        <div className="grid grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 justify-center max-w-[80%] sm:max-w-[70%] lg:max-w-[56%] mx-auto">
+        <div className="grid grid-cols-4 md:grid-cols-5 xl:grid-cols-6 justify-center max-w-[99%] pr-8 sm:max-w-[85%] lg:max-w-[65%] 2xl:max-w-[52%] mx-auto">
           {data?.map((card: any, i: number) => (
             <Card key={i} front={card.front} back={card.back} />
           ))}
