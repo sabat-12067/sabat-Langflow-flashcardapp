@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cards from "./pages/authenticated/classrooms/Cards";
 import SignIn from "./pages/signin/SignIn";
 import Class from "./pages/authenticated/class/components/Class";
 import Set from "./pages/authenticated/class/set/Set";
 import { useSelector } from "react-redux";
+import Cards from "./pages/authenticated/home/Cards";
 
 const App = () => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);

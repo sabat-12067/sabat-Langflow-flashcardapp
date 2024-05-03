@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Navbar from "../../classrooms/components/Navbar";
 import { useGetStudySetCardsQuery } from "@/services/cards";
 import { useLocation } from "react-router-dom";
 import Card from "./components/Card";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PiCards } from "react-icons/pi";
 import AddCardDialog from "./components/AddCardDialog";
 import { RoomSettingsSheet } from "./components/RoomSettingsSheet";
+import Navbar from "../../home/components/Navbar";
 interface SetProps {
   id?: number;
 }

@@ -18,7 +18,7 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
       <h3 className={clsx("font-semibold text-xl", isDarkMode ? "" : "text-white")}>{name}</h3>
       <p className={clsx(isDarkMode ? "" : "text-white")}>{description}</p>
       <Button 
-      className="bottom-2 absolute left-0 right-0 w-fit mx-auto" 
+      className="w-fit mx-auto text-[12px] p-3 md:text-md" 
       variant={"secondary"}
       onClick={() => {
         localStorage.setItem("Set", name)

@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../../classrooms/components/Navbar";
 import { useGetStudySetQuery } from "@/services/cards";
 import ClassSet from "./ClassSet";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -8,6 +7,7 @@ import CreateStudySetDialog from "./CreateStudySetDialog";
 import {SettingsSheet} from "./SettingsSheet";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import Navbar from "../../home/components/Navbar";
 
 interface ClassProps {}
 const Class: FC<ClassProps> = ({}) => {
