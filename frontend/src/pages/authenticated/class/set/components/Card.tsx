@@ -19,20 +19,24 @@ const Card: FC<CardProps> = ({ front, back }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
-    <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative", isDarkMode ? "" : "text-white")}>
+    <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative rounded-md", isDarkMode ? "border-black" : "text-white")}>
       <div className="absolute right-2 top-2 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger className="">
-            <CiEdit className="" color="white" size={14} />
+            <CiEdit
+            className="mb-2" 
+            color={isDarkMode ? "black" : "white"} size={14} 
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className={clsx(
-              "px-4 py-4 rounded-lg w-46 space-y-2 h-[180px]",
-              isDarkMode ? "" : "text-white bg-black"
+              "px-4 py-4 rounded-lg space-y-2 h-[230px]",
+              isDarkMode ? "bg-gray-100" : "text-white bg-black"
             )}
           >
             <DropdownMenuSeparator />
             <form className="flex flex-col gap-4">
+              <h3>Edit Card</h3>
               <Input 
               placeholder="Edit front side..." 
               className={clsx(isDarkMode ? "" : "text-black")}
@@ -54,7 +58,7 @@ const Card: FC<CardProps> = ({ front, back }) => {
         </DropdownMenu>
       </div>
       <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
-      <p className="text-[9px] md:text-md font-light mx-auto">{back}</p>
+      <p className="text-[11px] md:text-[16px] font-light mx-auto text-center">{back}</p>
     </div>
   );
 };

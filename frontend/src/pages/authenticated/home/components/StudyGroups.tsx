@@ -21,12 +21,12 @@ const StudyGroups: FC<StudyGroupsProps> = ({
 
   return (
     <div
-     className={clsx('py-4 flex flex-col h-[150px] w-[110px] md:h-[170px] md:w-[170px] justify-between rounded-md md:p-6',
+     className={clsx('py-4 flex flex-col h-[120px] w-[110px] md:h-[170px] md:w-[170px] justify-between rounded-md md:p-6',
       isDarkMode ? "border-s border-[1px] border-black" : "border-s border-[1px] border-white")}
      >
       <div>
-      <h2 className='text-xl md:text-2xl'>{title}</h2>
-      <p className='text-sm'>{description ? description : ""}</p>
+      <h2 className='text-sm sm:text-xl md:text-2xl'>{title}</h2>
+      <p className='text-[11px] md:text-sm'>{description ? description : ""}</p>
       </div>
       <Button 
       className='w-fit mx-auto text-[12px] p-3 md:text-md' 
