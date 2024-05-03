@@ -7,6 +7,8 @@ import { PiCards } from "react-icons/pi";
 import AddCardDialog from "./components/AddCardDialog";
 import { RoomSettingsSheet } from "./components/RoomSettingsSheet";
 import Navbar from "../../home/components/Navbar";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 interface SetProps {
   id?: number;
 }
@@ -18,13 +20,15 @@ const Set: FC<SetProps> = ({ }) => {
     location.pathname.length
   );
   const { data } = useGetStudySetCardsQuery(currentStudySetId);
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+
 
   return (
     <div>
       <Navbar />
       <main className="">
         <div className="max-w-[90%] md:max-w-[65%] mx-auto flex justify-between">
-          <h3 className="text-center mb-10 text-2xl">{roomTitle}</h3>
+          <h3 className={clsx("text-center mb-10 text-2xl", isDarkMode ? "" : "text-white")}>{roomTitle}</h3>
           <div className="flex gap-2">
             <Button className="flex gap-1" variant={"outline"}>
               <span className="hidden md:block">

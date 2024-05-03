@@ -18,6 +18,8 @@ import {
 } from "@/services/cards";
 import { useParams } from 'react-router-dom';
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 
   
 interface AddCardDialog{
@@ -31,6 +33,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
   const flashCardSetId = params.setId!.slice(1, params.classId?.length)
   const [createCard, { isLoading }] = useCreateStudySetCardsMutation();
   const {register,handleSubmit, reset, formState: { errors }} = useForm<any>();
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const onSubmit: SubmitHandler<Card> = async (data) => {
     try {
       await createCard({ ...data, flashcard_set_id: flashCardSetId});
@@ -53,7 +56,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
        <GrAdd size={15} />
     </Button>
     </DialogTrigger>
-    <DialogContent className="max-w-[389px] sm:max-w-[425px] rounded-lg">
+    <DialogContent className={clsx("max-w-[389px] sm:max-w-[425px] rounded-lg", isDarkMode ? "" : "bg-black text-white")}>
       <DialogTitle>Create a new card</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
@@ -65,7 +68,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 {...register("front", { required: true, maxLength: 20 })}
                 placeholder={errors.front && "Front side is required"}
                 id="name"
-                className={errors.front ? "col-span-3 border-orange-700" : "col-span-3"}
+                className={clsx(errors.front ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
 
               />
             </div>
@@ -80,7 +83,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 })}
                 placeholder={errors.back && "Back side is required"}
                 id="username"
-                className={errors.back ? "col-span-3 border-orange-700" : "col-span-3"}
+                className={clsx(errors.front ? "col-span-3 border-orange-700" : "col-span-3", isDarkMode ? "" : "text-black")}
                 />
             </div>
           </div>

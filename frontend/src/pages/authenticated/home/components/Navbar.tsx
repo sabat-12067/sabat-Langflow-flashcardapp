@@ -1,13 +1,10 @@
-import { supabase } from "@/libs/supabase";
 import { FC } from "react";
-import { PiBrainThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "./Avatar";
 import ModeToggle from "@/components/modeToggle";
 import clsx from "clsx";
 
-import {logo} from "/logotwo.png"
 
 interface NavbarProps {}
 const Navbar: FC<NavbarProps> = ({}) => {
