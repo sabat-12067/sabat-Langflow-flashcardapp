@@ -41,9 +41,9 @@ const Class: FC<ClassProps> = ({}) => {
   return (
     <div className="text-center">
       <Navbar />
-      <div className="max-w-[65%] mx-auto">
+      <div className="max-w-[85%] md:max-w-[65%] mx-auto">
         <div className="flex justify-between">
-          <h1 className={clsx("text-2xl", isDarkMode ? "" : "text-white")}>
+          <h1 className={clsx("text-lg md:text-2xl", isDarkMode ? "" : "text-white")}>
             {classroomTitle} Classroom
           </h1>
           <div className="flex gap-1">

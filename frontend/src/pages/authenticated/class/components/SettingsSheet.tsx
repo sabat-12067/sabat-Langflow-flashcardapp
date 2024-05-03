@@ -46,7 +46,6 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
     <Drawer>
       <DrawerTrigger asChild>
         <Button 
-        variant={""}
         className="flex gap-1"
         >
           <TbSettingsPin size={21} />
