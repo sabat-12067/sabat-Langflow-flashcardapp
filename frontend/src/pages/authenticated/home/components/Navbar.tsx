@@ -15,9 +15,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
-    <header className="pt-4 pb-10 md:py-6 px-10 flex justify-between">
+    <header className="pt-2 pb-10 md:py-6 px-4 md:px-10 flex justify-between">
       <div
-        className="flex gap-2 cursor-pointer"
+        className="flex gap-2 cursor-pointer pt-1 md:pt-0"
         onClick={() => navigate("/cards")}
       >
         <span className="">

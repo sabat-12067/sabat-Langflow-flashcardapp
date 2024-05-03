@@ -60,10 +60,18 @@ export function CreateClassRoomDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex gap-1" variant={"secondary"}>
-          <span className="text-[12px] sm:text-md">New Classroom</span>
+        <>
+        <Button className="hidden md:flex gap-1" variant={"secondary"}>
+          <span className="hidden md:block text-[13px]">New Classroom</span>
           <GrAdd size={15} />
         </Button>
+        <Button className="md:hidden" variant={"secondary"}>
+          <span className="text-[10px] sm:text-md"></span>
+          <GrAdd size={15} />
+        </Button>
+        </>
+
+  
       </DialogTrigger>
       <DialogContent className={clsx("max-w-[390px] rounded-lg sm:max-w-[425px]", isDarkMode ? "" : "bg-black text-white")}>
         <DialogTitle>Create a new Classroom</DialogTitle>

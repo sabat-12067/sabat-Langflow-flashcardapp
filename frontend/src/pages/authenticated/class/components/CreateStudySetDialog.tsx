@@ -47,7 +47,7 @@ const CreateStudySetDialog = ({onRefetch}:CreateStudySetDialog) => {
     <Dialog>
     <DialogTrigger asChild>
     <Button className="flex gap-1 p-2" variant={"secondary"}>
-              <span className="text-[11px] md:text-sm">New Set</span>
+              <span className="text-[13px]">New Set</span>
               <GrAdd size={12} />
     </Button>
     </DialogTrigger>

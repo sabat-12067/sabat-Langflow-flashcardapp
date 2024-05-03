@@ -11,7 +11,6 @@ const ModeToggle = () => {
   const toggleModeHandler = () => {
     dispatch(toggleMode());
   };
-  console.log(isDarkMode);
 
   return (
     <div>

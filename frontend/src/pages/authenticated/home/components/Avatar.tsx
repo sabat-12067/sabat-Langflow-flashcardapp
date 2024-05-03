@@ -38,7 +38,7 @@ export function Avatar() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"secondary"} className="flex gap-1 text-[11px] px-2">
+        <Button variant={"secondary"} className="flex gap-1 text-[11px] p-2 md:px-2">
           {user.user_metadata.full_name.split(" ")[0]}
           <span>
             <IoIosArrowDropdown size={14}/>
