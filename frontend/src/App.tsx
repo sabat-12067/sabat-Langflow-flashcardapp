@@ -4,6 +4,7 @@ import Class from "./pages/authenticated/class/components/Class";
 import Set from "./pages/authenticated/class/set/Set";
 import { useSelector } from "react-redux";
 import Cards from "./pages/authenticated/home/Cards";
+import AuthPage from "./pages/signin/components/AuthPage";
 
 const App = () => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="class/:classId" element={<Class />} />
           <Route path="/" element={<SignIn />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="class/:classId/:setId" element={<Set />} />
         </Routes>

@@ -42,10 +42,10 @@ const SignIn = () => {
       </header>
       <main className="text-center flex mx-auto max-w-[68%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
         <div className="py-12 space-y-6 lg:text-left max-w-[600px] mx-auto">
-          <h1 className="text-4xl text-slate-800 font-bold">
+          <h1 className="text-3xl text-slate-800 font-bold">
             Welcome to LangFlow
           </h1>
-          <p className="text-lg text-black leading-8 font-light">
+          <p className="text-md text-black leading-8 font-light">
             Learn a new language quickly for your next trip? Pass your next law
             exam? We have your back. LangFlow is an interactive flashcards app to learn
             new topics, and study with your peers.
