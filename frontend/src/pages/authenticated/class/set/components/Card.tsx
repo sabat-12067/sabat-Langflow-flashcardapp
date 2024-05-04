@@ -58,7 +58,7 @@ const Card: FC<CardProps> = ({ front, back }) => {
         </DropdownMenu>
       </div>
       <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
-      <p className="text-[11px] md:text-[16px] font-light mx-auto text-center">{back}</p>
+      <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">{back}</p>
     </div>
   );
 };

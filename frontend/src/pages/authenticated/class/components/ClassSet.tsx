@@ -16,7 +16,7 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   return (
     <div className={clsx("py-5 flex flex-col h-[150px] w-[110px] md:h-[170px] md:w-[170px] m-2 justify-between rounded-md md:p-6", isDarkMode ? "border-s border-[1px] border-black" : "border-[1px] border-s border-white")}>
       <h3 className={clsx("font-semibold text-md md:text-xl", isDarkMode ? "" : "text-white")}>{name}</h3>
-      <p className={clsx(isDarkMode ? "" : "text-white")}>{description}</p>
+      <p className={clsx("text-[11px] md:text-sm", isDarkMode ? "" : "text-white ")}>{description}</p>
       <Button 
       className="w-fit mx-auto text-[12px] p-3 md:text-md" 
       variant={"secondary"}
