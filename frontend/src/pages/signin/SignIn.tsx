@@ -7,6 +7,7 @@ import AuthForm from "@/pages/signin/components/AuthForm";
 import { PiBrainThin } from "react-icons/pi";
 import one from "../../assets/one.mp4";
 import { HeroCarousel } from "./components/HeroCarousel";
+import Footer from "./components/Footer";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -113,6 +114,7 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
