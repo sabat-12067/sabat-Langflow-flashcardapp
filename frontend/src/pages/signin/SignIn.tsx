@@ -39,8 +39,8 @@ const SignIn = () => {
           <AuthForm />
         </div>
       </header>
-      <main className="text-center flex mx-auto max-w-[70%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
-        <div className="py-10 space-y-6 lg:text-left max-w-[460px] mx-auto">
+      <main className="text-center flex mx-auto max-w-[68%] lg:gap-20 lg:mr-70 flex-col lg:flex-row">
+        <div className="py-12 space-y-6 lg:text-left max-w-[600px] mx-auto">
           <h1 className="text-4xl text-slate-800 font-bold">
             Welcome to LangFlow
           </h1>

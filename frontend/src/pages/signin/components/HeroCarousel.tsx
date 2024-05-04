@@ -8,31 +8,37 @@ import {
 
 export function HeroCarousel() {
   return (
-    <Carousel className="py-10 space-y-6 lg:text-left h-[500px] w-[460px] mx-auto ">
+    <Carousel className="py-14 space-y-6 lg:text-left w-[740px] mx-auto">
       <CarouselContent>
         <CarouselItem>
-            <h3>Classrooms</h3>
             <div className="">
-
+              <img 
+              className="border-s border-[1px] border-black rounded-md h-[400px]"
+              src="/home.png"
+              />
             </div>
-            <p>Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
+            <p className="text-[12px] text-center">Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
         </CarouselItem> 
         <CarouselItem>
-            <h3>Classrooms</h3>
             <div className="">
-
+              <img 
+              className="border-s border-[1px] border-black rounded-md h-[400px]"
+              src="/classrooms.png"
+              />
             </div>
-            <p>Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
+            <p className="text-[12px] text-center">Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
         </CarouselItem> 
         <CarouselItem>
-            <h3>Classrooms</h3>
             <div className="">
-
+              <img 
+              className="border-s border-[1px] border-black rounded-md h-[400px]"
+              src="/set.png"
+              />
             </div>
-            <p>Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
+            <p className="text-[12px] text-center">Make as many rooms as you want to study different topics, and each classroom can have multiple flashcard sets. </p>
         </CarouselItem> 
       </CarouselContent>
-      <CarouselPrevious />
+      <CarouselPrevious/>
       <CarouselNext />
     </Carousel>
   )
