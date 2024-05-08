@@ -10,7 +10,10 @@ urlpatterns = [
     #How to POST  classrooms set
     path('study-classes/<int:study_class_id>/flashcard-sets/', FlashCardSetView.as_view(), name='flashcard-set-list'),
     path('study-classes/<int:study_class_id>/flashcard-sets/<int:flashcard_set_id>/', FlashCardSetView.as_view(), name='flashcard-set-update'),
+    #to GET all the flashcards for a study class
     path('study-classes/<int:flashcard_set_id>/flashcards/', FlashCardView.as_view(), name='flashcards'),
-    #How to GET, POST a classrooms flashcards sets cards
+    #How to GET, POST a card
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
+    #How to PATCH a card
+    path('flashcardspatch/<int:flashcard_id>/', FlashCardView.as_view(), name='flashcard-update'),
 ]

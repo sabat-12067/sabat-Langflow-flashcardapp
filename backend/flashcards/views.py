@@ -48,6 +48,15 @@ class FlashCardSetView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, study_class_id, flashcard_set_id, format=None):
+        try:
+            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
+        except FlashCardSet.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        flashcard_set.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     def patch(self, request, study_class_id, flashcard_set_id, format=None):
         try:
             flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
@@ -59,15 +68,6 @@ class FlashCardSetView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, study_class_id, flashcard_set_id, format=None):
-        try:
-            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
-        except FlashCardSet.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        flashcard_set.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
         
 class FlashCardView(APIView):
     def get(self, request, flashcard_set_id, format=None):
@@ -83,9 +83,10 @@ class FlashCardView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     # views.py
-    def patch(self, request, flashcard_set_id, flashcard_id):
+    def patch(self, request, flashcard_id):
+        print("PATCH method called with flashcard_id:", flashcard_id)
         try:
-          flashcard = FlashCards.objects.get(id=flashcard_set_id)
+          flashcard = FlashCards.objects.get(id=flashcard_id)
         except FlashCards.DoesNotExist:
           return Response(status=status.HTTP_404_NOT_FOUND)
         except Exception as e:

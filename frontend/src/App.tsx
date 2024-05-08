@@ -10,7 +10,7 @@ const App = () => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
   return (
-    <div className={isDarkMode ? "bg-white h-[100%]" : "bg-[#0b0e1d] h-[100vh]"}>
+    <div className={isDarkMode ? "bg-white h-[100%]" : "bg-[#090c19] h-[100vh]"}>
     <Router>
         <Routes>
           <Route path="class/:classId" element={<Class />} />
