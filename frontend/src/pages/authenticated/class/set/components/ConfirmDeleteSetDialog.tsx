@@ -8,6 +8,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useDeleteClassroomMutation } from "@/services/cards";
+import clsx from "clsx";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "sonner";
@@ -15,6 +17,7 @@ import { toast } from "sonner";
 const ConfirmDeleteSetDialog = ({id}: {id: string}) => {
     const navigate = useNavigate()
     const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
+    const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
     
   return (
@@ -28,12 +31,15 @@ const ConfirmDeleteSetDialog = ({id}: {id: string}) => {
           Delete
         </Button>
       </DialogTrigger>
-      <DialogContent className="h-36">
+      <DialogContent 
+      className={clsx("h-36", isDarkMode ? "" : "bg-black text-white")}
+      >
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription 
-          className="">
-            This action cannot be undone. This will permanently delete this classroom.
+          className={clsx(isDarkMode ? "" : "text-gray-300")}>
+          
+            This action cannot be undone. This will permanently delete this study set.
           </DialogDescription>
         </DialogHeader>
         <Button 

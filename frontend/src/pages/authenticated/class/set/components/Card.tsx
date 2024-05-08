@@ -13,11 +13,13 @@ import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
+  useDeleteCardMutation,
   useEditClassroomMutation,
   useEditStudySetCardsMutation,
 } from "@/services/cards";
 import { toast } from "sonner";
 import { Card as CardType } from "@/types";
+import ClipLoader from "react-spinners/ClipLoader";
 interface CardProps {
   front: string;
   back: string;
@@ -31,11 +33,12 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
     reset,
     formState: { errors },
   } = useForm<CardType>();
-  const [editClassroom, { isLoading }] = useEditStudySetCardsMutation();
+  const [editCard, { isLoading }] = useEditStudySetCardsMutation();
+  const [deleteCard, { isLoading:isDelLoading }] = useDeleteCardMutation();
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
-      await editClassroom({ ...data, id: id });
+      await editCard({ ...data, id: id });
       toast("Card saved");
       reset(); // This should be called after the createCard promise resolves
     } catch (error) {
@@ -94,10 +97,29 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
                 defaultValue={back}
               />
               <div className="flex gap-1 fixed right-2 bottom-4">
-                <Button className="text-[11px] px-2" variant={"destructive"}>
-                  Delete Card
+                <Button
+                  className="text-[11px] px-4"
+                  variant={"destructive"}
+                  type="button"
+                  onClick={() => deleteCard(id)}
+                >
+                  {isDelLoading ? (
+                    <ClipLoader
+                      color="white"
+                      loading={isDelLoading}
+                      size={20}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                      className="my-3"
+                    />
+                  ) : (
+                    "Delete"
+                  )}
                 </Button>
-                <Button className="text-[11px] px-4" variant={"secondary"}>
+                <Button 
+                className="text-[11px] px-4"
+                 variant={"secondary"}
+                 >
                   Save
                 </Button>
               </div>
@@ -105,9 +127,7 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <p className="text-sm md:text-xl lg:text-2xl mx-auto">
-        {front}
-      </p>
+      <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
       <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">
         {back}
       </p>

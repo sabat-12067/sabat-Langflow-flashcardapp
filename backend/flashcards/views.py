@@ -82,7 +82,13 @@ class FlashCardView(APIView):
             serializer.save(flashcard_set=flashcard_set)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # views.py
+    def delete(self, request, flashcard_id):
+        try:
+            flashcard = FlashCards.objects.get(id=flashcard_id)
+        except FlashCardSet.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        flashcard.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     def patch(self, request, flashcard_id):
         print("PATCH method called with flashcard_id:", flashcard_id)
         try:
