@@ -12,7 +12,10 @@ import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useEditClassroomMutation, useEditStudySetCardsMutation } from "@/services/cards";
+import {
+  useEditClassroomMutation,
+  useEditStudySetCardsMutation,
+} from "@/services/cards";
 import { toast } from "sonner";
 import { Card as CardType } from "@/types";
 interface CardProps {
@@ -71,29 +74,25 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
               <h3>Edit Card</h3>
               <Input
                 {...register("front", {
-                  required: "Front side is required",
                   maxLength: {
                     value: 20,
                     message: "Maximum 20 characters are allowed",
                   },
-                  validate: (value) =>
-                    value.trim().length > 0 || "Back side cannot be empty",
                 })}
                 placeholder="Edit front side..."
                 className={clsx(isDarkMode ? "" : "text-black")}
+                defaultValue={front}
               />
               <Input
                 {...register("back", {
-                  required: "Back side is required",
                   maxLength: {
                     value: 20,
                     message: "Maximum 20 characters are allowed",
                   },
-                  validate: (value) =>
-                    value.trim().length > 0 || "Back side cannot be empty",
                 })}
                 placeholder="Edit back side..."
                 className={clsx(isDarkMode ? "" : "text-black")}
+                defaultValue={back}
               />
               <div className="flex gap-1 fixed right-2 bottom-4">
                 <Button className="text-[11px] px-2" variant={"destructive"}>
@@ -107,7 +106,9 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
+      <p className="text-sm md:text-xl lg:text-2xl mx-auto">
+        {front}
+      </p>
       <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">
         {back}
       </p>
