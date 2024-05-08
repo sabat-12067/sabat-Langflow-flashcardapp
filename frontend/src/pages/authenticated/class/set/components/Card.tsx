@@ -11,12 +11,29 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useEditClassroomMutation } from "@/services/cards";
+import { toast } from "sonner";
+import { Card as CardType } from "@/types";
 interface CardProps {
   front: string;
   back: string;
 }
 const Card: FC<CardProps> = ({ front, back }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<CardType>();
+  const [editClassroom, {isLoading}] = useEditClassroomMutation()
+
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    
+    try {
+      await editClassroom({ ...data, flashcard_set_id: "g"});
+      toast("New card created!");
+      reset(); // This should be called after the createCard promise resolves
+    } catch (error) {
+      console.error("Failed to create card:", error);
+    }
+  };
 
   return (
     <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative rounded-md", isDarkMode ? "border-black" : "text-white")}>
@@ -45,11 +62,11 @@ const Card: FC<CardProps> = ({ front, back }) => {
               placeholder="Edit back side..." 
               className={clsx(isDarkMode ? "" : "text-black")}
               />
-              <div className="flex gap-1 fixed right-2 bottom-2">
-                <Button className="text-[11px]" variant={"destructive"}>
+              <div className="flex gap-1 fixed right-2 bottom-4">
+                <Button className="text-[11px] px-2" variant={"destructive"}>
                   Delete Card
                 </Button>
-                <Button className="text-[11px]" variant={"secondary"}>
+                <Button className="text-[11px] px-4" variant={"secondary"}>
                   Save
                 </Button>
               </div>
