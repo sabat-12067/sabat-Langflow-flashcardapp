@@ -23,7 +23,6 @@ const Set: FC<SetProps> = ({ }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
 
-  console.log(data)
 
   return (
     <div>

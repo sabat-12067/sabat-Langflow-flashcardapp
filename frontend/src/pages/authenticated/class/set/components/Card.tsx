@@ -49,7 +49,6 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
         "border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative rounded-md",
         isDarkMode ? "border-black" : "text-white"
       )}
-      onClick={() => console.log(id)}
     >
       <div className="absolute right-2 top-2 z-50">
         <DropdownMenu>

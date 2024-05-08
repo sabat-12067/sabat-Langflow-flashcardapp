@@ -18,6 +18,9 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useEditClassroomMutation } from "@/services/cards";
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
+import ConfirmDeleteSetDialog from "./ConfirmDeleteSetDialog";
 
 interface SettingsSheet {
   classId?: string;
@@ -35,6 +38,7 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
   const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
   const [classroomName, setClassroomName] = useState("");
   const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
 
   return (
@@ -45,7 +49,7 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
           <TbSettingsPin size={18} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="p-6 md:px-0 py-12">
+      <DrawerContent className={clsx("p-6 md:px-0 py-12 h-full", isDarkMode ? "" : "bg-black text-white")}>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className="text-xl flex justify-between">
@@ -99,7 +103,6 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
                         toast("Name updated!");
                         setClassroomName(classroomName)
                         setEdit(false)
-                        onChange(classroomName)
                       }else{
                         setErrorState(ErrorState.SHORT)
                       }
@@ -123,8 +126,9 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
           </div>
           <DrawerFooter className="pt-10">
             <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button className={!isDarkMode ? "text-black" : ""} variant="outline">Close</Button>
             </DrawerClose>
+            <ConfirmDeleteSetDialog id={"2"}/>
           </DrawerFooter>
         </div>
       </DrawerContent>

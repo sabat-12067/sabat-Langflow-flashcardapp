@@ -141,7 +141,7 @@ export function SettingsSheet({classId, onChange }: SettingsSheet) {
           </div>
           <DrawerFooter className="pt-10">
             <DrawerClose asChild>
-              <Button className={!isDarkMode && "text-black"} variant="outline">Close</Button>
+              <Button className={!isDarkMode ? "text-black" : ""} variant="outline">Close</Button>
             </DrawerClose>
             <ConfirmDeleteClassroomDialog id={classRoomId}/>
           </DrawerFooter>
