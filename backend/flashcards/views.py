@@ -7,7 +7,7 @@ from rest_framework import status
 
 class StudyClassView(APIView):
     def get(self, request, user_id_or_study_class_id, format=None):
-        study_classes = StudyClass.objects.filter(user_id_or_study_class_id=user_id_or_study_class_id)
+        study_classes = StudyClass.objects.filter(user_id_or_study_class_id=user_id_or_study_class_id).order_by('-created_at')
         serializer = StudyClassSerializer(study_classes, many=True)
         return Response(serializer.data)
     def post(self, request, format=None):
@@ -36,7 +36,7 @@ class StudyClassView(APIView):
 
 class FlashCardSetView(APIView):
     def get(self, request, study_class_id, format=None):
-        flashcard_sets = FlashCardSet.objects.filter(study_class_id=study_class_id)
+        flashcard_sets = FlashCardSet.objects.filter(study_class_id=study_class_id).order_by('-created_at')
         serializer = FlashCardSetSerializer(flashcard_sets, many=True)
         return Response(serializer.data)
 
@@ -71,7 +71,7 @@ class FlashCardSetView(APIView):
         
 class FlashCardView(APIView):
     def get(self, request, flashcard_set_id, format=None):
-        flashcards = FlashCards.objects.filter(flashcard_set_id=flashcard_set_id)
+        flashcards = FlashCards.objects.filter(flashcard_set_id=flashcard_set_id).order_by('-created_at')
         serializer = FlashCardSerializer(flashcards, many=True)
         return Response(serializer.data)
 

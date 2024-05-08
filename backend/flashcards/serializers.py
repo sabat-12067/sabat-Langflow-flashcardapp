@@ -14,4 +14,4 @@ class FlashCardSetSerializer(serializers.ModelSerializer):
 class FlashCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlashCards
-        fields = ['id', 'front', 'back']
+        fields = ['id', 'front', 'back', 'created_at']

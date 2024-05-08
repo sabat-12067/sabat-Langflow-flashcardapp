@@ -12,23 +12,28 @@ import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useEditClassroomMutation } from "@/services/cards";
+import { useEditClassroomMutation, useEditStudySetCardsMutation } from "@/services/cards";
 import { toast } from "sonner";
 import { Card as CardType } from "@/types";
 interface CardProps {
   front: string;
   back: string;
+  id: string;
 }
-const Card: FC<CardProps> = ({ front, back }) => {
+const Card: FC<CardProps> = ({ front, back, id }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<CardType>();
-  const [editClassroom, {isLoading}] = useEditClassroomMutation()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CardType>();
+  const [editClassroom, { isLoading }] = useEditStudySetCardsMutation();
 
   const onSubmit: SubmitHandler<any> = async (data) => {
-    
     try {
-      await editClassroom({ ...data, flashcard_set_id: "g"});
-      toast("New card created!");
+      await editClassroom({ ...data, id: id });
+      toast("Card saved");
       reset(); // This should be called after the createCard promise resolves
     } catch (error) {
       console.error("Failed to create card:", error);
@@ -36,13 +41,20 @@ const Card: FC<CardProps> = ({ front, back }) => {
   };
 
   return (
-    <div className={clsx("border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative rounded-md", isDarkMode ? "border-black" : "text-white")}>
+    <div
+      className={clsx(
+        "border-[1px] solid white py-5 flex flex-col h-[90px] w-[75px] md:h-[120px] md:w-[120px] gap-2 m-4 relative rounded-md",
+        isDarkMode ? "border-black" : "text-white"
+      )}
+      onClick={() => console.log(id)}
+    >
       <div className="absolute right-2 top-2 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger className="">
             <CiEdit
-            className="mb-2" 
-            color={isDarkMode ? "black" : "white"} size={14} 
+              className="mb-2"
+              color={isDarkMode ? "black" : "white"}
+              size={14}
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -52,15 +64,36 @@ const Card: FC<CardProps> = ({ front, back }) => {
             )}
           >
             <DropdownMenuSeparator />
-            <form className="flex flex-col gap-4">
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <h3>Edit Card</h3>
-              <Input 
-              placeholder="Edit front side..." 
-              className={clsx(isDarkMode ? "" : "text-black")}
+              <Input
+                {...register("front", {
+                  required: "Front side is required",
+                  maxLength: {
+                    value: 20,
+                    message: "Maximum 20 characters are allowed",
+                  },
+                  validate: (value) =>
+                    value.trim().length > 0 || "Back side cannot be empty",
+                })}
+                placeholder="Edit front side..."
+                className={clsx(isDarkMode ? "" : "text-black")}
               />
-              <Input 
-              placeholder="Edit back side..." 
-              className={clsx(isDarkMode ? "" : "text-black")}
+              <Input
+                {...register("back", {
+                  required: "Back side is required",
+                  maxLength: {
+                    value: 20,
+                    message: "Maximum 20 characters are allowed",
+                  },
+                  validate: (value) =>
+                    value.trim().length > 0 || "Back side cannot be empty",
+                })}
+                placeholder="Edit back side..."
+                className={clsx(isDarkMode ? "" : "text-black")}
               />
               <div className="flex gap-1 fixed right-2 bottom-4">
                 <Button className="text-[11px] px-2" variant={"destructive"}>
@@ -75,7 +108,9 @@ const Card: FC<CardProps> = ({ front, back }) => {
         </DropdownMenu>
       </div>
       <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
-      <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">{back}</p>
+      <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">
+        {back}
+      </p>
     </div>
   );
 };

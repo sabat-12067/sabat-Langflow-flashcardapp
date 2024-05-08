@@ -58,9 +58,9 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ["flashcards"]
     }),
-    editStudySetCards: builder.mutation<Card, Card>({
+    editStudySetCards: builder.mutation<any, any>({
       query: (card) => ({
-        url: `flashcards/${card.flashcard_set_id}/`,
+        url: `flashcardspatch/${card.id}/`,
         method: 'PATCH',
         body: card
       }),
