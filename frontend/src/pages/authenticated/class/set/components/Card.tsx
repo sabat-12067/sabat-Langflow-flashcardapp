@@ -2,9 +2,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import { CiEdit } from "react-icons/ci";
 
 import { FC } from "react";
 import { Input } from "@/components/ui/input";
@@ -20,6 +18,7 @@ import {
 import { toast } from "sonner";
 import { Card as CardType } from "@/types";
 import ClipLoader from "react-spinners/ClipLoader";
+import EditCardModal from "./EditCardModal";
 interface CardProps {
   front: string;
   back: string;
@@ -54,78 +53,7 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
       )}
     >
       <div className="absolute right-2 top-2 z-50">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="">
-            <CiEdit
-              className="mb-2"
-              color={isDarkMode ? "black" : "white"}
-              size={14}
-            />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className={clsx(
-              "px-4 py-4 rounded-lg space-y-2 h-[230px]",
-              isDarkMode ? "bg-gray-100" : "text-white bg-black"
-            )}
-          >
-            <DropdownMenuSeparator />
-            <form
-              className="flex flex-col gap-4"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <h3>Edit Card</h3>
-              <Input
-                {...register("front", {
-                  maxLength: {
-                    value: 20,
-                    message: "Maximum 20 characters are allowed",
-                  },
-                })}
-                placeholder="Edit front side..."
-                className={clsx(isDarkMode ? "" : "text-black")}
-                defaultValue={front}
-              />
-              <Input
-                {...register("back", {
-                  maxLength: {
-                    value: 20,
-                    message: "Maximum 20 characters are allowed",
-                  },
-                })}
-                placeholder="Edit back side..."
-                className={clsx(isDarkMode ? "" : "text-black")}
-                defaultValue={back}
-              />
-              <div className="flex gap-1 fixed right-2 bottom-4">
-                <Button
-                  className="text-[11px] px-4"
-                  variant={"destructive"}
-                  type="button"
-                  onClick={() => deleteCard(id)}
-                >
-                  {isDelLoading ? (
-                    <ClipLoader
-                      color="white"
-                      loading={isDelLoading}
-                      size={20}
-                      aria-label="Loading Spinner"
-                      data-testid="loader"
-                      className="my-3"
-                    />
-                  ) : (
-                    "Delete"
-                  )}
-                </Button>
-                <Button 
-                className="text-[11px] px-4"
-                 variant={"secondary"}
-                 >
-                  Save
-                </Button>
-              </div>
-            </form>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <EditCardModal id={id} front={front} back={back} />
       </div>
       <p className="text-sm md:text-xl lg:text-2xl mx-auto">{front}</p>
       <p className="text-[11px] md:text-[14px] font-light mx-auto text-center">
