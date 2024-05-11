@@ -16,7 +16,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useEditClassroomMutation } from "@/services/cards";
+import { useDeleteStudySetMutation, useEditClassroomMutation } from "@/services/cards";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
@@ -25,6 +25,7 @@ import ConfirmDeleteSetDialog from "./ConfirmDeleteSetDialog";
 interface SettingsSheet {
   classId?: string;
   onChange?: (name: string) => void
+  id: string
 }
 export enum ErrorState {
   FALSE = 'false',
@@ -32,14 +33,12 @@ export enum ErrorState {
   SHORT = 'short',
 }
 
-export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
+export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.FALSE);
   const [edit, setEdit] = useState(false)
   const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
   const [classroomName, setClassroomName] = useState("");
-  const [editCard, { isLoading, error, data: response }] = useEditClassroomMutation();
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-
 
   return (
     <Drawer>
@@ -90,22 +89,10 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
                 </button>
               ) : (
                 <div className="flex gap-2 mt-2">
-                  <button
+                     <button
                     className="my-auto"
                     onClick={() => {
-                      if(classroomName.length > 0){
-                        editCard({
-                          name: classroomName,
-                          description: "",
-                          id: classId,
-                        });
-                        setClassroomName("");
-                        toast("Name updated!");
-                        setClassroomName(classroomName)
-                        setEdit(false)
-                      }else{
-                        setErrorState(ErrorState.SHORT)
-                      }
+               
      
                     }}
                   >
@@ -128,7 +115,7 @@ export function RoomSettingsSheet({classId, onChange }: SettingsSheet) {
             <DrawerClose asChild>
               <Button className={!isDarkMode ? "text-black" : ""} variant="outline">Close</Button>
             </DrawerClose>
-            <ConfirmDeleteSetDialog id={"2"}/>
+            <ConfirmDeleteSetDialog id={id}/>
           </DrawerFooter>
         </div>
       </DrawerContent>

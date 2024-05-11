@@ -12,7 +12,7 @@ import clsx from "clsx";
 interface SetProps {
   id?: number;
 }
-const Set: FC<SetProps> = ({ }) => {
+const Set: FC<SetProps> = ({id }) => {
   const [roomTitle] = useState(localStorage.getItem("Set"));
   const location = useLocation();
   const currentStudySetId = location.pathname.slice(
@@ -39,7 +39,7 @@ const Set: FC<SetProps> = ({ }) => {
 
             </Button>
             <AddCardDialog />
-            <RoomSettingsSheet />
+            <RoomSettingsSheet id={currentStudySetId}/>
           </div>
         </div>
         <div className="grid grid-cols-4 md:grid-cols-5 xl:grid-cols-6 justify-center max-w-[99%] pr-8 sm:max-w-[85%] lg:max-w-[65%] 2xl:max-w-[52%] mx-auto">

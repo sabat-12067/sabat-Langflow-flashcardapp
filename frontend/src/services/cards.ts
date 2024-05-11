@@ -46,6 +46,13 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['studySets']
     }),
+    deleteStudySet: builder.mutation<any, any>({
+      query: (id) => ({
+        url: `flashcard-sets/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["flashcards"]
+    }),
     getStudySetCards: builder.query<Card[], any>({
       query: (id) => `flashcards/${id}/`,
       providesTags: ["flashcards"]
@@ -87,5 +94,6 @@ export const {
   useCreateStudySetCardsMutation,
   useEditClassroomMutation,
   useEditStudySetCardsMutation,
-  useDeleteCardMutation
+  useDeleteCardMutation,
+  useDeleteStudySetMutation
  } = cardsApi;

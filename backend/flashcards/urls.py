@@ -9,7 +9,8 @@ urlpatterns = [
     path('study-classes/<str:user_id_or_study_class_id>/', StudyClassView.as_view(), name='study-class-update'),
     #How to POST  classrooms set
     path('study-classes/<int:study_class_id>/flashcard-sets/', FlashCardSetView.as_view(), name='flashcard-set-list'),
-    path('study-classes/<int:study_class_id>/flashcard-sets/<int:flashcard_set_id>/', FlashCardSetView.as_view(), name='flashcard-set-update'),
+
+    path('flashcard-sets/<int:flashcard_set_id>/', FlashCardSetView.as_view(), name='flashcard-set-update'),
     #to GET all the flashcards for a study class
     path('study-classes/<int:flashcard_set_id>/flashcards/', FlashCardView.as_view(), name='flashcards'),
     #How to GET, POST a card

@@ -7,18 +7,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useDeleteClassroomMutation } from "@/services/cards";
+import { useDeleteClassroomMutation, useDeleteStudySetMutation } from "@/services/cards";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "sonner";
 
 const ConfirmDeleteSetDialog = ({id}: {id: string}) => {
     const navigate = useNavigate()
-    const [deleteClassroom, {isLoading}] = useDeleteClassroomMutation()
     const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-
+    const [deleteSet, {isLoading}] = useDeleteStudySetMutation()
+    const currentClassroomIdParams = useParams()
+    const currentClassRoomId = currentClassroomIdParams?.classId?.slice(1, currentClassroomIdParams.classId?.length);
+    
     
   return (
     <Dialog>
@@ -46,8 +48,8 @@ const ConfirmDeleteSetDialog = ({id}: {id: string}) => {
     className="w-fit fixed right-8 bottom-4" 
     variant="destructive"
     onClick={async () => {
-        await deleteClassroom(id);  // Ensure deletion completes
-        navigate("/cards");
+        await deleteSet(id);  // Ensure deletion completes
+        navigate(`/class/:${currentClassRoomId}`);
         toast("Classroom deleted!");
     }}
 >

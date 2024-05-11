@@ -48,9 +48,9 @@ class FlashCardSetView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, study_class_id, flashcard_set_id, format=None):
+    def delete(self, request,flashcard_set_id, format=None):
         try:
-            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
+            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id)
         except FlashCardSet.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
