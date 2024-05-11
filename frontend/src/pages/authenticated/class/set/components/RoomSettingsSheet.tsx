@@ -16,7 +16,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useDeleteStudySetMutation, useEditClassroomMutation } from "@/services/cards";
+import { useDeleteStudySetMutation, useEditClassroomMutation, useEditStudySetCardsMutation, useEditStudySetMutation } from "@/services/cards";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
@@ -39,6 +39,10 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
   const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
   const [classroomName, setClassroomName] = useState("");
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+  const [editStudySet] = useEditStudySetMutation()
+
+  console.log(id);
+  
 
   return (
     <Drawer>
@@ -92,8 +96,13 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
                      <button
                     className="my-auto"
                     onClick={() => {
-               
-     
+                      console.log('CLICKED');
+                      
+                      editStudySet({
+                        name: {classroomName},
+                        description: "",
+                        id: id
+                      })
                     }}
                   >
                     <ImCheckmark2 size={20} />

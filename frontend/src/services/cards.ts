@@ -7,6 +7,9 @@ export const cardsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000' }),
   tagTypes: ['classes', 'studySets', "flashcards"],
   endpoints: (builder) => ({
+    /*
+    CLASSROOM MUTATIONS
+    */
     getClassrooms: builder.query<StudyGroup[], string>({
       query: (supabase_user_id) => `study-classes/${supabase_user_id}`,
       providesTags: ["classes"]
@@ -34,6 +37,9 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['classes']
     }),
+    /*
+    STUDY SET MUTATIONS
+    */
     getStudySet: builder.query<StudySet[], string>({
       query: (id) => `study-classes/${id}/flashcard-sets/`,
       providesTags: ["studySets"]
@@ -46,6 +52,14 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ['studySets']
     }),
+    editStudySet: builder.mutation<any, any>({
+      query: (set) => ({
+        url: `flashcard-sets/${set.id}`,
+        method: 'PATCH',
+        body: set
+      }),
+      invalidatesTags: ['studySets']
+    }),
     deleteStudySet: builder.mutation<any, any>({
       query: (id) => ({
         url: `flashcard-sets/${id}`,
@@ -53,6 +67,9 @@ export const cardsApi = createApi({
       }),
       invalidatesTags: ["flashcards"]
     }),
+    /*
+    FLASHCARD MUTATIONS
+    */
     getStudySetCards: builder.query<Card[], any>({
       query: (id) => `flashcards/${id}/`,
       providesTags: ["flashcards"]
@@ -95,5 +112,6 @@ export const {
   useEditClassroomMutation,
   useEditStudySetCardsMutation,
   useDeleteCardMutation,
-  useDeleteStudySetMutation
+  useDeleteStudySetMutation,
+  useEditStudySetMutation
  } = cardsApi;
