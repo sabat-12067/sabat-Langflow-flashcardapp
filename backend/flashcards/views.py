@@ -33,7 +33,7 @@ class StudyClassView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         study_class.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+        
 class FlashCardSetView(APIView):
     def get(self, request, study_class_id, format=None):
         flashcard_sets = FlashCardSet.objects.filter(study_class_id=study_class_id).order_by('-created_at')
