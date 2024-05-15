@@ -28,4 +28,5 @@ Clone the repository:
 
 Get your env variables:
     -You will need an env variable for your supabase connection and google credentials for auth from GCP.
+![LangFlow](/frontend/public/StudyRooms.png)
 
