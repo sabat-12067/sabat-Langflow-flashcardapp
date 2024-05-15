@@ -11,8 +11,6 @@ urlpatterns = [
     path('study-classes/<int:study_class_id>/flashcard-sets/', FlashCardSetView.as_view(), name='flashcard-set-list'),
     #HOW TO PATCH or DELETE A FLASHCARD SET
     path('flashcard-sets/<int:flashcard_set_id>/', FlashCardSetView.as_view(), name='flashcard-set-update'),
-    #to GET all the flashcards for a study class
-    path('study-classes/<int:flashcard_set_id>/flashcards/', FlashCardView.as_view(), name='flashcards'),
     #How to GET, POST a card
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
     #How to PATCH/DELETE a card
