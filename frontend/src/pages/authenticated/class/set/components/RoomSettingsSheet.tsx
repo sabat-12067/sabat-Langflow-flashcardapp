@@ -16,7 +16,12 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useDeleteStudySetMutation, useEditClassroomMutation, useEditStudySetCardsMutation, useEditStudySetMutation } from "@/services/cards";
+import {
+  useDeleteStudySetMutation,
+  useEditClassroomMutation,
+  useEditStudySetCardsMutation,
+  useEditStudySetMutation,
+} from "@/services/cards";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
@@ -24,25 +29,27 @@ import ConfirmDeleteSetDialog from "./ConfirmDeleteSetDialog";
 
 interface SettingsSheet {
   classId?: string;
-  onChange?: (name: string) => void
-  id: string
+  onChange?: (name: string) => void;
+  id: string;
+  description: string;
 }
 export enum ErrorState {
-  FALSE = 'false',
-  TRUE = 'true',
-  SHORT = 'short',
+  FALSE = "false",
+  TRUE = "true",
+  SHORT = "short",
 }
 
-export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
+export function RoomSettingsSheet({
+  id,
+  onChange,
+  description,
+}: SettingsSheet) {
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.FALSE);
-  const [edit, setEdit] = useState(false)
-  const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"))
+  const [edit, setEdit] = useState(false);
+  const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"));
   const [classroomName, setClassroomName] = useState("");
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-  const [editStudySet] = useEditStudySetMutation()
-
-  console.log(id);
-  
+  const [editStudySet] = useEditStudySetMutation();
 
   return (
     <Drawer>
@@ -52,7 +59,12 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
           <TbSettingsPin size={18} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className={clsx("p-6 md:px-0 py-12 h-full", isDarkMode ? "" : "bg-black text-white")}>
+      <DrawerContent
+        className={clsx(
+          "p-6 md:px-0 py-12 h-full",
+          isDarkMode ? "" : "bg-black text-white"
+        )}
+      >
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className="text-xl flex justify-between">
@@ -61,6 +73,16 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
                   <Input
                     className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
                     placeholder="Type new name here....."
+                    value={classroomName}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 15) {
+                        setClassroomName(e.target.value);
+                      }
+                    }}
+                  />
+                  <Input
+                    className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
+                    placeholder="Type new description....."
                     value={classroomName}
                     onChange={(e) => {
                       if (e.target.value.length <= 15) {
@@ -80,29 +102,29 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
                   )}
                 </div>
               ) : (
-                <p className="text-2xl font-light">{roomTitle} Settings</p>
+                <div>
+                  <p className="text-2xl font-light">{roomTitle} Settings</p>
+                </div>
               )}
               {!edit ? (
                 <button
                   className="mt-2"
                   onClick={() => {
-                    setEdit(true)
+                    setEdit(true);
                   }}
                 >
                   <CiEdit size={22} />
                 </button>
               ) : (
                 <div className="flex gap-2 mt-2">
-                     <button
+                  <button
                     className="my-auto"
                     onClick={() => {
-                      console.log('CLICKED');
-                      
                       editStudySet({
-                        name: {classroomName},
+                        name: { classroomName },
                         description: "",
-                        id: id
-                      })
+                        id: id,
+                      });
                     }}
                   >
                     <ImCheckmark2 size={20} />
@@ -114,6 +136,11 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
               )}
             </DrawerTitle>
           </DrawerHeader>
+          {!edit && (
+            <p className="text-sm font-light text-gray-200 ml-4">
+              {description}
+            </p>
+          )}
           <div className="flex flex-col gap-14 py-10 ml-4">
             <div className="flex justify-between">
               <p>Shuffle Mode</p>
@@ -122,9 +149,14 @@ export function RoomSettingsSheet({id, onChange }: SettingsSheet) {
           </div>
           <DrawerFooter className="pt-10">
             <DrawerClose asChild>
-              <Button className={!isDarkMode ? "text-black" : ""} variant="outline">Close</Button>
+              <Button
+                className={!isDarkMode ? "text-black" : ""}
+                variant="outline"
+              >
+                Close
+              </Button>
             </DrawerClose>
-            <ConfirmDeleteSetDialog id={id}/>
+            <ConfirmDeleteSetDialog id={id} />
           </DrawerFooter>
         </div>
       </DrawerContent>

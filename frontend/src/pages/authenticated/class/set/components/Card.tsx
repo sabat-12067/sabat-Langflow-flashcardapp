@@ -32,18 +32,6 @@ const Card: FC<CardProps> = ({ front, back, id }) => {
     reset,
     formState: { errors },
   } = useForm<CardType>();
-  const [editCard, { isLoading }] = useEditStudySetCardsMutation();
-  const [deleteCard, { isLoading:isDelLoading }] = useDeleteCardMutation();
-
-  const onSubmit: SubmitHandler<any> = async (data) => {
-    try {
-      await editCard({ ...data, id: id });
-      toast("Card saved");
-      reset(); // This should be called after the createCard promise resolves
-    } catch (error) {
-      console.error("Failed to create card:", error);
-    }
-  };
 
   return (
     <div

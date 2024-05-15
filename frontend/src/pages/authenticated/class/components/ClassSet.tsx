@@ -13,6 +13,9 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const location = useLocation();  
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
 
+  console.log(description);
+  
+
   return (
     <div className={clsx("py-5 flex flex-col h-[150px] w-[110px] md:h-[170px] md:w-[170px] m-2 justify-between rounded-md md:p-6", isDarkMode ? "border-s border-[1px] border-black" : "border-[1px] border-s border-white")}>
       <h3 className={clsx("font-semibold text-md md:text-xl", isDarkMode ? "" : "text-white")}>{name}</h3>
