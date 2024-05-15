@@ -9,6 +9,8 @@ language, and I ended up loving Django!
 - Authentication with Supabase and Redux Toolkit
 - Users can create different classes, and each class can have their own flashcard groups
 - Flashcards groups have many flashcards with a front and backside
+- Light and Dark Mode with Redux Toolkit
+
 
 
 ## Technologies Used
