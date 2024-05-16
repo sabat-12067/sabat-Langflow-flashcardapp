@@ -17,9 +17,7 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-
-  console.log(description.length);
-
+  
   return (
     <div
       className={clsx(

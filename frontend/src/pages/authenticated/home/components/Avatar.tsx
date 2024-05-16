@@ -45,11 +45,13 @@ export function Avatar() {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40">
+      <DropdownMenuContent 
+      className={clsx("cursor-pointer flex justify-between rounded-lg px-2 py-2", !isDarkMode ? " bg-[#141a32] text-white" : "bg-gray-100")}
+      >
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          className={clsx("cursor-pointer flex justify-between rounded-lg px-2 bg-white", !isDarkMode ? "py-6" : "")}
           onClick={handleSignOut}
+          className="flex gap-10"
         >
           <p className="text-[12px]">Logout</p>
           <span className="">

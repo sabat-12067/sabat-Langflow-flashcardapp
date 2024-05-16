@@ -89,6 +89,7 @@ export function RoomSettingsSheet({
                     placeholder="Type new description....."
                     value={cardDescription}
                     defaultValue={description}
+                    maxLength={300}
                     onChange={(e) => {
                       if (e.target.value.length <= 150) {
                         setCardDescription(e.target.value);
