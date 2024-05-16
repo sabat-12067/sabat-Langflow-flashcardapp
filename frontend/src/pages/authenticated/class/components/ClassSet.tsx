@@ -11,10 +11,7 @@ interface ClassSetProps {
 const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
   const navigate = useNavigate()
   const location = useLocation();  
-  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-
-  console.log(description);
-  
+  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);  
 
   return (
     <div className={clsx("py-5 flex flex-col h-[150px] w-[110px] md:h-[170px] md:w-[170px] m-2 justify-between rounded-md md:p-6", isDarkMode ? "border-s border-[1px] border-black" : "border-[1px] border-s border-white")}>

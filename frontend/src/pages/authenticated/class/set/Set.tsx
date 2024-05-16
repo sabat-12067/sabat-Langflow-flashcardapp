@@ -34,15 +34,8 @@ const Set: FC<SetProps> = ({ id }) => {
 
   const path = useParams()
 
-  const currentSetId = path.setId.slice(1, path.setId?.length)
-  
-  console.log('CURRENT STUDY SET ID: ', currentSetId);
-  
-  const currentSet = set!.filter((s) => s.id === parseInt(currentSetId))
-
-  console.log(currentSet[0].description);
-  
-  
+  const currentSetId = path.setId!.slice(1, path.setId?.length)  
+  const currentSet = set!.filter((s) => s.id === parseInt(currentSetId))  
 
   return (
     <div>

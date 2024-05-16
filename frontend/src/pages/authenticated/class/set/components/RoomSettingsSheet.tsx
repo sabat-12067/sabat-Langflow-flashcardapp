@@ -48,8 +48,12 @@ export function RoomSettingsSheet({
   const [edit, setEdit] = useState(false);
   const [roomTitle, setRoomTitle] = useState(localStorage.getItem("Set"));
   const [classroomName, setClassroomName] = useState("");
+  const [cardDescription, setCardDescription] = useState("");
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [editStudySet] = useEditStudySetMutation();
+
+  console.log(id);
+  
 
   return (
     <Drawer>
@@ -83,10 +87,10 @@ export function RoomSettingsSheet({
                   <Input
                     className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
                     placeholder="Type new description....."
-                    value={classroomName}
+                    value={cardDescription}
                     onChange={(e) => {
-                      if (e.target.value.length <= 15) {
-                        setClassroomName(e.target.value);
+                      if (e.target.value.length <= 150) {
+                        setCardDescription(e.target.value);
                       }
                     }}
                   />
@@ -121,17 +125,25 @@ export function RoomSettingsSheet({
                     className="my-auto"
                     onClick={() => {
                       editStudySet({
-                        name: { classroomName },
-                        description: "",
+                        name: classroomName,
+                        description: cardDescription,
                         id: id,
                       });
+                      toast("Settings saved!")
+                      setRoomTitle(classroomName)
                     }}
                   >
-                    <ImCheckmark2 size={20} />
+                    <ImCheckmark2
+                     size={20}
+                     onClick={() => setEdit(false)}
+                      />
                   </button>
                   <button>
-                    <ImCancelCircle size={20} onClick={() => setEdit(false)} />
+                    <ImCancelCircle 
+                    size={20}
+                     onClick={() => setEdit(false)} />
                   </button>
+
                 </div>
               )}
             </DrawerTitle>

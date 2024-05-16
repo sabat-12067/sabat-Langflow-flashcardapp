@@ -39,7 +39,6 @@ const Class: FC<ClassProps> = ({}) => {
     setClassroomTitle(name);
   };
 
-  console.log(data);
 
   return (
     <div className="text-center">

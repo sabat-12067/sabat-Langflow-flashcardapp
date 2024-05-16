@@ -57,9 +57,9 @@ class FlashCardSetView(APIView):
         flashcard_set.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def patch(self, request, study_class_id, flashcard_set_id, format=None):
+    def patch(self, request, flashcard_set_id, format=None):
         try:
-            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id, study_class_id=study_class_id)
+            flashcard_set = FlashCardSet.objects.get(id=flashcard_set_id)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
