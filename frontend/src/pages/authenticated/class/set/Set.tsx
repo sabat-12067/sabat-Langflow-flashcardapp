@@ -52,7 +52,7 @@ const Set: FC<SetProps> = ({ id }) => {
             {roomTitle}
           </h3>
           <div className="flex gap-2">
-            <Practice />
+            <Practice cards={data!}/>
             <AddCardDialog />
             <RoomSettingsSheet id={currentStudySetId} description={currentSet[0].description} />
           </div>
