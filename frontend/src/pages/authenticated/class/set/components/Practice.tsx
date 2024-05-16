@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
   Drawer,
   DrawerContent,
@@ -8,8 +9,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Card } from "@/types";
+import { HoverCardContent } from "@radix-ui/react-hover-card";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { PiCards } from "react-icons/pi";
 import { useSelector } from "react-redux";
 interface PracticeProps {
@@ -19,8 +21,10 @@ const Practice: FC<PracticeProps> = ({
 cards
 }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-
+  const [switchSides, setSwitchSides] = useState(false)
+    
   return (
+
     <Drawer>
       <DrawerTrigger>
         <Button
@@ -37,8 +41,26 @@ cards
           isDarkMode ? "" : "bg-black text-white"
         )}
       >
-       <div>
-
+       <div className="text-center mx-auto py-[130px]">
+       <Carousel className="w-full max-w-xs">
+      <CarouselContent className="">
+        {
+            cards?.map((card, i) => {
+                return (
+                    <CarouselItem
+                     key={i}
+                     className="h-[500px] w-[400px] bg-[#090c19] rounded-lg text-center py-[212px] text-5xl"
+                     onClick={() => setSwitchSides(!switchSides)}
+                     >
+                        {switchSides ?  card.front : card.back}
+                    </CarouselItem>
+                )
+            })
+        }
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
        </div>
       </DrawerContent>
     </Drawer>
