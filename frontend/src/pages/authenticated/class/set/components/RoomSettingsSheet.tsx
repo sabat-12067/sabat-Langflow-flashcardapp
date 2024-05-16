@@ -50,7 +50,9 @@ export function RoomSettingsSheet({
   const [classroomName, setClassroomName] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-  const [editStudySet] = useEditStudySetMutation();  
+  const [editStudySet] = useEditStudySetMutation();
+
+  
 
   return (
     <Drawer>
@@ -75,6 +77,7 @@ export function RoomSettingsSheet({
                     className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
                     placeholder="Type new name here....."
                     value={classroomName}
+                    defaultValue={roomTitle!}
                     onChange={(e) => {
                       if (e.target.value.length <= 15) {
                         setClassroomName(e.target.value);
@@ -85,6 +88,7 @@ export function RoomSettingsSheet({
                     className="bg-black text-white cursor-pointer hover:bg-gray-900 w-fit text-md font-light"
                     placeholder="Type new description....."
                     value={cardDescription}
+                    defaultValue={description}
                     onChange={(e) => {
                       if (e.target.value.length <= 150) {
                         setCardDescription(e.target.value);
