@@ -50,10 +50,7 @@ export function RoomSettingsSheet({
   const [classroomName, setClassroomName] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
-  const [editStudySet] = useEditStudySetMutation();
-
-console.log(roomTitle);
-  
+  const [editStudySet] = useEditStudySetMutation();  
 
   return (
     <Drawer>
