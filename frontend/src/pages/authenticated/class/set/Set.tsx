@@ -9,6 +9,7 @@ import { RoomSettingsSheet } from "./components/RoomSettingsSheet";
 import Navbar from "../../home/components/Navbar";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import Practice from "./components/Practice";
 interface SetProps {
   id?: number;
 }
@@ -51,10 +52,7 @@ const Set: FC<SetProps> = ({ id }) => {
             {roomTitle}
           </h3>
           <div className="flex gap-2">
-            <Button className="flex gap-1" variant={"outline"}>
-              <span className="hidden md:block">Practice</span>
-              <PiCards size={17} />
-            </Button>
+            <Practice />
             <AddCardDialog />
             <RoomSettingsSheet id={currentStudySetId} description={currentSet[0].description} />
           </div>
