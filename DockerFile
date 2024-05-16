@@ -1,0 +1,35 @@
+# Stage 1: Build React app
+FROM node:14 as node-builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY frontend/package*.json ./
+RUN npm install
+
+# Copy the rest of the frontend code and build it
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: Setup Python environment
+FROM python:3.9
+
+# Set working directory
+WORKDIR /app
+
+# Copy and install Python dependencies
+COPY backend/requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy backend code
+COPY backend/ ./
+
+# Copy built React app from the previous stage
+COPY --from=node-builder /app/build /app/static
+
+# Expose the port the Django app runs on
+EXPOSE 8000
+
+# Run the Django application
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
