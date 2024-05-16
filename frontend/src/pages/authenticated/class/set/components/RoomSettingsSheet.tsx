@@ -52,7 +52,7 @@ export function RoomSettingsSheet({
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [editStudySet] = useEditStudySetMutation();
 
-  console.log(id);
+console.log(roomTitle);
   
 
   return (
