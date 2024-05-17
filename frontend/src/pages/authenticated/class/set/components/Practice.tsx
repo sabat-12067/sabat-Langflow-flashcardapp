@@ -56,12 +56,15 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
                     onClick={() => setSwitchSides(!switchSides)}
                   >
                     {switchSides ? card.front : card.back}
-                    <AiOutlineSound className="fixed bottom-2 left-6" color="black" size={30} />
-
+                    <AiOutlineSound
+                      className="fixed bottom-2 left-6 cursor-pointer"
+                      color="black"
+                      size={30}
+                      onClick={(e) => e.stopPropagation()}
+                    />
                   </CarouselItem>
                 );
               })}
-
             </CarouselContent>
             <CarouselPrevious className="text-black" />
             <CarouselNext className="text-black" />
