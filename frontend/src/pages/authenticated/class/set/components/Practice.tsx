@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
@@ -19,6 +20,7 @@ import clsx from "clsx";
 import { FC, useState } from "react";
 import { AiOutlineSound } from "react-icons/ai";
 import { PiCards } from "react-icons/pi";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
 
 interface PracticeProps {
@@ -27,6 +29,8 @@ interface PracticeProps {
 const Practice: FC<PracticeProps> = ({ cards }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [switchSides, setSwitchSides] = useState(false);
+
+  const [slide, setSlide] = useState(0)
 
   return (
     <Drawer>
@@ -42,6 +46,11 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
           isDarkMode ? "" : "bg-black text-white"
         )}
       >
+        <DrawerClose>
+          <button className="fixed left-6 top-4">
+            <IoMdCloseCircleOutline className="" size={34} />
+          </button>
+        </DrawerClose>
         <div className="text-center mx-auto py-[130px]">
           <Carousel className="w-full max-w-xs">
             <CarouselContent className="">
@@ -57,17 +66,26 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
                   >
                     {switchSides ? card.front : card.back}
                     <AiOutlineSound
-                      className="fixed bottom-2 left-6 cursor-pointer"
-                      color="black"
-                      size={30}
+                      className={clsx(
+                        "fixed bottom-2 left-6 cursor-pointer hover:rounded-lg",
+                        isDarkMode ? "hover:bg-slate-200" : "hover:bg-slate-800"
+                      )}
+                      color={isDarkMode ? "black" : "gray"}
+                      size={isDarkMode ? 26 : 24}
                       onClick={(e) => e.stopPropagation()}
                     />
                   </CarouselItem>
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious className="text-black" />
-            <CarouselNext className="text-black" />
+            <p className="p-2 text-sm">{slide + "/" + cards?.length}</p>
+
+            <CarouselPrevious
+             className="text-black"
+             />
+            <CarouselNext 
+            className="text-black" 
+            />
           </Carousel>
         </div>
       </DrawerContent>
