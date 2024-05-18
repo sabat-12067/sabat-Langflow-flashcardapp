@@ -30,7 +30,7 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [switchSides, setSwitchSides] = useState(false);
 
-  const [slide, setSlide] = useState(0)
+  const [slide, setSlide] = useState(0);
 
   return (
     <Drawer>
@@ -58,13 +58,24 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
                 return (
                   <CarouselItem
                     key={i}
+                    style={switchSides ? { transform: "rotateY(180deg)" } : {}}
                     className={clsx(
-                      "h-[500px] w-[400px] rounded-lg text-center py-[212px] text-5xl",
-                      isDarkMode ? "bg-slate-100" : "bg-[#090c19]"
+                      "h-[500px] w-[400px] rounded-lg text-center py-[212px] text-5xl relative transform transition-transform",
+                      isDarkMode ? "bg-slate-100" : "bg-[#090c19]",
+                      switchSides ? "" : ""
                     )}
                     onClick={() => setSwitchSides(!switchSides)}
                   >
-                    {switchSides ? card.front : card.back}
+                    {switchSides ? (
+                      <p>{card.front}</p>
+                    ) : (
+                      <p
+                       style={switchSides ? {transform: "rotateY(90deg)" } : {}}
+                       >
+                        {" "}
+                        {card.back}
+                      </p>
+                    )}
                     <AiOutlineSound
                       className={clsx(
                         "fixed bottom-2 left-6 cursor-pointer hover:rounded-lg",
@@ -80,12 +91,8 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             </CarouselContent>
             <p className="p-2 text-sm">{slide + "/" + cards?.length}</p>
 
-            <CarouselPrevious
-             className="text-black"
-             />
-            <CarouselNext 
-            className="text-black" 
-            />
+            <CarouselPrevious className="text-black" />
+            <CarouselNext className="text-black" />
           </Carousel>
         </div>
       </DrawerContent>
