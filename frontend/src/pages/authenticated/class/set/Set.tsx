@@ -36,7 +36,7 @@ const Set: FC<SetProps> = ({ id }) => {
   const path = useParams()
 
   const currentSetId = path.setId!.slice(1, path.setId?.length)  
-  const currentSet = set!.filter((s) => s.id === parseInt(currentSetId))  
+  const currentSet = set?.filter((s) => s.id === parseInt(currentSetId))!  
 
   return (
     <div>
@@ -54,7 +54,7 @@ const Set: FC<SetProps> = ({ id }) => {
           <div className="flex gap-2">
             <Practice cards={data!}/>
             <AddCardDialog />
-            <RoomSettingsSheet id={currentStudySetId} description={currentSet[0].description} />
+            <RoomSettingsSheet id={currentStudySetId} description={""} />
           </div>
         </div>
         <div className="grid grid-cols-4 md:grid-cols-5 xl:grid-cols-6 justify-center max-w-[99%] pr-8 sm:max-w-[85%] lg:max-w-[65%] 2xl:max-w-[52%] mx-auto">

@@ -22,6 +22,10 @@ import { AiOutlineSound } from "react-icons/ai";
 import { PiCards } from "react-icons/pi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
+
+
 
 interface PracticeProps {
   cards: Card[];
@@ -29,9 +33,11 @@ interface PracticeProps {
 const Practice: FC<PracticeProps> = ({ cards }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [switchSides, setSwitchSides] = useState(false);
-
   const [slide, setSlide] = useState(0);
+  const [cardsLength, setCardslength] = useState<number>(0);
 
+  console.log( cards ? cards[0]: null)
+  
   return (
     <Drawer>
       <DrawerTrigger>
@@ -51,50 +57,37 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             <IoMdCloseCircleOutline className="" size={34} />
           </button>
         </DrawerClose>
-        <div className="text-center mx-auto py-[130px]">
-          <Carousel className="w-full max-w-xs">
-            <CarouselContent className="">
-              {cards?.map((card, i) => {
-                return (
-                  <CarouselItem
-                    key={i}
-                    style={switchSides ? { transform: "rotateY(180deg)" } : {}}
-                    className={clsx(
-                      "h-[500px] w-[400px] rounded-lg text-center py-[212px] text-5xl relative transform transition-transform",
-                      isDarkMode ? "bg-slate-100" : "bg-[#090c19]",
-                      switchSides ? "" : ""
-                    )}
-                    onClick={() => setSwitchSides(!switchSides)}
-                  >
-                    {switchSides ? (
-                      <p>{card.front}</p>
-                    ) : (
-                      <p
-                       style={switchSides ? {transform: "rotateY(90deg)" } : {}}
-                       >
-                        {" "}
-                        {card.back}
-                      </p>
-                    )}
-                    <AiOutlineSound
-                      className={clsx(
-                        "fixed bottom-2 left-6 cursor-pointer hover:rounded-lg",
-                        isDarkMode ? "hover:bg-slate-200" : "hover:bg-slate-800"
-                      )}
-                      color={isDarkMode ? "black" : "gray"}
-                      size={isDarkMode ? 26 : 24}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <p className="p-2 text-sm">{slide + "/" + cards?.length}</p>
+        <div className={clsx("flex max-w-[800px] mx-auto my-[130px]")}>
+          <button 
+          className={clsx("my-[240px] cursor-pointer")}
+          onClick={() => setCardslength(cardsLength - 1)}
+          disabled={cardsLength === 0}
+          >
+            <GrFormPrevious size={28} color={cardsLength === 0 ? "gray" : "white"} />
+          </button>
+        <div 
+        className={clsx("text-center mx-auto h-[500px] w-[300px]", isDarkMode ? "" : "bg-slate-900")}
+        onClick={() => setSwitchSides(!switchSides)}
+        >
+              <div className="my-[230px] text-4xl">
+                {
+                switchSides ? 
+                cards?  cards[cardsLength]?.front : ""
+                :
+                cards?  cards[cardsLength]?.back : ""
 
-            <CarouselPrevious className="text-black" />
-            <CarouselNext className="text-black" />
-          </Carousel>
+                }
+              </div>
         </div>
+        <button 
+        className="my-[240px] cursor-pointer"
+        onClick={() => setCardslength(cardsLength + 1)}
+        disabled={cards?.length - 1 === cardsLength}
+        >
+          <MdNavigateNext size={28} color={cards?.length - 1 === cardsLength ? "gray" : "white"} />
+        </button>
+        </div>
+
       </DrawerContent>
     </Drawer>
   );
