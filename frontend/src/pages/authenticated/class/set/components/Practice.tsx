@@ -24,8 +24,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-
-
+import BackSideDrawer from "./BackSideDrawer";
 
 interface PracticeProps {
   cards: Card[];
@@ -35,9 +34,6 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
   const [switchSides, setSwitchSides] = useState(false);
   const [slide, setSlide] = useState(0);
   const [cardsLength, setCardslength] = useState<number>(0);
-
-  console.log( cards ? cards[0]: null)
-  
   return (
     <Drawer>
       <DrawerTrigger>
@@ -57,40 +53,49 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             <IoMdCloseCircleOutline className="" size={34} />
           </button>
         </DrawerClose>
-        <div className={clsx("flex max-w-[800px] mx-auto my-[130px]")}>
-          <button 
-          className={clsx("my-[240px] cursor-pointer")}
-          onClick={() => setCardslength(cardsLength - 1)}
-          disabled={cardsLength === 0}
+        <div
+          className={clsx("flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out", !switchSides && "")}
+          onClick={() => setSwitchSides(!switchSides)}
+        >
+          <button
+            className={clsx("my-[240px] cursor-pointer")}
+            onClick={() => setCardslength(cardsLength - 1)}
+            disabled={cardsLength === 0}
           >
-            <GrFormPrevious size={28} color={cardsLength === 0 ? "gray" : "white"} />
+            <GrFormPrevious
+              size={28}
+              color={cardsLength === 0 ? "gray" : "white"}
+            />
           </button>
-        <div 
-        className={clsx("text-center mx-auto h-[500px] w-[300px]", isDarkMode ? "" : "bg-slate-900")}
-        onClick={() => setSwitchSides(!switchSides)}
-        >
-              <div className="my-[230px] text-4xl">
-                {
-                switchSides ? 
-                cards?  cards[cardsLength]?.front : ""
-                :
-                cards?  cards[cardsLength]?.back : ""
+          <div
+            className={clsx(
+              "text-center mx-auto h-[500px] w-[300px]",
+              isDarkMode ? "" : "bg-slate-900"
+            )}
+          >
+            <div 
+            className="my-[236px] text-3xl">
+                          <BackSideDrawer 
+                          front={cards ?  cards[cardsLength]?.front : ""}
+                          back={cards ? cards[cardsLength]?.back : ""}
+                          />
 
-                }
-              </div>
+            </div>
+            <p className="mx-auto">{cardsLength + 1 + "/" + cards?.length}</p>
+          </div>
+          <button
+            className="my-[240px] cursor-pointer"
+            onClick={() => setCardslength(cardsLength + 1)}
+            disabled={cards?.length - 1 === cardsLength}
+          >
+            <MdNavigateNext
+              size={28}
+              color={cards?.length - 1 === cardsLength ? "gray" : "white"}
+            />
+          </button>
         </div>
-        <button 
-        className="my-[240px] cursor-pointer"
-        onClick={() => setCardslength(cardsLength + 1)}
-        disabled={cards?.length - 1 === cardsLength}
-        >
-          <MdNavigateNext size={28} color={cards?.length - 1 === cardsLength ? "gray" : "white"} />
-        </button>
-        </div>
-
       </DrawerContent>
     </Drawer>
   );
 };
-
 export default Practice;
