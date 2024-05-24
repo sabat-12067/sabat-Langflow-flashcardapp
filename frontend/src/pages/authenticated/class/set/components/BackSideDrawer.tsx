@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { FC } from 'react'
 interface BackSideDrawerProps {
-    front: string
+    front: any
     back: string
 }   
 const BackSideDrawer: FC<BackSideDrawerProps> = ({

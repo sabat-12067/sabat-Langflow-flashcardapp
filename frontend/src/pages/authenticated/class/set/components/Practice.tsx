@@ -54,7 +54,10 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
           </button>
         </DrawerClose>
         <div
-          className={clsx("flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out", !switchSides && "")}
+          className={clsx(
+            "flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out cursor-pointer",
+            !switchSides && ""
+          )}
           onClick={() => setSwitchSides(!switchSides)}
         >
           <button
@@ -73,13 +76,8 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
               isDarkMode ? "" : "bg-slate-900"
             )}
           >
-            <div 
-            className="my-[236px] text-3xl">
-                          <BackSideDrawer 
-                          front={cards ?  cards[cardsLength]?.front : ""}
-                          back={cards ? cards[cardsLength]?.back : ""}
-                          />
-
+            <div className={clsx("my-[236px] text-3xl", switchSides && "text-blue-500")}>
+              {switchSides ? cards[cardsLength]?.front : cards[cardsLength]?.back}
             </div>
             <p className="mx-auto">{cardsLength + 1 + "/" + cards?.length}</p>
           </div>
