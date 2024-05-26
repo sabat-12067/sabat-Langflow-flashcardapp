@@ -113,7 +113,10 @@ const EditCardModal: FC<EditCardModalProps> = ({ id, front, back }) => {
               className="text-[13px] mx-1"
               variant={"destructive"}
               type="button"
-              onClick={() => deleteCard(id)}
+              onClick={() => {
+                deleteCard(id)
+                localStorage.removeItem("Card length: ")
+              }}
             >
               {isDelLoading ? (
                 <ClipLoader

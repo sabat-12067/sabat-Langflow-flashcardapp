@@ -40,7 +40,10 @@ const AddCardDialog = ({}:AddCardDialog) => {
     try {
       await createCard({ ...data, flashcard_set_id: flashCardSetId});
       toast("New card created!");
-      reset(); // This should be called after the createCard promise resolves
+      localStorage.removeItem("Card length: ")
+      reset();
+
+
     } catch (error) {
       console.error("Failed to create card:", error);
     }
