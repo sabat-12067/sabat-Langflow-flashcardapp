@@ -27,7 +27,6 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
     setSwitchSides(false)
   }, [cardsLength])
   
-
   return (
     <Drawer>
       <DrawerTrigger>
