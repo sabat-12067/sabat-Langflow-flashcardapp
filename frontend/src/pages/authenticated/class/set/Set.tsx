@@ -16,8 +16,6 @@ interface SetProps {
 const Set: FC<SetProps> = ({ id }) => {
   const [roomTitle] = useState(localStorage.getItem("Set"));
   const pathName = useParams()
-
-
   const classId = pathName.classId!.slice(1,pathName.classId?.length )
   
   const location = useLocation();

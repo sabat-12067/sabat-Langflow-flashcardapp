@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/drawer";
 import { Card } from "@/types";
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { AiOutlineSound } from "react-icons/ai";
 import { PiCards } from "react-icons/pi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -34,6 +34,13 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
   const [switchSides, setSwitchSides] = useState(false);
   const [slide, setSlide] = useState(0);
   const [cardsLength, setCardslength] = useState<number>(0);
+
+
+  useEffect(() => {
+    setSwitchSides(false)
+  }, [cardsLength])
+  
+
   return (
     <Drawer>
       <DrawerTrigger>
@@ -77,9 +84,13 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             )}
           >
             <div className={clsx("my-[236px] text-3xl", switchSides && "text-blue-500")}>
-              {switchSides ? cards[cardsLength]?.front : cards[cardsLength]?.back}
+              {
+                cards && (switchSides ? cards[cardsLength]?.front : cards[cardsLength]?.back)
+              }
             </div>
-            <p className="mx-auto">{cardsLength + 1 + "/" + cards?.length}</p>
+            <p className="mx-auto">
+              {cardsLength + 1 + "/" + cards?.length}
+            </p>
           </div>
           <button
             className="my-[240px] cursor-pointer"

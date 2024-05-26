@@ -1,23 +1,9 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-} from "@radix-ui/react-dropdown-menu";
-
 import { FC } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  useDeleteCardMutation,
-  useEditClassroomMutation,
-  useEditStudySetCardsMutation,
-} from "@/services/cards";
-import { toast } from "sonner";
+import {useForm } from "react-hook-form";
+
 import { Card as CardType } from "@/types";
-import ClipLoader from "react-spinners/ClipLoader";
 import EditCardModal from "./EditCardModal";
 interface CardProps {
   front: string;
