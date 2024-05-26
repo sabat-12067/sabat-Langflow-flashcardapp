@@ -1,30 +1,18 @@
 import { Button } from "@/components/ui/button";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Card } from "@/types";
 import clsx from "clsx";
 import { FC, useEffect, useState } from "react";
-import { AiOutlineSound } from "react-icons/ai";
 import { PiCards } from "react-icons/pi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import BackSideDrawer from "./BackSideDrawer";
 
 interface PracticeProps {
   cards: Card[];
@@ -32,7 +20,6 @@ interface PracticeProps {
 const Practice: FC<PracticeProps> = ({ cards }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [switchSides, setSwitchSides] = useState(false);
-  const [slide, setSlide] = useState(0);
   const [cardsLength, setCardslength] = useState<number>(0);
 
 

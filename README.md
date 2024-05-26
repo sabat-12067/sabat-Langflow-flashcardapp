@@ -30,4 +30,6 @@ Get your env variables:
     -You will need an env variable for your supabase connection and google credentials for auth from GCP.
 ## Each Classrooms Study Sets shown in dark mode:
 ![LangFlow](/frontend/public/StudyRooms.png)
+## Practice mode for a flashcard set learnign words in Hindi!:
+![LangFlow](/frontend/public/practice.png)
 
