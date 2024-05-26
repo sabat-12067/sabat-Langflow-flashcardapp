@@ -43,8 +43,8 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
         )}
       >
         <DrawerClose>
-          <button className="fixed left-6 top-4">
-            <IoMdCloseCircleOutline className="" size={34} />
+          <button className="fixed left-6 top-4 flex">
+            <IoMdCloseCircleOutline className="" size={34} /><span className="text-[14px] py-1">(ESC)</span>
           </button>
         </DrawerClose>
         <div
