@@ -32,7 +32,6 @@ const Set: FC<SetProps> = ({ id }) => {
   }, [data?.length])
 
   const cardSkeleton = localStorage.getItem("Card length: ")
-  console.log(cardSkeleton)
   
 
   return (
