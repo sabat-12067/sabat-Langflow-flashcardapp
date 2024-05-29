@@ -6,18 +6,15 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
-    depends_on:
-      - db
-
-  db:
-    image: postgres
+      - ./backend:/backend
+      - ./frontend:/frontend
     environment:
-      POSTGRES_DB: learned_db
-      POSTGRES_USER: learned_user
-      POSTGRES_PASSWORD: password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      # Supabase database connection environment variables
+      DB_NAME: your_supabase_db_name
+      DB_USER: your_supabase_user
+      DB_PASSWORD: your_supabase_password
+      DB_HOST: your_supabase_host
+      DB_PORT: 5432
 
 volumes:
-  postgres_data:
+  postgres_data: # This can be removed if not used anymore

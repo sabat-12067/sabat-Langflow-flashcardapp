@@ -2,7 +2,7 @@
 FROM node:21.5.0 as node-builder
 
 # Set working directory
-WORKDIR /app
+WORKDIR /frontend
 
 # Copy package.json and install dependencies
 COPY frontend/package*.json ./
@@ -16,7 +16,7 @@ RUN npm run build
 FROM python:3.9
 
 # Set working directory
-WORKDIR /app
+WORKDIR /backend
 
 # Copy and install Python dependencies
 COPY backend/requirements.txt .
@@ -26,7 +26,7 @@ RUN pip install -r requirements.txt
 COPY backend/ ./
 
 # Copy built React app from the previous stage
-COPY --from=node-builder /app/build /app/static
+COPY --from=node-builder /frontend/build /backend/static
 
 # Expose the port the Django app runs on
 EXPOSE 8000
