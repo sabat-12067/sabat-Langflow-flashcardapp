@@ -8,13 +8,6 @@ services:
     volumes:
       - ./backend:/backend
       - ./frontend:/frontend
-    environment:
-      # Supabase database connection environment variables
-      DB_NAME: your_supabase_db_name
-      DB_USER: your_supabase_user
-      DB_PASSWORD: your_supabase_password
-      DB_HOST: your_supabase_host
-      DB_PORT: 5432
 
 volumes:
   postgres_data: # This can be removed if not used anymore
