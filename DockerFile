@@ -26,7 +26,7 @@ RUN pip install -r requirements.txt
 COPY backend/ ./
 
 # Copy built React app from the previous stage
-COPY --from=node-builder /frontend/build /backend/static
+COPY --from=node-builder /frontend/dist /backend/static
 
 # Expose the port the Django app runs on
 EXPOSE 8000

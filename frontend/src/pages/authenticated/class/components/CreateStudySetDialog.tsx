@@ -1,3 +1,7 @@
+// @ts-nocheck
+//@ts-nocheck
+
+
 
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";

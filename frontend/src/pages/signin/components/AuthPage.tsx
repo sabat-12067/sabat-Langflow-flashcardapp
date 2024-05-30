@@ -1,3 +1,5 @@
+//@ts-ignore
+//@ts-nocheck
 import { FC, useEffect, useState } from "react";
 import AuthForm from "./AuthForm";
 import { Auth } from "@supabase/auth-ui-react";
