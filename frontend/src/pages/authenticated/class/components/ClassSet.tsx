@@ -42,7 +42,7 @@ const ClassSet: FC<ClassSetProps> = ({ id, name, description }) => {
         )}
       >
         <HoverCard>
-          <HoverCardTrigger className={clsx("text-white", description.length > 30 && 'cursor-pointer')}>
+          <HoverCardTrigger className={clsx("text-white cursor-pointer", description.length > 30 && 'cursor-pointer')}>
             {description.length > 30
               ? description.slice(0, 17) + "..."
               : description}
