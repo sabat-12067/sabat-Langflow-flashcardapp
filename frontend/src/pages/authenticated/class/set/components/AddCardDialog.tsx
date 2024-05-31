@@ -73,7 +73,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 {...register("front", {
                   required: "Front side is required",
                   maxLength: {
-                    value: 20,
+                    value: 300,
                     message: "Maximum 20 characters are allowed"
                   },
                   validate: value => value.trim().length > 0 || "Front side cannot be empty"
@@ -92,7 +92,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 {...register("back", {
                   required: "Back side is required",
                   maxLength: {
-                    value: 20,
+                    value: 300,
                     message: "Maximum 20 characters are allowed"
                   },
                   validate: value => value.trim().length > 0 || "Back side cannot be empty"
