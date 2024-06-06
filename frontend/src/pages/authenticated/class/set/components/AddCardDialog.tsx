@@ -82,7 +82,7 @@ const AddCardDialog = ({}:AddCardDialog) => {
                 id="name"
                 className={clsx("col-span-3", errors.front ? "border-orange-700" : "", isDarkMode ? "" : "text-black")}
               />
-            </div>
+            </div> 
 
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="username" className="text-right">
