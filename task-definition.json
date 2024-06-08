@@ -1,7 +1,6 @@
 {
     "family": "langflow-task",
     "networkMode": "awsvpc",
-    "executionRoleArn": "arn:aws:iam::590184002626:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "langflow-container",
@@ -12,14 +11,22 @@
         "portMappings": [
           {
             "containerPort": 8000,
-            "hostPort": 8000
+            "hostPort": 8000,
+            "protocol": "tcp"
           }
-        ]
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/langflow",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
       }
     ],
-    "requiresCompatibilities": [
-      "FARGATE"
-    ],
+    "requiresCompatibilities": ["FARGATE"],
+    "executionRoleArn": "arn:aws:iam::590184002626:role/ecsTaskExecutionRole",
     "cpu": "256",
     "memory": "512"
   }
