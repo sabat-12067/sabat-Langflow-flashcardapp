@@ -1,6 +1,7 @@
 {
     "family": "langflow-task",
     "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::590184002626:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
     "containerDefinitions": [
       {
         "name": "langflow-container",
