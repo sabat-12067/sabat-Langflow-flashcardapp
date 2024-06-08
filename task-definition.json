@@ -1,0 +1,25 @@
+{
+    "family": "langflow-task",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "name": "langflow-container",
+        "image": "590184002626.dkr.ecr.us-east-2.amazonaws.com/langflow:latest",
+        "memory": 512,
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 8000,
+            "hostPort": 8000
+          }
+        ]
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+  }
+  
