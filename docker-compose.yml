@@ -9,5 +9,3 @@ services:
       - ./backend:/backend
       - ./frontend:/frontend
 
-volumes:
-  postgres_data: # This can be removed if not used anymore
