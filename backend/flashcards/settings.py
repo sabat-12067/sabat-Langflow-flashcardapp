@@ -48,6 +48,10 @@ TEMPLATES = [
     },
 ]
 
+ALLOWED_HOSTS = [
+    'langflow-alb-2129449105.us-east-2.elb.amazonaws.com',
+]
+
 WSGI_APPLICATION = 'flashcards.wsgi.application'
 
 

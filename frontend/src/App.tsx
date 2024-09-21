@@ -7,7 +7,7 @@ import Cards from "./pages/authenticated/home/Cards";
 import AuthPage from "./pages/signin/components/AuthPage";
 
 const App = () => {
-  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+  const isDarkMode = useSelector((state: any) => state.theme.isDarkMode);
 
   return (
     <div className={isDarkMode ? "bg-white h-[100%]" : "bg-[#090c19] h-[100vh]"}>

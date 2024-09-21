@@ -18,6 +18,10 @@ const Cards = () => {
     }
   }, [data?.length]);
 
+  console.log(data);
+
+  
+
   const storedValue = localStorage.getItem("Class length: ");
   const setLength = storedValue !== null ? parseInt(storedValue, 10) : 0;
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);

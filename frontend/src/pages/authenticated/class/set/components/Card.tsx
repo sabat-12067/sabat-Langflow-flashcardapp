@@ -16,7 +16,7 @@ interface CardProps {
   id: string;
 }
 const Card: FC<CardProps> = ({ front, back, id }) => {
-  const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
+  const isDarkMode = useSelector((state: any) => state.theme.isDarkMode);
   const {
     register,
     handleSubmit,
