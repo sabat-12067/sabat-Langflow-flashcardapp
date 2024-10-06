@@ -4,6 +4,7 @@ from .models import StudyClass, FlashCardSet, FlashCards
 from .serializers import StudyClassSerializer, FlashCardSetSerializer, FlashCardSerializer
 from django.http import HttpResponse
 from rest_framework import status
+from openai import OpenAI
 
 class StudyClassView(APIView):
     def get(self, request, user_id_or_study_class_id, format=None):
@@ -102,3 +103,8 @@ class FlashCardView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OpenAIView:
+    def post(self, request):
+
+        return

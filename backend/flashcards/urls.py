@@ -15,4 +15,5 @@ urlpatterns = [
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
     #How to PATCH/DELETE a card
     path('flashcardspatch/<int:flashcard_id>/', FlashCardView.as_view(), name='flashcard-update'),
+    path('openai>/', FlashCardView.as_view(), name='flashcard-update'),
 ]
