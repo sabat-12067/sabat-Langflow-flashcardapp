@@ -106,5 +106,5 @@ class FlashCardView(APIView):
 
 class OpenAIView:
     def post(self, request):
-
+        client = OpenAI(api_key="langflow-api-key")
         return
