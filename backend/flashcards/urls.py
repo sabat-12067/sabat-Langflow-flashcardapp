@@ -1,5 +1,5 @@
 from .views import StudyClassView
-from .views import FlashCardSetView, FlashCardView
+from .views import FlashCardSetView, FlashCardView, OpenAIView
 from django.contrib import admin
 from django.urls import path
 
@@ -15,5 +15,6 @@ urlpatterns = [
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
     #How to PATCH/DELETE a card
     path('flashcardspatch/<int:flashcard_id>/', FlashCardView.as_view(), name='flashcard-update'),
-    path('openai>/', FlashCardView.as_view(), name='flashcard-update'),
+
+    path('openai/', OpenAIView.as_view(), name='pronunciation-feedback'),
 ]
