@@ -13,6 +13,8 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import AiAssistantMenu from "./AiAssistantMenu";
 
 interface PracticeProps {
   cards: Card[];
@@ -34,6 +36,7 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
           <span className="hidden md:block">Practice</span>
           <PiCards size={17} />
         </Button>
+  
       </DrawerTrigger>
       <DrawerContent
         className={clsx(
@@ -45,6 +48,7 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
           <button className="fixed left-6 top-4 flex">
             <IoMdCloseCircleOutline className="" size={34} /><span className="text-[14px] py-1">(ESC)</span>
           </button>
+      
         </DrawerClose>
         <div
           className={clsx(
@@ -58,14 +62,16 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             onClick={() => setCardslength(cardsLength - 1)}
             disabled={cardsLength === 0}
           >
+            
             <GrFormPrevious
               size={28}
               color={cardsLength === 0 ? "gray" : "white"}
             />
           </button>
+          
           <div
             className={clsx(
-              "text-center mx-auto h-[500px] w-[300px]",
+              "text-center mx-auto h-[500px] w-[300px] relative",
               isDarkMode ? "" : "bg-slate-900"
             )}
           >
@@ -73,10 +79,14 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
               {
                 cards && (switchSides ? cards[cardsLength]?.front : cards[cardsLength]?.back)
               }
+           
+              <AiAssistantMenu />
             </div>
+            
             <p className="mx-auto">
               {cardsLength + 1 + "/" + cards?.length}
             </p>
+      
           </div>
           <button
             className="my-[240px] cursor-pointer"
@@ -88,8 +98,10 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
               color={cards?.length - 1 === cardsLength ? "gray" : "white"}
             />
           </button>
+          
         </div>
       </DrawerContent>
+      
     </Drawer>
   );
 };
