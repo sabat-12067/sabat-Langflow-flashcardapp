@@ -19,16 +19,24 @@ import AiAssistantMenu from "./AiAssistantMenu";
 interface PracticeProps {
   cards: Card[];
 }
+type AiOptions = "PRONOUNCE" | "SYNONYMS" | "EXAMPLE" | "";
+
 const Practice: FC<PracticeProps> = ({ cards }) => {
   const isDarkMode = useSelector((content: any) => content.theme.isDarkMode);
   const [switchSides, setSwitchSides] = useState(false);
   const [cardsLength, setCardslength] = useState<number>(0);
-
+  const [aiFeedback, setAiFeedback] = useState<AiOptions>("");
 
   useEffect(() => {
-    setSwitchSides(false)
-  }, [cardsLength])
-  
+    setSwitchSides(false);
+  }, [cardsLength]);
+
+  const handleUpdateAI = (word: AiOptions) => {
+    setAiFeedback(word);
+  };
+
+  console.log(aiFeedback);
+
   return (
     <Drawer>
       <DrawerTrigger>
@@ -36,7 +44,6 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
           <span className="hidden md:block">Practice</span>
           <PiCards size={17} />
         </Button>
-  
       </DrawerTrigger>
       <DrawerContent
         className={clsx(
@@ -46,47 +53,74 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
       >
         <DrawerClose>
           <button className="fixed left-6 top-4 flex">
-            <IoMdCloseCircleOutline className="" size={34} /><span className="text-[14px] py-1">(ESC)</span>
+            <IoMdCloseCircleOutline className="" size={34} />
+            <span className="text-[14px] py-1">(ESC)</span>
           </button>
-      
         </DrawerClose>
+
         <div
           className={clsx(
-            "flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out cursor-pointer",
+            "flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out cursor-pointer foxed",
             !switchSides && ""
           )}
           onClick={() => setSwitchSides(!switchSides)}
         >
+          {
+            aiFeedback &&
+            
+            <div
+            className="absolute left-[300px] h-[500px] border-s border-white border-[1px] py-4" 
+            >
+              <h3 className="text-lg font-semibold px-4 pb-4">
+              Loading {aiFeedback} AI explanations
+              </h3>
+            <div className="border-s border-white border-[1px] w-[400px] px-0"/>
+            </div>
+            
+            
+            }
           <button
             className={clsx("my-[240px] cursor-pointer")}
             onClick={() => setCardslength(cardsLength - 1)}
             disabled={cardsLength === 0}
           >
-            
             <GrFormPrevious
               size={28}
               color={cardsLength === 0 ? "gray" : "white"}
             />
           </button>
-          
+
           <div
             className={clsx(
               "text-center mx-auto h-[500px] w-[300px] relative",
               isDarkMode ? "" : "bg-slate-900"
             )}
           >
-            <div className={clsx("my-[236px] text-3xl", switchSides && "text-blue-500")}>
-              {
-                cards && (switchSides ? cards[cardsLength]?.front : cards[cardsLength]?.back)
-              }
-           
-              <AiAssistantMenu />
+            <div
+              className={clsx(
+                "my-[236px] text-3xl",
+                switchSides && "text-blue-500"
+              )}
+            >
+              <div>
+                {cards &&
+                  (switchSides
+                    ? cards[cardsLength]?.front
+                    : cards[cardsLength]?.back)}
+              </div>
+
+              <AiAssistantMenu
+                word={
+                  cards &&
+                  (switchSides
+                    ? cards[cardsLength]?.front
+                    : cards[cardsLength]?.back)
+                }
+                handleUpdateAI={handleUpdateAI}
+              />
             </div>
-            
-            <p className="mx-auto">
-              {cardsLength + 1 + "/" + cards?.length}
-            </p>
-      
+
+            <p className="mx-auto">{cardsLength + 1 + "/" + cards?.length}</p>
           </div>
           <button
             className="my-[240px] cursor-pointer"
@@ -98,10 +132,8 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
               color={cards?.length - 1 === cardsLength ? "gray" : "white"}
             />
           </button>
-          
         </div>
       </DrawerContent>
-      
     </Drawer>
   );
 };
