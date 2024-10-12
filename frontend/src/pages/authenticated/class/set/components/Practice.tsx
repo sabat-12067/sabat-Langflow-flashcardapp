@@ -15,6 +15,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import AiAssistantMenu from "./AiAssistantMenu";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface PracticeProps {
   cards: Card[];
@@ -63,21 +64,25 @@ const Practice: FC<PracticeProps> = ({ cards }) => {
             "flex max-w-[800px] mx-auto my-[130px] duration-700 transition ease-in-out cursor-pointer foxed",
             !switchSides && ""
           )}
-          onClick={() => setSwitchSides(!switchSides)}
+          onClick={() => setSwitchSides(!switchSides)} 
         >
           {
-            aiFeedback &&
-            
-            <div
-            className="absolute left-[300px] h-[500px] border-s border-white border-[1px] py-4" 
+            aiFeedback ?
+            // <Skeleton>
+               <div
+            className="absolute left-[300px] h-[500px] border-s border-white border-[1px] py-2" 
             >
-              <h3 className="text-lg font-semibold px-4 pb-4">
+              <h3 className="text-lg font-semibold px-4 pb-2">
               Loading {aiFeedback} AI explanations
               </h3>
             <div className="border-s border-white border-[1px] w-[400px] px-0"/>
             </div>
             
-            
+            // </Skeleton>
+            : 
+            <div>
+              
+            </div>
             }
           <button
             className={clsx("my-[240px] cursor-pointer")}
