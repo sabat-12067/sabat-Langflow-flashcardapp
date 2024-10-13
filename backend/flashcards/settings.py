@@ -1,4 +1,4 @@
-
+import environ
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +18,26 @@ INSTALLED_APPS = [
     'rest_framework',
     'haystack'
 ]
+
+env = environ.Env()
+environ.Env.read_env()
+ELASTICSEARCH_API_KEY = env('ELASTICSEARCH_API_KEY')
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch7.Elasticsearch7SearchEngine',
+        'URL': 'https://cd4002bb32974f649ca5a5fdc66cc835.us-central1.gcp.cloud.es.io:443',
+        'INDEX_NAME': 'django_index', 
+        'KWARGS': {
+            'headers': {
+                'Authorization': f'ApiKey {ELASTICSEARCH_API_KEY}', 
+            },
+            'use_ssl': True,
+            'verify_certs': True,
+        }
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
