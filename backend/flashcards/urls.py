@@ -1,7 +1,7 @@
-from .views import StudyClassView
-from .views import FlashCardSetView, FlashCardView, OpenAIView
 from django.contrib import admin
 from django.urls import path
+from .views.api_views import StudyClassView, FlashCardSetView, FlashCardView
+from .views.openai_views import OpenAIView
 
 urlpatterns = [
     path('study-classes/', StudyClassView.as_view(), name='study-class'),
