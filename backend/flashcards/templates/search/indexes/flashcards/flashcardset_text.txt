@@ -1,0 +1,3 @@
+{{ object.name }}
+{{ object.description }}
+{{ object.study_class.name }}
