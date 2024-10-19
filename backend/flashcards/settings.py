@@ -1,6 +1,15 @@
 import environ
 from pathlib import Path
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+# Specify the path to the .env file explicitly, if needed
+environ.Env.read_env(env_file=str(BASE_DIR / '.env'))
+
+ELASTICSEARCH_API_KEY = env('ELASTICSEARCH_API_KEY')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-iip1&41-+(mzdbhit9hm_wy4r0v-fs=h9+8w6n&287&tispaoy'
 DEBUG = True
@@ -19,9 +28,6 @@ INSTALLED_APPS = [
     'haystack'
 ]
 
-env = environ.Env()
-environ.Env.read_env()
-ELASTICSEARCH_API_KEY = env('ELASTICSEARCH_API_KEY')
 
 HAYSTACK_CONNECTIONS = {
     'default': {
