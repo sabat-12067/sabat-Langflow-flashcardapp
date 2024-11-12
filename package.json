@@ -2,5 +2,8 @@
   "dependencies": {
     "install": "^0.13.0",
     "openai": "^4.67.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }
