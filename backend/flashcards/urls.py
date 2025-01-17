@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 from .views import StudyClassView, FlashCardSetView, FlashCardView
-from .externalapiviews.elasticsearch.elastic_search_views import elastic_search_study_classes, elastic_search_flashcard_sets, elastic_search_flashcards
 from .externalapiviews.openai_views import OpenAIView
 
 urlpatterns = [
@@ -19,7 +18,5 @@ urlpatterns = [
 
     path('openai/', OpenAIView.as_view(), name='pronunciation-feedback'),
         # ELASTIC SEARCH URLS
-    path('study-classes/search/', elastic_search_study_classes, name='study-class-search'),
-    path('flashcard-sets/search/', elastic_search_flashcard_sets, name='flashcard-set-search'),
-    path('flashcards/search/', elastic_search_flashcards, name='flashcard-search'),
+
 ]
