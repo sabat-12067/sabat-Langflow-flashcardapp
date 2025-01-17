@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 from .views import StudyClassView, FlashCardSetView, FlashCardView
-from .externalapiviews.openai_views import OpenAIView
 
 urlpatterns = [
     path('study-classes/', StudyClassView.as_view(), name='study-class'),
@@ -15,8 +14,5 @@ urlpatterns = [
     path('flashcards/<int:flashcard_set_id>/', FlashCardView.as_view(), name='flashcard-detail'),
     #How to PATCH/DELETE a card
     path('flashcardspatch/<int:flashcard_id>/', FlashCardView.as_view(), name='flashcard-update'),
-
-    path('openai/', OpenAIView.as_view(), name='pronunciation-feedback'),
-        # ELASTIC SEARCH URLS
 
 ]

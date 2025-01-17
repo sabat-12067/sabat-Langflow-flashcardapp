@@ -27,16 +27,17 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-OPENSEARCH_DSL = {
+ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
-    },
-    'secure': {
-        'hosts': [{"scheme": "https", "host": "192.30.255.112", "port": 9201}],
-        'http_auth': ("admin", "password"),
-        'timeout': 120,
-    },
+        'hosts': 'https://localhost:9200',
+        'http_auth': ('elastic', 'changeme'),
+        'scheme': 'https',
+        'port': 9200,
+        'verify_certs': True,
+        'ca_certs': '/path/to/http_ca.crt',
+    }
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
