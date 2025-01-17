@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'flashcards',
     'corsheaders',
     'rest_framework',
-    'haystack'
 ]
 
 OPENSEARCH_DSL = {
