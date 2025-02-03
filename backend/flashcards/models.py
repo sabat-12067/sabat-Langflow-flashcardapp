@@ -7,7 +7,7 @@ class StudyClass(models.Model):
     name = models.CharField(max_length=50, unique=True,db_index=True)
     description = models.TextField(blank=True, db_index=True)
 
-    def __str__(self):
+    def __str__(self): 
         return self.name
 
 class FlashCardSet(models.Model):
