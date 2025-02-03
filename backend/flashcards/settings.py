@@ -25,25 +25,18 @@ INSTALLED_APPS = [
     'flashcards',
     'corsheaders',
     'rest_framework',
-    'haystack'
 ]
 
-
-HAYSTACK_CONNECTIONS = {
+OPENSEARCH_DSL = {
     'default': {
-        'ENGINE': 'haystack.backends.elasticsearch7.Elasticsearch7SearchEngine',
-        'URL': 'https://cd4002bb32974f649ca5a5fdc66cc835.us-central1.gcp.cloud.es.io:443',
-        'INDEX_NAME': 'django_index', 
-        'KWARGS': {
-            'headers': {
-                'Authorization': f'ApiKey {ELASTICSEARCH_API_KEY}', 
-            },
-            'use_ssl': True,
-            'verify_certs': True,
-        }
+        'hosts': 'localhost:9200'
+    },
+    'secure': {
+        'hosts': [{"scheme": "https", "host": "192.30.255.112", "port": 9201}],
+        'http_auth': ("admin", "password"),
+        'timeout': 120,
     },
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
