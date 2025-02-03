@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'flashcards',
     'corsheaders',
     'rest_framework',
-    'django\_elasticsearch\_dsl'
+    'django_elasticsearch_dsl'
 ]
 
 ELASTICSEARCH_DSL = {
