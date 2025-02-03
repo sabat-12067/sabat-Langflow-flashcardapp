@@ -25,19 +25,14 @@ INSTALLED_APPS = [
     'flashcards',
     'corsheaders',
     'rest_framework',
+    'django\_elasticsearch\_dsl'
 ]
 
 ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'changeme'),
-        'scheme': 'https',
-        'port': 9200,
-        'verify_certs': True,
-        'ca_certs': '/path/to/http_ca.crt',
-    }
+    "default": {
+        "hosts": ["http://localhost:9200"],
+    },
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
