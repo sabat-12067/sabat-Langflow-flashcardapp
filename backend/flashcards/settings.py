@@ -25,16 +25,12 @@ INSTALLED_APPS = [
     'flashcards',
     'corsheaders',
     'rest_framework',
+    'django_elasticsearch_dsl'
 ]
 
-OPENSEARCH_DSL = {
-    'default': {
-        'hosts': 'localhost:9200'
-    },
-    'secure': {
-        'hosts': [{"scheme": "https", "host": "192.30.255.112", "port": 9201}],
-        'http_auth': ("admin", "password"),
-        'timeout': 120,
+ELASTICSEARCH_DSL = {
+    "default": {
+        "hosts": ["http://localhost:9200"],
     },
 }
 

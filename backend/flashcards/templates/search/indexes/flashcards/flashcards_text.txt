@@ -1,4 +1,0 @@
-{{ object.front }}
-{{ object.back }}
-{{ object.flashcard_set.name }}
-{{ object.flashcard_set.study_class.name }}
