@@ -24,7 +24,7 @@ language, and I ended up loving Django!
 Clone the repository:
 
     ```ssh key```
-    git clone git@github.com:sabat-12067/flashcardsapp.git
+    git clone git@github.com:sabat-12067/sabat-Langflow-flashcardsapp.git
 
 Get your env variables:
     -You will need an env variable for your supabase connection and google credentials for auth from GCP.
