@@ -3,7 +3,7 @@
 LangFlow is a flashcards application I made using React, Redux toolkit, Typescript, Supabase, and Django. This app has a feature called classrooms, 
 which is whatever topic the user wants to learn more about, and each classroom has multiple sets of flashcards. The motivation for me building this app was to learn a new
 language, and I ended up loving Django!
-![LangFlow](/frontend/public/homepage.png)
+
 ## Features
 
 - Authentication with Supabase and Redux Toolkit
@@ -24,7 +24,7 @@ language, and I ended up loving Django!
 Clone the repository:
 
     ```ssh key```
-    git clone git@github.com:Eshwar1212-maker/flashcardsapp.git
+    git clone git@github.com:sabat-12067/flashcardsapp.git
 
 Get your env variables:
     -You will need an env variable for your supabase connection and google credentials for auth from GCP.
